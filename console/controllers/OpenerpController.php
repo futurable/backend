@@ -5,6 +5,7 @@ use Yii;
 use yii\console\Controller;
 use common\models\Company;
 use yii\helpers\Security;
+use app\commands\CreateTag;
 
 class OpenerpController extends Controller
 {
@@ -34,6 +35,11 @@ class OpenerpController extends Controller
        		
        		// Create an openerp database
        		$OpenErpPassword = Security::generateRandomKey(8);
+       		//$company->tag = $customer_tag."_".$CommonServices->createTagFromName($company->name);
+       		$CreateTag = new CreateTag();
+       		$company->tag = $CreateTag->createTagFromName($company->name);
+       		$this->debug("Using tag is {$company->tag}");
+       		
        		$cmd = " '$company->tag' '$company->name' '$OpenErpPassword' '$company->business_id' '$company->email' '$bankAccount'";
        		$shellCmd = escapeshellcmd($cmd);
        		$scriptFile = Yii::getAlias('@app')."/commands/shell/createOpenERPCompany.sh";
