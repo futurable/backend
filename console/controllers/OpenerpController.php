@@ -32,6 +32,9 @@ class OpenerpController extends Controller
         foreach ($companies as $tmpcompany) {
             $company = new Company();
             $company->attributes = $tmpcompany;
+            $company->id = $tmpcompany['id'];
+            $company->token_customer_id = $tmpcompany['token_customer_id'];
+            
             // $bankAccount->iban = false; // @TODO: fix this
             $bankAccount = '';
             
@@ -41,12 +44,12 @@ class OpenerpController extends Controller
             $OpenErpPassword = Security::generateRandomKey(8);
             
             // @TODO Fix this to use AR
-            $command = $connection->createCommand("SELECT tag FROM token_customer WHERE token_customer_id = '{$company->token_customer_id}'");
-            $customer_tag = $command->query()->tag;
+            $command = $connection->createCommand("SELECT tag FROM token_customer WHERE id = '{$company->token_customer_id}'");
+            $customer_tag = $command->queryOne()['tag'];
             
-            // $company->tag = $customer_tag."_".$CommonServices->createTagFromName($company->name);
             $CreateTag = new CreateTag();
-            $company->tag = $CreateTag->createTagFromName($company->name);
+            $company->tag = $customer_tag."_".$CreateTag->createTagFromName($company->name);
+            
             $Debug->message("Company tag is {$company->tag}", $this->debugLevel);
             
             $cmd = " '$company->tag' '$company->name' '$OpenErpPassword' '$company->business_id' '$company->email' '$bankAccount'";
@@ -54,17 +57,20 @@ class OpenerpController extends Controller
             
             $scriptFile = Yii::getAlias('@app') . "/commands/shell/createOpenERPCompany.sh";
             
-            $Debug->message($scriptFile . $shellCmd, $this->debugLevel);
+            $Debug->message("Creating database '{$company->tag}'", $this->debugLevel);
             $output = exec("sh " . $scriptFile . $shellCmd);
             
             $Debug->message("Created database '{$company->tag}'", $this->debugLevel);
             
-            // @TODO Fix this to use AR
-            $command = $connection->createCommand('UPDATE company SET openerp_database_created = NOW()');
+            // @TODO: fix this hack
+            $connection = \Yii::$app->db_core;
+             
+            // @TODO: Fix this to use AR
+            $command = $connection->createCommand("UPDATE company_passwords SET openerp_password = '{$OpenErpPassword}' WHERE company_id ='{$company->id}'");
             $command->query();
             
             // @TODO Fix this to use AR
-            $command = $connection->createCommand("UPDATE company_passwords SET openerp_password = '{$bankUser->password}'");
+            $command = $connection->createCommand('UPDATE company SET openerp_database_created = NOW()');
             $command->query();
             
             $Debug->message(false, $this->debugLevel);

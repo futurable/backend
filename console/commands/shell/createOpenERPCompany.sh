@@ -13,7 +13,7 @@ EMAIL=$5
 BANKACCOUNT=$6
 
 DB=$TAG
-TEMPLATE="protected/commands/sql/template_default.sql"
+TEMPLATE="console/commands/sql/template_default.sql"
 INPUTFILE="/tmp/${DB}.sql"
 
 # Create temporary database dump file
@@ -29,4 +29,4 @@ sed -i "s/CompanyEmail/${EMAIL}/g" $INPUTFILE
 sed -i "s/CompanyBankAccount/${BANKACCOUNT}/g" $INPUTFILE
 
 psql -h 185.18.77.163 -U openerp -d postgres -c "CREATE DATABASE ${DB}"
-#psql -h 185.18.77.163 -U openerp -d $DB < $INPUTFILE
+psql -h 185.18.77.163 -U openerp -d $DB < $INPUTFILE >> /dev/null
