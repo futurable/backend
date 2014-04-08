@@ -12,7 +12,6 @@ class OpenerpController extends Controller
 {
 
     public $defaultAction = 'create';
-
     public $debugLevel = 1;
 
     public function actionCreate()
@@ -62,16 +61,13 @@ class OpenerpController extends Controller
             
             $Debug->message("Created database '{$company->tag}'", $this->debugLevel);
             
-            // @TODO: fix this hack
-            $connection = \Yii::$app->db_core;
-             
-            // @TODO: Fix this to use AR
-            $command = $connection->createCommand("UPDATE company_passwords SET openerp_password = '{$OpenErpPassword}' WHERE company_id ='{$company->id}'");
-            $command->query();
+            $companyPasswords = $company->companyPasswords;
+            $companyPasswords->openerp_password = $OpenErpPassword;
+            $companyPasswords->save();
             
-            // @TODO Fix this to use AR
-            $command = $connection->createCommand('UPDATE company SET openerp_database_created = NOW()');
-            $command->query();
+            // @TODO: Fix this to use DbExpression
+            $company->openerp_database_created = date('Y-m-d H:i:s');
+            $company->save();
             
             $Debug->message(false, $this->debugLevel);
         }
