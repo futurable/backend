@@ -18,6 +18,7 @@ use Yii;
  * @property string $bank_account_created
  * @property string $openerp_database_created
  * @property string $backend_user_created
+ * @property string $account_mail_sent
  * @property integer $token_key_id
  * @property integer $industry_id
  * @property integer $token_customer_id

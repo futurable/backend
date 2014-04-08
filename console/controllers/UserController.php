@@ -24,6 +24,8 @@ class UserController extends Controller
         ->where('backend_user_created IS NULL')
         ->all();
         
+        $Debug->message(count($companies) . " companies found", $this->debugLevel);
+        
         foreach($companies as $company){
             $Debug->message("Using company '{$company->name}'");
             
@@ -47,5 +49,8 @@ class UserController extends Controller
             
             $Debug->message("User '{$backendUser->username}' saved");
         }
+        
+        $Debug->message("Done!", $this->debugLevel);
+        $Debug->message(false, $this->debugLevel);
     }
 }

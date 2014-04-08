@@ -19,21 +19,13 @@ class OpenerpController extends Controller
         $Debug = new ConsoleDebug();
         $Debug->message('Create OpenERP database action started', $this->debugLevel);
         
-        // TODO: fix this hack
-        $connection = \Yii::$app->db_core;
-        
-        // Get all the companies with no bank account
-        $command = $connection->createCommand('SELECT * FROM company WHERE openerp_database_created IS NULL');
-        $companies = $command->query();
+        $companies = Company::find()
+        ->where('openerp_database_created IS NULL')
+        ->all();
         
         $Debug->message(count($companies) . " companies found", $this->debugLevel);
         
-        foreach ($companies as $tmpcompany) {
-            $company = new Company();
-            $company->attributes = $tmpcompany;
-            $company->id = $tmpcompany['id'];
-            $company->token_customer_id = $tmpcompany['token_customer_id'];
-            
+        foreach ($companies as $company) {
             // $bankAccount->iban = false; // @TODO: fix this
             $bankAccount = '';
             
@@ -42,12 +34,8 @@ class OpenerpController extends Controller
             // Create an openerp database
             $OpenErpPassword = Security::generateRandomKey(8);
             
-            // @TODO Fix this to use AR
-            $command = $connection->createCommand("SELECT tag FROM token_customer WHERE id = '{$company->token_customer_id}'");
-            $customer_tag = $command->queryOne()['tag'];
-            
             $CreateTag = new CreateTag();
-            $company->tag = $customer_tag."_".$CreateTag->createTagFromName($company->name);
+            $company->tag = $company->tokenCustomer->tag."_".$CreateTag->createTagFromName($company->name);
             
             $Debug->message("Company tag is {$company->tag}", $this->debugLevel);
             
@@ -71,5 +59,8 @@ class OpenerpController extends Controller
             
             $Debug->message(false, $this->debugLevel);
         }
+        
+        $Debug->message("Done!", $this->debugLevel);
+        $Debug->message(false, $this->debugLevel);
     }
 }
