@@ -20,7 +20,7 @@ class OpenerpController extends Controller
         $Debug->message('Create OpenERP database action started', $this->debugLevel);
         
         $companies = Company::find()
-        ->where('openerp_database_created IS NULL')
+        ->where('openerp_database_created IS NULL AND bank_account_created IS NOT NULL')
         ->all();
         
         $Debug->message(count($companies) . " companies found", $this->debugLevel);
