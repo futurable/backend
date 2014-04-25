@@ -1,34 +1,197 @@
 <?php
-
 namespace common\models;
 
-use Yii;
+use yii\base\NotSupportedException;
+use yii\db\ActiveRecord;
+use yii\helpers\Security;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
  *
- * @property string $id
+ * @property integer $id
  * @property string $username
- * @property string $password
+ * @property string $password_hash
+ * @property string $password_reset_token
  * @property string $email
+ * @property string $auth_key
  * @property integer $role
+ * @property integer $status
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property string $password write-only password
  * @property integer $token_customer_id
- *
  * @property TokenCustomer $tokenCustomer
- */
-class User extends \yii\db\ActiveRecord
+*/
+
+class User extends ActiveRecord implements IdentityInterface
 {
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
+
+    const ROLE_USER = 10;
+
     /**
-     * @inheritdoc
+     * Creates a new user
+     *
+     * @param  array       $attributes the attributes given by field => value
+     * @return static|null the newly created model, or null on failure
      */
-    public static function tableName()
+    public static function create($attributes)
     {
-        return 'user';
+        /** @var User $user */
+        $user = new static();
+        $user->setAttributes($attributes);
+        $user->setPassword($attributes['password']);
+        $user->generateAuthKey();
+        if ($user->save()) {
+            return $user;
+        } else {
+            return null;
+        }
     }
-    
+
     public static function getDb()
     {
         return \Yii::$app->db_core;
+    }
+    
+    public static function tableName(){
+        return 'user';
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token)
+    {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+    /**
+     * Finds user by username
+     *
+     * @param  string      $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * Finds user by password reset token
+     *
+     * @param  string      $token password reset token
+     * @return static|null
+     */
+    public static function findByPasswordResetToken($token)
+    {
+        $expire = \Yii::$app->params['user.passwordResetTokenExpire'];
+        $parts = explode('_', $token);
+        $timestamp = (int) end($parts);
+        if ($timestamp + $expire < time()) {
+            // token expired
+            return null;
+        }
+
+        return static::findOne([
+            'password_reset_token' => $token,
+            'status' => self::STATUS_ACTIVE,
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    /**
+     * Validates password
+     *
+     * @param  string  $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
+    public function validatePassword($password)
+    {
+        return Security::validatePassword($password, $this->password);
+    }
+
+    /**
+     * Generates password hash from password and sets it to the model
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = Security::generatePasswordHash($password);
+    }
+
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Security::generateRandomKey();
+    }
+
+    /**
+     * Generates new password reset token
+     */
+    public function generatePasswordResetToken()
+    {
+        $this->password_reset_token = Security::generateRandomKey() . '_' . time();
+    }
+
+    /**
+     * Removes password reset token
+     */
+    public function removePasswordResetToken()
+    {
+        $this->password_reset_token = null;
     }
 
     /**
@@ -37,29 +200,46 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'email', 'token_customer_id'], 'required'],
-            [['role', 'token_customer_id'], 'integer'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+
+            ['role', 'default', 'value' => self::ROLE_USER],
+            ['role', 'in', 'range' => [self::ROLE_USER]],
+
+            [['token_customer_id'], 'required'],
+            [['role', 'status', 'token_customer_id'], 'integer'],
             [['username'], 'string', 'max' => 32],
             [['password'], 'string', 'max' => 512],
-            [['email'], 'string', 'max' => 255]
+            [['email'], 'string', 'max' => 255],
+            
+            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required'],
+            ['username', 'unique'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
+
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'unique'],
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
-            'email' => 'Email',
-            'role' => 'Role',
-            'token_customer_id' => 'Token Customer ID',
+        'id' => Yii::t('app', 'ID'),
+        'username' => Yii::t('app', 'Username'),
+        'password' => Yii::t('app', 'Password'),
+        'email' => Yii::t('app', 'Email'),
+        'role' => Yii::t('app', '0: student; 1: instructor; 2: manager; 3: admin'),
+        'status' => Yii::t('app', 'Status'),
+        'token_customer_id' => Yii::t('app', 'Token Customer ID'),
         ];
     }
-
+    	
     /**
      * @return \yii\db\ActiveQuery
      */
