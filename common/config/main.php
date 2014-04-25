@@ -16,7 +16,6 @@ return [
         'mail' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
-            'useFileTransport' => true,
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
