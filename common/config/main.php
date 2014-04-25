@@ -30,5 +30,9 @@ return [
                 ],
             ],
         ],
+        'user' => [
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
+        ],
     ],
 ];
