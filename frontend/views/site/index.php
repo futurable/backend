@@ -9,8 +9,9 @@ $this->title = 'Futural backend';
     <div class="jumbotron">
         <h1><?= \Yii::t('Backend', 'Welcome') ?>!</h1>
 
-        <p class="lead"><?= \Yii::t('Backend', "You are logged in as '{username}'!", ['username' => Yii::$app->user->identity->username]); ?></p>
-
+        <p class="lead"><?= \Yii::t('Backend', "You are logged in as"); ?></p>
+        <p class="lead"><?= Yii::$app->user->identity->username ?> / <?= Yii::$app->user->identity->tokenCustomer->name ?></p>
+        <p class="lead"><?= $company->name ?> (<?= $company->business_id ?>)</p>
     </div>
 
     <div class="body-content">

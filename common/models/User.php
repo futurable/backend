@@ -18,8 +18,6 @@ use Yii;
  * @property string $auth_key
  * @property integer $role
  * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
  * @property string $password write-only password
  * @property integer $token_customer_id
  * @property TokenCustomer $tokenCustomer
@@ -77,8 +75,8 @@ class User extends ActiveRecord implements IdentityInterface
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                    //ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    //ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
         ];
@@ -233,7 +231,6 @@ class User extends ActiveRecord implements IdentityInterface
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique'],
         ];
     }
     

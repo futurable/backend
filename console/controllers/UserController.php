@@ -36,7 +36,7 @@ class UserController extends Controller
             $backendUser->email = $company->email;
             $backendUser->role = 10; // @TODO: bind this to the token key
             $backendUser->token_customer_id = $company->token_customer_id;
-            $backendUser->company = $company->id;
+            $backendUser->company_id = $company->id;
             
             $backendUser->save();
             
