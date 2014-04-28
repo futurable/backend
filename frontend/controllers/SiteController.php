@@ -8,27 +8,14 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use Yii;
 use yii\web\VerbFilter;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends MainController
 {
-    function init()
-    {
-        parent::init();
-        if (isset($_GET['lang'])) {
-            \Yii::$app->language = $_GET['lang'];
-            \Yii::$app->session['lang'] = \Yii::$app->language;
-        } else
-        if (isset(\Yii::$app->session['lang'])) {
-            \Yii::$app->session['lang'] = \Yii::$app->language;
-        }
-    }
-    
     /**
      * @inheritdoc
      */
@@ -48,7 +35,7 @@ class SiteController extends Controller
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['user'],
                     ],
                 ],
             ],
