@@ -11,19 +11,17 @@ use common\models\User;
 $this->title = Yii::t('Backend', 'Login');
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-content site-login">
+<div class="jumbotron">
     <h1><?= Html::encode($this->title) ?></h1>
-
+    
     <div class="row">
-        <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                 <?= $form->field($model, 'username') ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton(Yii::t('Backend', 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
-        </div>
     </div>
 </div>
