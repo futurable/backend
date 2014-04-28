@@ -83,7 +83,34 @@ AppAsset::register($this);
                 NavBar::end();
             }
         ?>
-
+        
+        <?php
+            // Company menu
+            if (!Yii::$app->user->isGuest) {
+                    NavBar::begin([
+                        'brandLabel' => 'Company actions',
+                        'brandUrl' => Yii::$app->homeUrl,
+                    ]);
+    
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Info'), 'url' => ['/company/index']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Cost-benefit calculation'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Customer payments'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Employees'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Timesheets'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Timecards'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Sale orders'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Purchase orders'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Automated orders'), 'url' => ['/company/about']];
+                    $companyMenuItems[] = ['label' => Yii::t('Backend', 'Remarks'), 'url' => ['/company/about']];
+                
+                echo Nav::widget([
+                    'options' => ['class' => 'navbar-nav navbar-right'],
+                    'items' => $companyMenuItems,
+                ]);
+                NavBar::end();
+            }
+        ?>
+        
         <?= Alert::widget() ?>
         <?= $content ?>
         </div>
