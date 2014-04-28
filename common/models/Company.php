@@ -27,10 +27,12 @@ use Yii;
  * @property Industry $industry
  * @property TokenCustomer $tokenCustomer
  * @property CompanyPasswords[] $companyPasswords
+ * @property Contact[] $contacts 
  * @property CostbenefitCalculation[] $costbenefitCalculations
  * @property Order[] $orders
  * @property Remark $remark
  * @property Salary[] $salaries
+ * @property User[] $users 
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -42,6 +44,9 @@ class Company extends \yii\db\ActiveRecord
         return 'company';
     }
 
+    /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
     public static function getDb()
     {
         return Yii::$app->get('db_core');
@@ -149,5 +154,13 @@ class Company extends \yii\db\ActiveRecord
     public function getSalaries()
     {
         return $this->hasMany(Salary::className(), ['company_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['company_id' => 'id']);
     }
 }

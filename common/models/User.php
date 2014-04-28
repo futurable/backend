@@ -53,7 +53,11 @@ class User extends ActiveRecord implements IdentityInterface
             return null;
         }
     }
-
+    
+    /**
+     * 
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
     public static function getDb()
     {
         return \Yii::$app->db_core;
@@ -142,6 +146,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAuthKey()
     {
         return $this->auth_key;
+    }
+    
+    public function getRole()
+    {
+        return $this->role;
     }
 
     /**
@@ -233,16 +242,24 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-        'id' => Yii::t('User', 'ID'),
-        'username' => Yii::t('User', 'Username'),
-        'password' => Yii::t('User', 'Password'),
-        'email' => Yii::t('User', 'Email'),
-        'role' => Yii::t('User', 'Role'),
-        'status' => Yii::t('User', 'Status'),
-        'token_customer_id' => Yii::t('User', 'Token Customer ID'),
+            'id' => Yii::t('User', 'ID'),
+            'username' => Yii::t('User', 'Username'),
+            'password' => Yii::t('User', 'Password'),
+            'email' => Yii::t('User', 'Email'),
+            'role' => Yii::t('User', 'Role'),
+            'status' => Yii::t('User', 'Status'),
+            'token_customer_id' => Yii::t('User', 'Token Customer ID'),
         ];
     }
-    	
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(), ['id' => 'company_id']);
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */

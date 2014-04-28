@@ -32,9 +32,14 @@ class TokenCustomer extends \yii\db\ActiveRecord
         return 'token_customer';
     }
     
+
+    /**
+    * @return \yii\db\Connection the database connection used by this AR class.
+    */
     public static function getDb()
     {
-        return \Yii::$app->db_core;
+       return \Yii::$app->db_core;
+       return Yii::$app->get('db_core');
     }
 
     /**
