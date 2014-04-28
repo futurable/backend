@@ -38,7 +38,7 @@ class SendmailController extends Controller
                  ->setFrom(Yii::$app->params['supportEmail'])
                  ->setTo($company->email)
                  ->setBcc(Yii::$app->params['adminEmail'])
-                 ->setSubject( Yii::t('Company', "Futurality account for"). " " . $company->name) )
+                 ->setSubject( Yii::t('Company', "Futurality account for"). " " . $company->name)
                  ->send();
             
             // @TODO: Fix this to use DbExpression
