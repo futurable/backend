@@ -10,12 +10,16 @@ use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use Yii;
 use yii\web\VerbFilter;
+use common\models\Company;
+use common\models\User;
 
 /**
  * Site controller
  */
 class SiteController extends MainController
 {
+    private $company;
+    
     /**
      * @inheritdoc
      */
@@ -47,7 +51,7 @@ class SiteController extends MainController
             ],
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -63,10 +67,14 @@ class SiteController extends MainController
             ],
         ];
     }
+    
+    public function init(){
+        $this->company = Company::findOne(yii::$app->user->identity->company_id);
+    }
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', ['company' => $this->company]);
     }
 
     public function actionLogin()
