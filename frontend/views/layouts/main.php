@@ -37,7 +37,6 @@ AppAsset::register($this);
             ]);
 
             if (!Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => Yii::t('Backend', 'Home'), 'url' => ['/site/index']];
                 $menuItems[] = ['label' => Yii::t('Backend', 'Logout ({user})', ['user' => Yii::$app->user->identity->username]), 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
             }
             
@@ -59,7 +58,7 @@ AppAsset::register($this);
         ]) ?>
         
         <div id="logo">
-            <?php echo Html::img('css/img/futural-logo-backend_h128.png'); ?>
+            <?php echo Html::a(Html::img('css/img/futural-logo-backend_h128.png'), ['/site/index']); ?>
         </div>
         
         <?php
@@ -85,13 +84,13 @@ AppAsset::register($this);
                             ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/company/about']],
                         ]];
-                        $subMenuItems[] = ['label' => Yii::t('Backend', 'Orders'), 'items' => [
+                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Orders'), 'items' => [
                             ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Purchase orders'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/company/about']],
                         ]];
-                        $subMenuItems[] = ['label' => Yii::t('Backend', 'Employees'), 'items' => [
+                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Employees'), 'items' => [
                             ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/company/about']],
