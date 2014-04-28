@@ -11,7 +11,7 @@ use common\models\User;
 $this->title = Yii::t('Backend', 'Login');
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="site-content site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="row">
