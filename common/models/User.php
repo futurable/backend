@@ -5,6 +5,7 @@ use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
+use Yii;
 
 /**
  * This is the model class for table "user".
