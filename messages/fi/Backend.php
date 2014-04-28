@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
-  'You are logged in as \'{username}\'!' => 'Olet kirjautuneena sisään käyttäjänä \'{username}\'',
   'Login' => 'Kirjaudu',
+  'Logout ({user})' => 'Kirjaudu ulos ({user})',
   'Welcome' => 'Tervetuloa',
+  'You are logged in as \'{username}\'!' => 'Olet kirjautuneena sisään käyttäjänä \'{username}\'',
 );

@@ -17,8 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Logout ({user})' => '',
   'Welcome' => '',
   'You are logged in as \'{username}\'!' => '',
+  'Employees' => '@@@@',
+  'Orders' => '@@@@',
   'You are logged in as, {username}!' => '@@@@',
   'Login' => 'Kirjaudu',
 );
