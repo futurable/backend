@@ -2,10 +2,12 @@
 $db_core = require(__DIR__ . '/db_core.php');
 $db_bank = require(__DIR__ . '/db_bank.php');
 $db_openerp = require(__DIR__ . '/db_openerp.php');
+Yii::setAlias('@base', dirname(dirname(__DIR__)));
 
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
+    'language' => 'fi',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -25,14 +27,10 @@ return [
             'translations' => [
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
+                    'basePath' => '@base/messages',
                     'sourceLanguage' => 'en',
                 ],
             ],
-        ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
         ],
     ],
 ];
