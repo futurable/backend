@@ -61,10 +61,22 @@ h2{
     padding: 20px 40px;
 }
 
+.body-content{
+	padding: 20px;
+}
+
 .footer {
     height: 60px;
     padding-top: 20px;
     margin-top: 10px;
+}
+
+.btn-primary{
+	background: #A8CF38;
+	border: none;
+}
+.btn-primary:hover{
+	background: #C8DA30;
 }
 
 .jumbotron {
@@ -136,15 +148,8 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-#tokenkey-token_key{
-    width: 200px;
-    margin: 0 auto;
-}
 .block{
     display: block;
-}
-#company-info label{
-    padding-top: 15px;
 }
 
 #company-info input, #company-info select{
@@ -154,15 +159,12 @@ a.desc:after {
     padding-right: 40px;
 }
 
-#contact-info input{
-    width: 40%;
-    margin-left: 30%;
+#login-form input{
+    width: 30%;
 }
-
-.company-view{
-    padding: 40px;
+#login-form{
     margin: 0 auto;
 }
-.company-view td, .company-view th{
-    padding: 5px 10px;
+#login-form input{
+    margin: 0 auto;
 }
