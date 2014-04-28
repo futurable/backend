@@ -37,8 +37,8 @@ AppAsset::register($this);
             ]);
 
             if (!Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
-                $menuItems[] = ['label' => 'Logout (' . Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
+                $menuItems[] = ['label' => Yii::t('Backend', 'Home'), 'url' => ['/site/index']];
+                $menuItems[] = ['label' => Yii::t('Backend', 'Logout ({user})', ['user' => Yii::$app->user->identity->username]), 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
             }
             
             $menuItems[] = ['label' => 'Language', 'items' => [
