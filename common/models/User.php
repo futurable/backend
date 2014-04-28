@@ -30,6 +30,9 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     const ROLE_USER = 10;
+    const ROLE_INSTRUCTOR = 20;
+    const ROLE_MANAGER = 30;
+    const ROLE_ADMIN = 40;
 
     /**
      * Creates a new user
@@ -230,13 +233,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-        'id' => Yii::t('app', 'ID'),
-        'username' => Yii::t('app', 'Username'),
-        'password' => Yii::t('app', 'Password'),
-        'email' => Yii::t('app', 'Email'),
-        'role' => Yii::t('app', '0: student; 1: instructor; 2: manager; 3: admin'),
-        'status' => Yii::t('app', 'Status'),
-        'token_customer_id' => Yii::t('app', 'Token Customer ID'),
+        'id' => Yii::t('User', 'ID'),
+        'username' => Yii::t('User', 'Username'),
+        'password' => Yii::t('User', 'Password'),
+        'email' => Yii::t('User', 'Email'),
+        'role' => Yii::t('User', 'Role'),
+        'status' => Yii::t('User', 'Status'),
+        'token_customer_id' => Yii::t('User', 'Token Customer ID'),
         ];
     }
     	
