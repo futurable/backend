@@ -5,6 +5,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
@@ -34,17 +35,16 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            $menuItems = [
-                
-            ];
+
             if (!Yii::$app->user->isGuest) {
-                $menuItems[] = [
-                    'label' => 'Home', 'url' => ['/site/index'],
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
+                $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
+                $menuItems[] = ['label' => 'Logout (' . Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
             }
+            
+            $menuItems[] = ['label' => 'Language', 'items' => [
+                ['label' => 'Finnish', 'url' => Url::canonical().'?lang=fi'],
+                ['label' => 'English', 'url' => Url::canonical().'?lang=en'],
+            ]];
             
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
