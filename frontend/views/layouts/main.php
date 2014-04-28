@@ -19,6 +19,8 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="<?= Yii::getAlias('@web') ?>/css/img/favicon.ico" />
     <?php $this->head() ?>
 </head>
 <body>
@@ -55,6 +57,11 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        
+        <div id="logo">
+            <?php echo Html::img('css/img/futural-logo-backend_h128.png'); ?>
+        </div>
+        
         <?= Alert::widget() ?>
         <?= $content ?>
         </div>
@@ -62,8 +69,8 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+            <p class="pull-left">Futural business simulation environment</p>
+            <p class="pull-right">Futurable Oy <?= date('Y') ?></p>
         </div>
     </footer>
 
