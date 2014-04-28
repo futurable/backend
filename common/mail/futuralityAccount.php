@@ -20,7 +20,7 @@
     $messageContent .= "<ul>";
     $messageContent .= "<li>".Yii::t('Company', 'User Id').": <strong>admin</strong></li>";
     $messageContent .= "<li>".Yii::t('Company', 'Password').": <strong>{$company->companyPasswords->openerp_password}</strong></li>";
-    $messageContent .= "<li>".Yii::t('Company', 'Login from')." <a href='http://erp.futurality.fi/web/login?db={$company->tag}'>erp.futurality.fi</a></li>";
+    $messageContent .= "<li>".Yii::t('Company', 'Login from')." <a href='http://erp.futurality.fi/?db={$company->tag}'>erp.futurality.fi</a></li>";
     $messageContent .= "</ul>";
     
     $messageContent .= "<h2>".Yii::t('Company', 'Bank account')."</h2>";

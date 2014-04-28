@@ -5,6 +5,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use yii\helpers\Url;
 
 /**
  * @var \yii\web\View $this
@@ -19,6 +20,8 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="<?= Yii::getAlias('@web') ?>/css/img/favicon.ico" />
     <?php $this->head() ?>
 </head>
 <body>
@@ -26,27 +29,22 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'Futural backend',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-            ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
+
+            if (!Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => Yii::t('Backend', 'Logout ({user})', ['user' => Yii::$app->user->identity->username]), 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
             }
+            
+            $menuItems[] = ['label' => 'Language', 'items' => [
+                ['label' => 'Finnish', 'url' => Url::canonical().'?lang=fi'],
+                ['label' => 'English', 'url' => Url::canonical().'?lang=en'],
+            ]];
+            
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
@@ -58,6 +56,55 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        
+        <div id="logo">
+            <?php echo Html::a(Html::img('css/img/futural-logo-backend_h128.png'), ['/site/index']); ?>
+        </div>
+        
+        <?php
+            // Admin menu
+            if (!Yii::$app->user->isGuest) {
+                    NavBar::begin([]);
+
+                    // Admin actions
+                    if(Yii::$app->user->identity->role >= 20){
+                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Admin actions'), 'items' => [
+                            ['label' => Yii::t('Menu', 'Companies'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Orders'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Bank accounts'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Users'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Keys'), 'url' => ['/company/about']],
+                        ]];
+                    }
+                    
+                    // User actions
+                    if(Yii::$app->user->identity->role >= 10){
+                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
+                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/info']],
+                            ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/company/about']],
+                        ]];
+                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Orders'), 'items' => [
+                            ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Purchase orders'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/company/about']],
+                        ]];
+                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Employees'), 'items' => [
+                            ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/company/about']],
+                        ]];
+                    }
+                
+                echo Nav::widget([
+                    'options' => ['class' => 'navbar-nav navbar-right'],
+                    'items' => $subMenuItems,
+                ]);
+                NavBar::end();
+            }
+        ?>
+        
         <?= Alert::widget() ?>
         <?= $content ?>
         </div>
@@ -65,8 +112,8 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+            <p class="pull-left">Futural business simulation environment</p>
+            <p class="pull-right">Futurable Oy <?= date('Y') ?></p>
         </div>
     </footer>
 

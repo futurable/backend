@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<div class="site-error">
+<div class="site-error body-content">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -27,10 +27,12 @@ use Yii;
  * @property Industry $industry
  * @property TokenCustomer $tokenCustomer
  * @property CompanyPasswords[] $companyPasswords
+ * @property Contact[] $contacts 
  * @property CostbenefitCalculation[] $costbenefitCalculations
  * @property Order[] $orders
  * @property Remark $remark
  * @property Salary[] $salaries
+ * @property User[] $users 
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -42,9 +44,12 @@ class Company extends \yii\db\ActiveRecord
         return 'company';
     }
 
+    /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
     public static function getDb()
     {
-        return \Yii::$app->db_core;
+        return Yii::$app->get('db_core');
     }
     
     /**
@@ -55,7 +60,7 @@ class Company extends \yii\db\ActiveRecord
         return [
             [['name', 'tag', 'business_id', 'email', 'employees', 'token_key_id', 'industry_id', 'token_customer_id'], 'required'],
             [['employees', 'active', 'token_key_id', 'industry_id', 'token_customer_id'], 'integer'],
-            [['create_time', 'bank_account_created', 'openerp_database_created', 'backend_user_created'], 'safe'],
+            [['create_time', 'bank_account_created', 'openerp_database_created', 'backend_user_created', 'account_mail_sent'], 'safe'],
             [['name', 'email'], 'string', 'max' => 256],
             [['tag'], 'string', 'max' => 32],
             [['business_id'], 'string', 'max' => 9],
@@ -69,20 +74,21 @@ class Company extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'tag' => 'Tag',
-            'business_id' => 'Business ID',
-            'email' => 'Email',
-            'employees' => 'Employees',
-            'active' => 'Active',
-            'create_time' => 'Create Time',
-            'bank_account_created' => 'Bank Account Created',
-            'openerp_database_created' => 'Openerp Database Created',
-            'backend_user_created' => 'Backend User Created',
-            'token_key_id' => 'Token Key ID',
-            'industry_id' => 'Industry ID',
-            'token_customer_id' => 'Token Customer ID',
+            'id' => Yii::t('Company', 'ID'),
+           'name' => Yii::t('Company', 'Company name'),
+           'tag' => Yii::t('Company', 'Company identifaction tag (short name)'),
+           'business_id' => Yii::t('Company', 'Business ID'),
+           'email' => Yii::t('Company', 'Email'),
+           'employees' => Yii::t('Company', 'Employees'),
+           'active' => Yii::t('Company', 'Active'),
+           'create_time' => Yii::t('Company', 'Create Time'),
+           'bank_account_created' => Yii::t('Company', 'Bank Account Created'),
+           'openerp_database_created' => Yii::t('Company', 'Openerp Database Created'),
+           'backend_user_created' => Yii::t('Company', 'Backend User Created'),
+           'account_mail_sent' => Yii::t('Company', 'Account Mail Sent'),
+           'token_key_id' => Yii::t('Company', 'Token Key ID'),
+           'industry_id' => Yii::t('Company', 'Industry ID'),
+           'token_customer_id' => Yii::t('Company', 'Token Customer ID'),
         ];
     }
 
@@ -148,5 +154,13 @@ class Company extends \yii\db\ActiveRecord
     public function getSalaries()
     {
         return $this->hasMany(Salary::className(), ['company_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['company_id' => 'id']);
     }
 }
