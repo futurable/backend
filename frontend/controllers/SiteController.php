@@ -17,6 +17,18 @@ use yii\web\VerbFilter;
  */
 class SiteController extends Controller
 {
+    function init()
+    {
+        parent::init();
+        if (isset($_GET['lang'])) {
+            \Yii::$app->language = $_GET['lang'];
+            \Yii::$app->session['lang'] = \Yii::$app->language;
+        } else
+        if (isset(\Yii::$app->session['lang'])) {
+            \Yii::$app->session['lang'] = \Yii::$app->language;
+        }
+    }
+    
     /**
      * @inheritdoc
      */
