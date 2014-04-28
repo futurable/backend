@@ -62,6 +62,28 @@ AppAsset::register($this);
             <?php echo Html::img('css/img/futural-logo-backend_h128.png'); ?>
         </div>
         
+        <?php
+            // Admin menu
+            if (!Yii::$app->user->isGuest) {
+                    NavBar::begin([
+                        'brandLabel' => 'Admin actions',
+                        'brandUrl' => Yii::$app->homeUrl,
+                    ]);
+    
+                    $adminMenuItems[] = ['label' => Yii::t('Backend', 'Companies'), 'url' => ['/site/index']];
+                    $adminMenuItems[] = ['label' => Yii::t('Backend', 'Orders'), 'url' => ['/site/about']];
+                    $adminMenuItems[] = ['label' => Yii::t('Backend', 'Bank accounts'), 'url' => ['/site/about']];
+                    $adminMenuItems[] = ['label' => Yii::t('Backend', 'Users'), 'url' => ['/site/about']];
+                    $adminMenuItems[] = ['label' => Yii::t('Backend', 'Keys'), 'url' => ['/site/about']];
+                
+                echo Nav::widget([
+                    'options' => ['class' => 'navbar-nav navbar-right'],
+                    'items' => $adminMenuItems,
+                ]);
+                NavBar::end();
+            }
+        ?>
+
         <?= Alert::widget() ?>
         <?= $content ?>
         </div>
