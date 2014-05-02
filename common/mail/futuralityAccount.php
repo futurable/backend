@@ -30,12 +30,14 @@
     $messageContent .= "<li>".Yii::t('Company', 'Login from')." <a href='http://futurality.fi/bank/index.php/user/login/?company={$company->tag}'>futurality.fi/bank</a></li>";
     $messageContent .= "</ul>";
     
+    /*
     $messageContent .= "<h2>".Yii::t('Company', 'Backend account')."</h2>";
     $messageContent .= "<ul>";
     $messageContent .= "<li>".Yii::t('Company', 'User id').": <strong>{$company->tag}</strong></li>";
     $messageContent .= "<li>".Yii::t('Company', 'Password').": <strong>{$company->companyPasswords->backend_password}</strong></li>";
-    $messageContent .= "<li>".Yii::t('Company', 'Login from')." <a href='http://futurality.fi/backend'>futurality.fi/bank</a></li>";
+    $messageContent .= "<li>".Yii::t('Company', 'Login from')." <a href='https://futurality.fi/backend/index.php/site/login?company={$company->tag}'>futurality.fi/backend</a></li>";
     $messageContent .= "</ul>";
+    */
     
     $messageContent .= "<p><strong>".Yii::t('Company', "Have fun")."!</strong></p>";
     
