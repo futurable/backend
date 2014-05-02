@@ -22,7 +22,7 @@ return array (
   'Backend User Created' => '',
   'Bank Account Created' => '',
   'Business ID' => '',
-  'Company identifaction tag (short name)' => '',
+  'Company identifaction tag (short name)' => 'Yrityksen tunnus',
   'Company name' => 'Yrityksen nimi',
   'Create Time' => 'Luontiaika',
   'ID' => '',

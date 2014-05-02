@@ -22,4 +22,5 @@ return array (
   'Login' => 'Kirjaudu',
   'Logout ({user})' => 'Kirjaudu ulos ({user})',
   'Welcome' => 'Tervetuloa',
+  'Company info' => 'Yrityksen tiedot',
 );
