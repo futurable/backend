@@ -81,7 +81,7 @@ AppAsset::register($this);
                     if(Yii::$app->user->identity->role >= 10){
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
                             ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/info']],
-                            ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/company/costBenefitCalculation']],
                             ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/company/about']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Orders'), 'items' => [
