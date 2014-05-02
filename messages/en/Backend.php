@@ -19,9 +19,10 @@
 return array (
   'Logout ({user})' => '',
   'Welcome' => '',
-  'You are logged in as \'{username}\'!' => '',
+  'You are logged in as' => '',
   'Employees' => '@@@@',
   'Orders' => '@@@@',
+  'You are logged in as \'{username}\'!' => '@@@@',
   'You are logged in as, {username}!' => '@@@@',
   'Login' => 'Kirjaudu',
 );
