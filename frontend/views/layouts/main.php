@@ -69,7 +69,7 @@ AppAsset::register($this);
                     // Admin actions
                     if(Yii::$app->user->identity->role >= 20){
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Admin actions'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Companies'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Companies'), 'url' => ['/company/index']],
                             ['label' => Yii::t('Menu', 'Orders'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Bank accounts'), 'url' => ['/company/about']],
                             ['label' => Yii::t('Menu', 'Users'), 'url' => ['/company/about']],
@@ -80,7 +80,7 @@ AppAsset::register($this);
                     // User actions
                     if(Yii::$app->user->identity->role >= 10){
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/index']],
+                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/view', 'id'=>yii::$app->getUser()->identity->company->id]],
                             ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/costbenefit-calculation/index']],
                             ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
                         ]];
