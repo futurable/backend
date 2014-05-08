@@ -14,8 +14,6 @@ class CompanyController extends MainController
         return [
             'index' => ['class' => 'frontend\controllers\company\IndexAction'],
             'view' => ['class' => 'frontend\controllers\company\ViewAction'],
-            'costBenefitCalculation' => ['class' => 'frontend\controllers\company\CostBenefitCalculationAction'],
-            'remarks' => ['class' => 'frontend\controllers\company\RemarksAction'],
         ];
     }
     
