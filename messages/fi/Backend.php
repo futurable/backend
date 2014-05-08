@@ -17,10 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
-  'You are logged in as' => 'Olet kirjautuneena käyttäjänä',
+  'Cost-benefit calculation' => 'Liiketoimintalaskelma',
+  'Remarks' => 'Huomiot',
   'You are logged in as \'{username}\'!' => '@@Olet kirjautuneena sisään käyttäjänä \'{username}\'@@',
+  'Company info' => 'Yrityksen tiedot',
   'Login' => 'Kirjaudu',
   'Logout ({user})' => 'Kirjaudu ulos ({user})',
   'Welcome' => 'Tervetuloa',
-  'Company info' => 'Yrityksen tiedot',
+  'You are logged in as' => 'Olet kirjautuneena käyttäjänä',
 );

@@ -17,7 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Company info' => '',
+  'Cost-benefit calculation' => '',
   'Logout ({user})' => '',
+  'Remarks' => '',
   'Welcome' => '',
   'You are logged in as' => '',
   'Employees' => '@@@@',
