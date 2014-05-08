@@ -25,6 +25,7 @@ class CompanyAccess
         else
         {
             // No conditions
+            $conditions = false;
         }
         
         return $conditions; 

@@ -7,6 +7,7 @@ use common\models\Company;
 use common\models\search\CompanySearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\commands\CompanyAccess;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
@@ -16,6 +17,29 @@ class CompanyController extends MainController
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => \yii\web\AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => 'frontend\components\AccessRule'
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['view', 'index'],
+                        'allow' => true,
+                        'roles' => ['user', 'instructor', 'manager'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['instructor', 'manager'],
+                    ],
+                    [
+                        'actions' => ['delete', 'create', 'update'],
+                        'allow' => true,
+                        'roles' => ['manager'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -111,7 +135,10 @@ class CompanyController extends MainController
      */
     protected function findModel($id)
     {
-        if (($model = Company::findOne($id)) !== null) {
+        $companyAccess = new CompanyAccess();
+        $condition = $companyAccess->getQueryConditions();
+
+        if (($model = Company::find()->where(['id' => $id])->andWhere($condition)->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
