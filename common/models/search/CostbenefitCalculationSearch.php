@@ -6,7 +6,8 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\CostbenefitCalculation;
-use common\commands\CostbenefitCalculationAccess;
+use common\models\Company;
+use common\commands\CompanyAccess;
 
 /**
  * CostbenefitCalculationSearch represents the model behind the search form about `common\models\CostbenefitCalculation`.
@@ -29,9 +30,9 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
 
     public function search($params)
     {
-        $query = CostbenefitCalculation::find();
-        $CostbenefitCalculationAccess = new CostbenefitCalculationAccess();
-        $query->andWhere( $CostbenefitCalculationAccess->getQueryConditions() );
+        $query = CostbenefitCalculation::find()->joinWith('company');
+        $companyAccess = new CompanyAccess();
+        $query->andWhere( $companyAccess->getQueryConditions() );
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

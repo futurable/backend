@@ -179,12 +179,13 @@ class CompanyController extends MainController
     {
         $companyAccess = new CompanyAccess();
         $condition = $companyAccess->getQueryConditions();
-        
-        if (($model = Company::find()->where([
+        $model = Company::find()->where([
             'id' => $id
-        ])
+            ])
             ->andWhere($condition)
-            ->one()) !== null) {
+            ->one();
+        
+        if ( ($model) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

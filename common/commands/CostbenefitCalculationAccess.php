@@ -11,22 +11,15 @@ class CostbenefitCalculationAccess
         
         $conditions = array();
         
-        // Student
-        if($user->isUser)
-        {
-            $conditions['company_id'] = $company_id;
-        }
         // Instructor
-        else if($user->isInstructor)
+        if($user->isInstructor)
         {
-            //$conditions['token_customer_id'] = yii::$app->getUser()->identity->tokenCustomer->id;
-            $conditions[1] = 1;
+            $conditions['token_customer_id'] = yii::$app->getUser()->identity->tokenCustomer->id;
         }
-        // Manager, Admin
-        else
+        // Student
+        else if($user->isUser)
         {
-            // No conditions
-            $conditions = false;
+            $conditions['id'] = $company_id;
         }
         
         return $conditions; 
