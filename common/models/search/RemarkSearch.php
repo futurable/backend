@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Remark;
+use common\commands\CompanyAccess;
 
 /**
  * RemarkSearch represents the model behind the search form about `common\models\Remark`.
@@ -28,7 +29,9 @@ class RemarkSearch extends Remark
 
     public function search($params)
     {
-        $query = Remark::find();
+        $query = Remark::find()->joinWith('company');
+        $CompanyAccess = new CompanyAccess();
+        $query->andWhere( $CompanyAccess->getQueryConditions() );
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
