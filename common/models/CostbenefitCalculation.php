@@ -50,9 +50,9 @@ class CostbenefitCalculation extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'create_date' => Yii::t('app', 'Create Date'),
-            'company_id' => Yii::t('app', 'Company ID'),
+            'id' => Yii::t('Backend', 'ID'),
+            'create_date' => Yii::t('Backend', 'Create Date'),
+            'company_id' => Yii::t('Backend', 'Company ID'),
         ];
     }
 
