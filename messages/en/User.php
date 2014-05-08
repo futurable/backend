@@ -17,11 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Email' => '',
-  'ID' => '',
   'Password' => '',
-  'Role' => '',
-  'Status' => '',
-  'Token Customer ID' => '',
   'Username' => '',
 );

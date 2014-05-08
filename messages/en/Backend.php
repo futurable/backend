@@ -17,15 +17,23 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Company ID' => '',
   'Company info' => '',
   'Cost-benefit calculation' => '',
+  'Create Date' => '',
+  'Description' => '',
+  'Email' => '',
+  'Event Date' => '',
+  'ID' => '',
   'Logout ({user})' => '',
+  'Password' => '',
   'Remarks' => '',
+  'Role' => '',
+  'Significance' => '',
+  'Status' => '',
+  'Token Customer ID' => '',
+  'Username' => '',
   'Welcome' => '',
   'You are logged in as' => '',
-  'Employees' => '@@@@',
-  'Orders' => '@@@@',
-  'You are logged in as \'{username}\'!' => '@@@@',
-  'You are logged in as, {username}!' => '@@@@',
-  'Login' => 'Kirjaudu',
+  'Login' => '',
 );

@@ -17,12 +17,23 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Cost-benefit calculation' => 'Liiketoimintalaskelma',
-  'Remarks' => 'Huomiot',
-  'You are logged in as \'{username}\'!' => '@@Olet kirjautuneena sisään käyttäjänä \'{username}\'@@',
+  'Company ID' => 'Yrityksen id',
+  'Create Date' => 'Luontipäivä',
+  'Description' => 'Kuvaus',
+  'Email' => 'Sähköposti',
+  'Event Date' => 'Tapahtumapäivä',
+  'ID' => 'ID',
+  'Password' => 'Salasana',
+  'Role' => 'Rooli',
+  'Significance' => 'Merkitys',
+  'Status' => 'Tila',
+  'Token Customer ID' => 'Avainasiakkaan ID',
+  'Username' => 'Käyttäjännimi',
   'Company info' => 'Yrityksen tiedot',
+  'Cost-benefit calculation' => 'Liiketoimintalaskelma',
   'Login' => 'Kirjaudu',
   'Logout ({user})' => 'Kirjaudu ulos ({user})',
+  'Remarks' => 'Huomiot',
   'Welcome' => 'Tervetuloa',
   'You are logged in as' => 'Olet kirjautuneena käyttäjänä',
 );
