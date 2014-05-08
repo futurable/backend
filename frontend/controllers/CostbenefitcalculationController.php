@@ -18,6 +18,7 @@ class CostbenefitCalculationController extends MainController
     {
         return [
             'index' => ['class' => 'frontend\controllers\costbenefitcalculation\IndexAction'],
+            'view' => ['class' => 'frontend\controllers\costbenefitcalculation\ViewAction'],
         ];
     }
 
