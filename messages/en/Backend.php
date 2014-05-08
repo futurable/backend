@@ -33,6 +33,7 @@ return array (
   'Logout ({user})' => '',
   'Name' => '',
   'Password' => '',
+  'Planned' => '',
   'Realized' => '',
   'Remarks' => '',
   'Role' => '',

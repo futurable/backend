@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $provider,
             'columns' => [
                 ['label' => Yii::t('Backend', 'Name'), 'value' => function ($data) { return ucfirst(Yii::t('CostbenefitItem', $data->costbenefitItemType->name)); }],
-                ['label' => Yii::t('Backend', 'Planned')." (".Yii::t('Backend', 'monthly').")", 'value' => function ($data) { return $data->value." €"; }],
+                ['label' => Yii::t('Backend', 'Planned')." (".Yii::t('Backend', 'weekly').")", 'value' => function ($data) { return ( ceil($data->value / 4) )." €"; }],
                 ['label' => Yii::t('Backend', 'Realized')." (".Yii::t('Backend', 'weekly').")"],
+                ['label' => Yii::t('Backend', 'Planned')." (".Yii::t('Backend', 'monthly').")", 'value' => function ($data) { return $data->value." €"; }],
                 ['label' => Yii::t('Backend', 'Realized')." (".Yii::t('Backend', 'monthly').")"],
             ],
         ]);
