@@ -15,18 +15,11 @@ class RemarkController extends MainController
         $this->company = parent::getCompany();
     }
     
-    public function actionIndex()
+    public function actions()
     {
-        $company = parent::getCompany();
-        
-        $provider = new ActiveDataProvider([
-            'query' => Remark::find()->where(['company_id' => $this->company->id]),
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-        
-        return $this->render('index', ['provider'=>$provider]);
+        return [
+            'index' => ['class' => 'frontend\controllers\remark\IndexAction'],
+        ];
     }
 
 }
