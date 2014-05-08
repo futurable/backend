@@ -24,13 +24,6 @@ class CompanyController extends MainController
         parent::init();
         $this->company = parent::getCompany();
     }
-    
-	public function actionIndex()
-	{
-		$company = $this->company;
-	
-		return $this->render('view', ['company'=>$company]);
-	}
 	
 	protected function getCompany(){
 	    if($this->company)
