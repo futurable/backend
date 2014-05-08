@@ -12,12 +12,12 @@ class CompanyAccess
         $conditions = array();
         
         // Student
-        if($user_role <= 10)
+        if($user_role < 20)
         {
             $conditions['id'] = $company_id;
         }
         // Instructor
-        else if($user_role <= 20)
+        else if($user_role < 30)
         {
             $conditions['token_customer_id'] = yii::$app->getUser()->identity->tokenCustomer->id;
         }
