@@ -1,33 +1,41 @@
 <?php
+
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\grid\GridView;
-use yii\data\ActiveDataProvider;
+
 /**
  * @var yii\web\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ * @var common\models\search\RemarkSearch $searchModel
  */
-$this->title = Yii::t('Backend', 'Remarks');
+
+$this->title = 'Remarks';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-remarks">
+<div class="remark-index">
 
-    <div class="body-content">
-        <h1><?= Html::encode($this->title) ?></h1>
-        
-    <?php
-        if($provider->getCount() > 0)
-        {
-            echo GridView::widget([
-                'dataProvider' => $provider,
-                'columns' => [
-                    'description',
-                    'create_date',
-                    'event_date',
-                    'significance',
-                    ['class' => 'yii\grid\ActionColumn'],
-                ]
-            ]);
-        }
-    ?>
-    </div>
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Remark', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'description',
+            'event_date',
+            'create_date',
+            'significance',
+            // 'company_id',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
 </div>
