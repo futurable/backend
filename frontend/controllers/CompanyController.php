@@ -12,6 +12,7 @@ class CompanyController extends MainController
     public function actions()
     {
         return [
+            'index' => ['class' => 'frontend\controllers\company\IndexAction'],
             'info' => ['class' => 'frontend\controllers\company\InfoAction'],
             'costBenefitCalculation' => ['class' => 'frontend\controllers\company\CostBenefitCalculationAction'],
             'remarks' => ['class' => 'frontend\controllers\company\RemarksAction'],
