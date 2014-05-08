@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Company;
+use common\commands\CompanyAccess;
 
 /**
  * CompanySearch represents the model behind the search form about `common\models\Company`.
@@ -29,6 +30,9 @@ class CompanySearch extends Company
     public function search($params)
     {
         $query = Company::find();
+        
+        $CompanyAccess = new CompanyAccess();
+        $query->andWhere( $CompanyAccess->getQueryConditions() );
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
