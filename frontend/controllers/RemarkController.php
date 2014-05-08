@@ -5,14 +5,13 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Remark;
 use common\models\search\RemarkSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * RemarkController implements the CRUD actions for Remark model.
  */
-class RemarkController extends Controller
+class RemarkController extends MainController
 {
     public function behaviors()
     {

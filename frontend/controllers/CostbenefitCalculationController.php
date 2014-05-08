@@ -5,14 +5,13 @@ namespace frontend\controllers;
 use Yii;
 use common\models\CostbenefitCalculation;
 use common\models\search\CostbenefitCalculationSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * CostbenefitCalculationController implements the CRUD actions for CostbenefitCalculation model.
  */
-class CostbenefitCalculationController extends Controller
+class CostbenefitCalculationController extends MainController
 {
     public function behaviors()
     {
