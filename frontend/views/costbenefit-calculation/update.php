@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\CostbenefitCalculation $model
  */
 
-$this->title = 'Update Costbenefit Calculation: ' . ' ' . $model->id;
+$this->title = Yii::t('Backend', 'Update the cost-benefit calculation').': ' . ' ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Costbenefit Calculations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

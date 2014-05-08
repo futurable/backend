@@ -9,24 +9,23 @@ use yii\grid\GridView;
  * @var common\models\search\CompanySearch $searchModel
  */
 
-$this->title = 'Companies';
+$this->title = Yii::t('Backend', 'Companies');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="company-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Company', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php //Html::a('Create Company', ['create'], ['class' => 'btn btn-success']); ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'name',
             'tag',
@@ -43,7 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'industry_id',
             // 'token_customer_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+            ],
         ],
     ]); ?>
 

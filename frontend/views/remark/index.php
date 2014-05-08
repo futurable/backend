@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var common\models\search\RemarkSearch $searchModel
  */
 
-$this->title = 'Remarks';
+$this->title = Yii::t('Backend', 'Remarks');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="remark-index">

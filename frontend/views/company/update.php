@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\Company $model
  */
 
-$this->title = 'Update Company: ' . ' ' . $model->name;
+$this->title = $this->title = Yii::t('Backend', 'Update company').': ' . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var common\models\search\CostbenefitCalculationSearch $searchModel
  */
 
-$this->title = 'Costbenefit Calculations';
+$this->title = Yii::t('Backend', 'Cost-benefit calculations');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="costbenefit-calculation-index">
@@ -18,12 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Costbenefit Calculation', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php // Html::a('Create Costbenefit Calculation', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'create_date',
             'company_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 

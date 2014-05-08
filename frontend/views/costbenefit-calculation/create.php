@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\CostbenefitCalculation $model
  */
 
-$this->title = 'Create Costbenefit Calculation';
+$this->title = Yii::t('Backend', 'Create a cost-benefit calculation');
 $this->params['breadcrumbs'][] = ['label' => 'Costbenefit Calculations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

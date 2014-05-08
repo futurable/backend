@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\Remark $model
  */
 
-$this->title = 'Update Remark: ' . ' ' . $model->id;
+$this->title = Yii::t('Backend', 'Update the remark').': ' . ' ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Remarks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id, 'company_id' => $model->company_id]];
 $this->params['breadcrumbs'][] = 'Update';
