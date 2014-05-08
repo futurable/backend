@@ -265,4 +265,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(TokenCustomer::className(), ['id' => 'token_customer_id']);
     }
+    
+    public function getIsUser(){
+        return ($this->role >= 10) ? true : false;
+    }
+    public function getIsInstructor(){
+        return ($this->role >= 20) ? true : false;
+    }
+    public function getIsManager(){
+        return ($this->role >= 30) ? true : false;
+    }
+    public function getIsAdmin(){
+        return ($this->role >= 40) ? true : false;
+    }
 }
