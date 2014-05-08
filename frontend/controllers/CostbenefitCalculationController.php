@@ -68,6 +68,13 @@ class CostbenefitCalculationController extends MainController
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'view' => ['class' => 'frontend\controllers\costbenefitcalculation\ViewAction'],
+        ];
+    }
+    
     /**
      * Lists all CostbenefitCalculation models.
      * 
@@ -81,19 +88,6 @@ class CostbenefitCalculationController extends MainController
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel
-        ]);
-    }
-
-    /**
-     * Displays a single CostbenefitCalculation model.
-     * 
-     * @param integer $id            
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id)
         ]);
     }
 

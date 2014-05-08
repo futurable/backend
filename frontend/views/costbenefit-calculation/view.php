@@ -1,14 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /**
  * @var yii\web\View $this
  * @var common\models\CostbenefitCalculation $model
  */
 
-$this->title = $model->id;
+$this->title = Yii::t('Backend', 'Cost-benefit calculation');
 $this->params['breadcrumbs'][] = ['label' => 'Costbenefit Calculations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -27,13 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) */ ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'create_date',
-            'company_id',
-        ],
-    ]) ?>
+    <?=
+        GridView::widget([
+            'dataProvider' => $provider,
+            'columns' => [
+                ['label' => Yii::t('Backend', 'Name'), 'value' => function ($data) { return ucfirst(Yii::t('CostbenefitItem', $data->costbenefitItemType->name)); }],
+                ['label' => Yii::t('Backend', 'Planned')." (".Yii::t('Backend', 'monthly').")", 'value' => function ($data) { return $data->value." €"; }],
+                ['label' => Yii::t('Backend', 'Realized')." (".Yii::t('Backend', 'weekly').")"],
+                ['label' => Yii::t('Backend', 'Realized')." (".Yii::t('Backend', 'monthly').")"],
+            ],
+        ]);
+    ?>
 
 </div>
