@@ -17,25 +17,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Remark', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            'company.name',
             'description',
-            'event_date',
             'create_date',
+            'event_date',
             'significance',
             // 'company_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template'=>'{view} {update}'],
         ],
     ]); ?>
+    
+    <p>
+        <?= Html::a(Yii::t('Backend', 'Back'), ['company/index'], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a(Yii::t('Backend', 'Create a remark'), ['create'], ['class' => 'btn btn-primary']) ?>
+    </p>
 
 </div>

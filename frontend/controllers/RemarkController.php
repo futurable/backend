@@ -26,7 +26,9 @@ class RemarkController extends MainController
                     [
                         'actions' => [
                             'view',
-                            'index'
+                            'index',
+                            'update',
+                            'create',
                         ],
                         'allow' => true,
                         'roles' => [
@@ -48,8 +50,6 @@ class RemarkController extends MainController
                     [
                         'actions' => [
                             'delete',
-                            'create',
-                            'update'
                         ],
                         'allow' => true,
                         'roles' => [
