@@ -53,12 +53,12 @@ class Remark extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'description' => Yii::t('app', 'Description'),
-            'event_date' => Yii::t('app', 'Event Date'),
-            'create_date' => Yii::t('app', 'Create Date'),
-            'significance' => Yii::t('app', 'Significance'),
-            'company_id' => Yii::t('app', 'Company ID'),
+            'id' => Yii::t('Remark', 'ID'),
+            'description' => Yii::t('Remark', 'Description'),
+            'event_date' => Yii::t('Remark', 'Event Date'),
+            'create_date' => Yii::t('Remark', 'Create Date'),
+            'significance' => Yii::t('Remark', 'Significance'),
+            'company_id' => Yii::t('Remark', 'Company ID'),
         ];
     }
 
