@@ -82,7 +82,7 @@ AppAsset::register($this);
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
                             ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/info']],
                             ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/company/costBenefitCalculation']],
-                            ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/company/remarks']],
+                            ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Orders'), 'items' => [
                             ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/company/about']],
