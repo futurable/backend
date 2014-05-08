@@ -7,17 +7,17 @@ class CompanyAccess
 {
     public function getQueryConditions(){
         $company_id = yii::$app->getUser()->identity->company->id;
-        $user_role = yii::$app->getUser()->identity->role;
+        $user= yii::$app->getUser()->identity;
         
         $conditions = array();
         
         // Student
-        if($user_role < 20)
+        if($user->isUser)
         {
             $conditions['id'] = $company_id;
         }
         // Instructor
-        else if($user_role < 30)
+        else if($user->isInstructor)
         {
             $conditions['token_customer_id'] = yii::$app->getUser()->identity->tokenCustomer->id;
         }
