@@ -91,9 +91,9 @@ AppAsset::register($this);
                             ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/erp/customerpayments']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Employees'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/erp/employees']],
+                            ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
+                            ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
                         ]];
                     }
                 
