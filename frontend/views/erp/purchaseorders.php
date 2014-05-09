@@ -1,10 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\grid\GridView;
-use yii\grid\DataColumn;
-use common\commands\DateFormatter;
 
 /**
  * @var yii\web\View $this

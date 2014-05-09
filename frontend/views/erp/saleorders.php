@@ -1,10 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\grid\GridView;
-use yii\grid\DataColumn;
-use common\commands\DateFormatter;
 
 /**
  * @var yii\web\View $this
@@ -25,18 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $provider,
                 'columns' => [
                     [
-                        'class' => DataColumn::className(),
                         'attribute' => 'createU.partner.name',
                         'label' => Yii::t('Backend', 'Creator'),
                     ],
                     'name',
                     [
-                        'class' => DataColumn::className(),
                         'attribute' => 'partner.name',
                         'label' => Yii::t('Backend', 'Partner name'),
                     ],
                     [
-                        'class' => DataColumn::className(),
                         'attribute' => 'create_date',
                         'format' => 'date'
                     ],
