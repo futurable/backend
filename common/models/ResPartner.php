@@ -223,7 +223,7 @@ class ResPartner extends \yii\db\ActiveRecord
      */
     public function getPurchaseOrders()
     {
-        return $this->hasMany(PurchaseOrder::className(), ['dest_address_id' => 'id']);
+        return $this->hasMany(PurchaseOrder::className(), ['partner_id' => 'id']);
     }
 
     /**

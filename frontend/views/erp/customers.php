@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -15,9 +16,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
-        echo( "<p>" );
-        echo Yii::t('Backend', 'No customers.');
-        echo( "</p>" );
+        if($provider->getCount() > 0)
+        {
+            echo GridView::widget([
+                'dataProvider' => $provider,
+                'columns' => [
+                    'createU.partner.name:text:'.Yii::t('Backend', 'Creator'),
+                    'name',
+                    [
+                        'attribute'=>'create_date',
+                        'format'=>'date',
+                    ],
+                    [
+                        'label' => Yii::t('Backend', 'Sale orders'),
+                        'value' => function($data){ return count($data->saleOrders); },
+                    ],
+                    [
+                        'label' => Yii::t('Backend', 'Orders value'),
+                        'value' => function($data){ $sum = 0; foreach($data->saleOrders as $saleOrder){ $sum += $saleOrder->amount_total; }; return $sum; },
+                        'format' => 'double',
+                    ]
+                ]
+            ]);
+        }
+        else
+        {
+            echo( "<p>" );
+            echo Yii::t('Backend', 'No customers.');
+            echo( "</p>" );
+        }
     ?>
 
 </div>
