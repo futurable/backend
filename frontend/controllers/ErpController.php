@@ -30,6 +30,11 @@ class ErpController extends MainController
         return [
             'saleorders' => ['class' => 'frontend\controllers\erp\SaleordersAction'],
             'purchaseorders' => ['class' => 'frontend\controllers\erp\PurchaseordersAction'],
+            'automatedorders' => ['class' => 'frontend\controllers\erp\AutomatedordersAction'],
+            'customerpayments' => ['class' => 'frontend\controllers\erp\CustomerpaymentsAction'],
+            'employees' => ['class' => 'frontend\controllers\erp\EmployeesAction'],
+            'timesheets' => ['class' => 'frontend\controllers\erp\TimesheetsAction'],
+            'timecards' => ['class' => 'frontend\controllers\erp\TimecardsAction'],
         ];
     }
     
@@ -37,13 +42,6 @@ class ErpController extends MainController
     {
         parent::init();
         $database_name = $this->company->tag;
-
-        /*
-        Yii::$app->db->close();
-        Yii::$app->components['db']['dsn'] = "pgsql:host=erp.futurality.fi;dbname={$database_name}";
-        //Yii::$app->db->__set('$dsn', "pgsql:host=erp.futurality.fi;dbname={$database_name}");
-        Yii::$app->db->open();
-        */
         
         $db_openerp = require( Yii::getAlias('@common') . '/config/db_openerp.php');
         $db_openerp['dsn'] = "pgsql:host=erp.futurality.fi;dbname={$database_name}";
