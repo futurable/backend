@@ -28,6 +28,8 @@ class ErpController extends MainController
     public function actions()
     {
         return [
+            'customers' => ['class' => 'frontend\controllers\erp\CustomersAction'],
+            'suppliers' => ['class' => 'frontend\controllers\erp\SuppliersAction'],
             'saleorders' => ['class' => 'frontend\controllers\erp\SaleordersAction'],
             'purchaseorders' => ['class' => 'frontend\controllers\erp\PurchaseordersAction'],
             'automatedorders' => ['class' => 'frontend\controllers\erp\AutomatedordersAction'],
