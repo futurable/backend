@@ -29,6 +29,7 @@ class ErpController extends MainController
     {
         return [
             'saleorders' => ['class' => 'frontend\controllers\erp\SaleordersAction'],
+            'purchaseorders' => ['class' => 'frontend\controllers\erp\PurchaseordersAction'],
         ];
     }
     
