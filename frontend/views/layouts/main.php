@@ -85,10 +85,10 @@ AppAsset::register($this);
                             ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Orders'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Purchase orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/erp/saleorders']],
+                            ['label' => Yii::t('Menu', 'Purchase orders'), 'url' => ['/erp/purchaseorders']],
+                            ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/erp/automatedorders']],
+                            ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/erp/customerpayments']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Employees'), 'items' => [
                             ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/company/about']],
