@@ -39,7 +39,7 @@ class SiteController extends MainController
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['user'],
+                        'roles' => ['user','instructor','manager','admin'],
                     ],
                 ],
             ],
