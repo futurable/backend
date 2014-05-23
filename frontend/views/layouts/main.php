@@ -6,6 +6,10 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use yii\helpers\Url;
+use yii\web\Session;
+use yii\helpers\ArrayHelper;
+use common\models\Company;
+use common\commands\CompanyDropdown;
 
 /**
  * @var \yii\web\View $this
@@ -66,21 +70,18 @@ AppAsset::register($this);
             if (!Yii::$app->user->isGuest) {
                     NavBar::begin([]);
 
-                    // Admin actions
-                    if(Yii::$app->user->identity->isAdmin){
-                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Admin actions'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Companies'), 'url' => ['/company/index']],
-                            ['label' => Yii::t('Menu', 'Orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Bank accounts'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Users'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Keys'), 'url' => ['/company/about']],
-                        ]];
+                    // Instructor actions
+                    if(Yii::$app->user->identity->isInstructor){
+                        $companyDropdown  = new CompanyDropdown();
+                        $subMenuItems[] = ['label' => Yii::t('Backend', 'Selected').": ".yii::$app->session['selected_company_name'], 'items' => 
+                            $companyDropdown->get()
+                        ];
                     }
                     
                     // User actions
                     if(Yii::$app->user->identity->isUser){
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/index']],
+                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/index',]],
                             ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/costbenefit-calculation/index']],
                             ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
                             ['label' => Yii::t('Menu', 'Customers'), 'url' => ['/erp/customers']],
