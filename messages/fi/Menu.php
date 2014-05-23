@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Customers' => 'Asiakkaat',
+  'Suppliers' => 'Toimittajat',
   'Admin actions' => 'Admin toiminnot',
   'Automated orders' => 'Automaattitilaukset',
   'Bank accounts' => 'Pankkitilit',
