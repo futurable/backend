@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -15,9 +16,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
+    if($provider->getCount() > 0)
+    {
+        echo GridView::widget([
+            'dataProvider' => $provider,
+                'columns' => [
+                'createU.partner.name:text:'.Yii::t('Backend', 'Creator'),
+                'name_related',
+                'notes',
+            ]
+        ]);
+    }
+    else
+    {
         echo( "<p>" );
         echo Yii::t('Backend', 'No employees.');
         echo( "</p>" );
+    }
     ?>
 
 </div>
