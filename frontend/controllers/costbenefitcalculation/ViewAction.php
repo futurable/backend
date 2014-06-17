@@ -8,8 +8,11 @@ use yii\data\ActiveDataProvider;
 use common\commands\CompanyAccess;
 
 class ViewAction extends Action{
-    public function run($id){
+    public function run(){
         $companyAccess = new CompanyAccess();
+        
+        $company_id = \Yii::$app->session['selected_company_id'];
+        $id = CostbenefitCalculation::findOne(['company_id' => $company_id])->id;
         
         $provider = New ActiveDataProvider([
             'query' => CostbenefitItem::find()
