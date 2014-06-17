@@ -7,15 +7,10 @@ use yii\helpers\Url;
 
 class CompanyDropdown
 {
-    public function get(){
-        $companyAccess = new CompanyAccess();
+    public function getMenuDropdown(){
+        $companyDropdown = [];
         
-        $companies = Company::find()
-            ->select(['id','name'])
-            ->where( $companyAccess->getQueryConditions() )
-            ->all();
-        
-        $companyDropdown = []; 
+        $companies = $this->findCompanies();
         
         foreach($companies as $company){
             
@@ -35,5 +30,27 @@ class CompanyDropdown
         }
         
         return $companyDropdown;
+    }
+    
+    public function getDropdown(){
+        $companies = $this->findCompanies();
+        $companyDropdown = [];
+        
+        foreach($companies as $company){
+            $companyDropdown[$company->id] = $company->name;
+        }
+        
+        return $companyDropdown;
+    }
+    
+    private function findCompanies(){
+        $companyAccess = new CompanyAccess();
+        
+        $companies = Company::find()
+        ->select(['id','name'])
+        ->where( $companyAccess->getQueryConditions() )
+        ->all();
+        
+        return $companies;
     }
 }
