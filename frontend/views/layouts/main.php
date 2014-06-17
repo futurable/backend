@@ -74,7 +74,7 @@ AppAsset::register($this);
                     if(Yii::$app->user->identity->isInstructor){
                         $companyDropdown  = new CompanyDropdown();
                         $subMenuItems[] = ['label' => Yii::t('Backend', 'Selected').": ".yii::$app->session['selected_company_name'], 'items' => 
-                            $companyDropdown->get()
+                            $companyDropdown->getMenuDropdown()
                         ];
                     }
                     
