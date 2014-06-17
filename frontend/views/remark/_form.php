@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
+use kartik\widgets\DatePicker;
+use common\commands\CompanyDropdown;
 
 /**
  * @var yii\web\View $this
@@ -13,14 +15,27 @@ use yii\widgets\ActiveForm;
 <div class="remark-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    
+    <?= $form->errorSummary($model); ?>
+    
+    <?php $companyDrowdown = new CompanyDropdown(); ?>
+    <?= $form->field($model, 'company_id')->dropDownList($companyDrowdown->getDropdown()) ?>
+    
+    <?= DatePicker::widget([
+        'model' => $model,
+            'attribute' => 'event_date',
+            'options' => ['placeholder' => Yii::t('Backend', 'Event date')],
+            'form' => $form,
+            'pluginOptions' => [
+                'format' => 'yyyy-mm-dd',
+                'autoclose' => true,
+                'language' => yii::$app->session['lang'],
+                'todayHighlight' => true,
+            ],
+    ]); ?>
 
-    <?= $form->field($model, 'event_date')->textInput() ?>
-
-    <?php // $form->field($model, 'create_date')->textInput() ?>
-
-    <?php // $form->field($model, 'company_id')->textInput() ?>
-
-    <?= $form->field($model, 'significance')->textInput() ?>
+    <?php $significance =  array_combine(range(-3,3), array_merge(range(-3,0),['+1','+2','+3'])) ?>
+    <?= $form->field($model, 'significance')->dropDownList( $significance ); ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 1024]) ?>
 
