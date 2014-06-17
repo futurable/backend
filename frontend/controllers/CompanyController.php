@@ -99,8 +99,10 @@ class CompanyController extends MainController
      * @param integer $id            
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView()
     {
+        $id = \Yii::$app->session['selected_company_id'];
+        
         return $this->render('view', [
             'model' => $this->findModel($id)
         ]);
