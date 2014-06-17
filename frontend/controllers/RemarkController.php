@@ -7,6 +7,7 @@ use common\models\search\RemarkSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\commands\CompanyAccess;
+use common\commands\DateFormatter;
 
 /**
  * RemarkController implements the CRUD actions for Remark model.
@@ -108,6 +109,10 @@ class RemarkController extends MainController
     public function actionCreate()
     {
         $model = new Remark();
+        
+        $model->create_date = date('Y-m-d H:i:s');
+        
+        if(!isset($model->company_id)) $model->company_id = \Yii::$app->session['selected_company_id'];
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect([
