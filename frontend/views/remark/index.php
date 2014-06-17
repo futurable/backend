@@ -21,11 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             'company.name',
             'description',
-            'create_date',
-            'event_date',
+            [
+                'attribute' => 'create_date',
+                'format' => 'datetime'
+            ],
+            [
+                'attribute' => 'event_date',
+                'format' => 'date'
+            ],
             'significance',
             ['class' => 'yii\grid\ActionColumn', 'template'=>'{view} {update}'],
         ],
