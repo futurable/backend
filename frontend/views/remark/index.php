@@ -9,7 +9,7 @@ use yii\grid\GridView;
  * @var common\models\search\RemarkSearch $searchModel
  */
 
-$this->title = Yii::t('Backend', 'Remarks');
+$this->title = Yii::t('Backend', 'Remarks') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="remark-index">
@@ -22,13 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
         //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            'company.name',
             'description',
             'create_date',
             'event_date',
             'significance',
-            // 'company_id',
-
             ['class' => 'yii\grid\ActionColumn', 'template'=>'{view} {update}'],
         ],
     ]); ?>
