@@ -36,9 +36,9 @@ class MainController extends Controller
             {
                 $this->selected_company = $this->company->id;
             }
-            else if (isset($_GET['selected_company']))
+            else if (isset($_GET['company']))
             {
-                $this->selected_company = $_GET['selected_company'];
+                $this->selected_company = $_GET['company'];
             }
             else
             {
