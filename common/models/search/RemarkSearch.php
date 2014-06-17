@@ -29,9 +29,11 @@ class RemarkSearch extends Remark
 
     public function search($params)
     {
+        $company_id = \Yii::$app->session['selected_company_id'];
         $query = Remark::find()->joinWith('company');
         $CompanyAccess = new CompanyAccess();
         $query->andWhere( $CompanyAccess->getQueryConditions() );
+        $query->andWhere(['company_id' => $company_id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
