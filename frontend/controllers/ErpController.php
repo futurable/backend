@@ -6,6 +6,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Connection;
 use yii\web\Request;
+use common\models\Company;
 
 class ErpController extends MainController
 {
@@ -43,7 +44,8 @@ class ErpController extends MainController
     public function init()
     {
         parent::init();
-        $database_name = $this->company->tag;
+        $selected_id = \Yii::$app->session['selected_company_id'];
+        $database_name = Company::findOne($selected_id)->tag;
         
         $db_openerp = require( Yii::getAlias('@common') . '/config/db_openerp.php');
         $db_openerp['dsn'] = "pgsql:host=erp.futurality.fi;dbname={$database_name}";
