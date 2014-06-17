@@ -22,11 +22,11 @@ class CompanyDropdown
             $url_parts = explode("?", Url::canonical());
             $url_params = "";
             foreach($_GET as $key => $param){
-                if($key=="id") continue;
+                if($key=="company") continue;
                 
                 $url_params .= "$key=$param&";
             }
-            $url = $url_parts[0]."?".$url_params."id={$company->id}";
+            $url = $url_parts[0]."?".$url_params."company={$company->id}";
             
             $companyDropdown[] = [
                 'label'=>$company->name,
