@@ -8,14 +8,13 @@ use yii\grid\GridView;
  * @var common\models\CostbenefitCalculation $model
  */
 
-$this->title = Yii::t('Backend', 'Cost-benefit calculation');
+$this->title = Yii::t('Backend', 'Cost-benefit calculation') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = ['label' => 'Costbenefit Calculations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="costbenefit-calculation-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <h2><?= Html::encode( $provider->getModels()[0]->costbenefitCalculation->company->name ) ?></h2>
 
     <p>
         <?php // Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

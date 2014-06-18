@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
  * @var common\models\Company $model
  */
 
-$this->title = $model->name;
+$this->title = Yii::t('Backend', 'Info') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
