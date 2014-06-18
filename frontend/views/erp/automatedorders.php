@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\Company $model
  */
 
-$this->title = Yii::t('Backend', 'Automated orders');
+$this->title = Yii::t('Backend', 'Automated orders') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="erp-automatedorders">

@@ -8,7 +8,7 @@ use yii\grid\GridView;
  * @var common\models\Company $model
  */
 
-$this->title = Yii::t('Backend', 'Sale orders');
+$this->title = Yii::t('Backend', 'Sale orders') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="erp-saleorders">
@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo GridView::widget([
                 'dataProvider' => $provider,
                 'columns' => [
+                    'company.name:text:' . Yii::t('Backend', "Company"),
                     [
                         'attribute' => 'createU.partner.name',
                         'label' => Yii::t('Backend', 'Creator'),

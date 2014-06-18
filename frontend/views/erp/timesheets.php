@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\Company $model
  */
 
-$this->title = Yii::t('Backend', 'Timesheets');
+$this->title = Yii::t('Backend', 'Timesheets') . ", " . yii::$app->session['selected_company_name'];;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="erp-timesheets">
