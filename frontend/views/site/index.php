@@ -3,6 +3,7 @@
  * @var yii\web\View $this
  */
 $this->title = 'Futural backend';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-index">
 

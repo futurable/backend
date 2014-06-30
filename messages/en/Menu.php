@@ -16,22 +16,24 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-return array (
-  'Admin actions' => '',
-  'Automated orders' => '',
-  'Bank accounts' => '',
-  'Companies' => '',
-  'Company' => '',
-  'Cost-benefit calculation' => '',
-  'Customer payments' => '',
-  'Employees' => '',
-  'Info' => '',
-  'Keys' => '',
-  'Orders' => '',
-  'Purchase orders' => '',
-  'Remarks' => '',
-  'Sale orders' => '',
-  'Timecards' => '',
-  'Timesheets' => '',
-  'Users' => '',
-);
+return [
+    'Automated orders' => '',
+    'Company' => '',
+    'Cost-benefit calculation' => '',
+    'Customer payments' => '',
+    'Customers' => '',
+    'Employees' => '',
+    'Info' => '',
+    'Orders' => '',
+    'Purchase orders' => '',
+    'Remarks' => '',
+    'Sale orders' => '',
+    'Suppliers' => '',
+    'Timecards' => '',
+    'Timesheets' => '',
+    'Admin actions' => '@@@@',
+    'Bank accounts' => '@@@@',
+    'Companies' => '@@@@',
+    'Keys' => '@@@@',
+    'Users' => '@@@@',
+];

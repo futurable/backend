@@ -6,6 +6,10 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use yii\helpers\Url;
+use yii\web\Session;
+use yii\helpers\ArrayHelper;
+use common\models\Company;
+use common\commands\CompanyDropdown;
 
 /**
  * @var \yii\web\View $this
@@ -66,34 +70,33 @@ AppAsset::register($this);
             if (!Yii::$app->user->isGuest) {
                     NavBar::begin([]);
 
-                    // Admin actions
-                    if(Yii::$app->user->identity->role >= 20){
-                        $subMenuItems[] = ['label' => Yii::t('Menu', 'Admin actions'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Companies'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Bank accounts'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Users'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Keys'), 'url' => ['/company/about']],
-                        ]];
+                    // Instructor actions
+                    if(Yii::$app->user->identity->isInstructor){
+                        $companyDropdown  = new CompanyDropdown();
+                        $subMenuItems[] = ['label' => Yii::t('Backend', 'Selected').": ".yii::$app->session['selected_company_name'], 'items' => 
+                            $companyDropdown->getMenuDropdown()
+                        ];
                     }
                     
                     // User actions
-                    if(Yii::$app->user->identity->role >= 10){
+                    if(Yii::$app->user->identity->isUser){
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/info']],
-                            ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/view',]],
+                            ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/costbenefit-calculation/view']],
+                            ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
+                            ['label' => Yii::t('Menu', 'Customers'), 'url' => ['/erp/customers']],
+                            ['label' => Yii::t('Menu', 'Suppliers'), 'url' => ['/erp/suppliers']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Orders'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Purchase orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Sale orders'), 'url' => ['/erp/saleorders']],
+                            ['label' => Yii::t('Menu', 'Purchase orders'), 'url' => ['/erp/purchaseorders']],
+                            ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/erp/automatedorders']],
+                            ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/erp/customerpayments']],
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Employees'), 'items' => [
-                            ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/company/about']],
-                            ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/company/about']],
+                            ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/erp/employees']],
+                            ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
+                            ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
                         ]];
                     }
                 
@@ -106,7 +109,9 @@ AppAsset::register($this);
         ?>
         
         <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class='page-content'>
+            <?= $content ?>
+        </div>
         </div>
     </div>
 

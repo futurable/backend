@@ -16,22 +16,24 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-return array (
-  'Admin actions' => 'Admin toiminnot',
-  'Automated orders' => 'Automaattitilaukset',
-  'Bank accounts' => 'Pankkitilit',
-  'Companies' => 'Yritykset',
-  'Company' => 'Yritys',
-  'Cost-benefit calculation' => 'Liiketoimintalaskelma',
-  'Customer payments' => 'Asiakkaiden maksut',
-  'Employees' => 'Työntekijät',
-  'Info' => 'Info',
-  'Keys' => 'Avaimet',
-  'Orders' => 'Tilaukset',
-  'Purchase orders' => 'Ostotilaukset',
-  'Remarks' => 'Huomiot',
-  'Sale orders' => 'Myyntitilaukset',
-  'Timecards' => 'Kellokortit',
-  'Timesheets' => 'Tuntikirjaukset',
-  'Users' => 'Käyttäjät',
-);
+return [
+    'Admin actions' => '@@Admin toiminnot@@',
+    'Bank accounts' => '@@Pankkitilit@@',
+    'Companies' => '@@Yritykset@@',
+    'Keys' => '@@Avaimet@@',
+    'Users' => '@@Käyttäjät@@',
+    'Automated orders' => 'Automaattitilaukset',
+    'Company' => 'Yritys',
+    'Cost-benefit calculation' => 'Liiketoimintalaskelma',
+    'Customer payments' => 'Asiakkaiden maksut',
+    'Customers' => 'Asiakkaat',
+    'Employees' => 'Työntekijät',
+    'Info' => 'Info',
+    'Orders' => 'Tilaukset',
+    'Purchase orders' => 'Ostotilaukset',
+    'Remarks' => 'Huomiot',
+    'Sale orders' => 'Myyntitilaukset',
+    'Suppliers' => 'Toimittajat',
+    'Timecards' => 'Kellokortit',
+    'Timesheets' => 'Tuntikirjaukset',
+];

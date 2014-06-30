@@ -39,7 +39,7 @@ class SiteController extends MainController
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['user'],
+                        'roles' => ['user','instructor','manager','admin'],
                     ],
                 ],
             ],
@@ -68,8 +68,11 @@ class SiteController extends MainController
         ];
     }
     
-    public function init(){
-        $this->company = Company::findOne(yii::$app->user->identity->company_id);
+    public function init()
+    {
+        if(!yii::$app->user->isGuest){
+            $this->company = Company::findOne(yii::$app->user->identity->company_id);
+        }
     }
 
     public function actionIndex()

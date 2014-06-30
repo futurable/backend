@@ -93,7 +93,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token)
+    public static function findIdentityByAccessToken($token, $type = NULL)
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
@@ -240,13 +240,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('User', 'ID'),
-            'username' => Yii::t('User', 'Username'),
-            'password' => Yii::t('User', 'Password'),
-            'email' => Yii::t('User', 'Email'),
-            'role' => Yii::t('User', 'Role'),
-            'status' => Yii::t('User', 'Status'),
-            'token_customer_id' => Yii::t('User', 'Token Customer ID'),
+            'id' => Yii::t('Backend', 'ID'),
+            'username' => Yii::t('Backend', 'Username'),
+            'password' => Yii::t('Backend', 'Password'),
+            'email' => Yii::t('Backend', 'Email'),
+            'role' => Yii::t('Backend', 'Role'),
+            'status' => Yii::t('Backend', 'Status'),
+            'token_customer_id' => Yii::t('Backend', 'Token Customer ID'),
         ];
     }
     
@@ -264,5 +264,18 @@ class User extends ActiveRecord implements IdentityInterface
     public function getTokenCustomer()
     {
         return $this->hasOne(TokenCustomer::className(), ['id' => 'token_customer_id']);
+    }
+    
+    public function getIsUser(){
+        return ($this->role >= 10) ? true : false;
+    }
+    public function getIsInstructor(){
+        return ($this->role >= 20) ? true : false;
+    }
+    public function getIsManager(){
+        return ($this->role >= 30) ? true : false;
+    }
+    public function getIsAdmin(){
+        return ($this->role >= 40) ? true : false;
     }
 }

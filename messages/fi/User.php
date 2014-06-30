@@ -17,11 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Email' => 'Sähköposti',
-  'ID' => 'ID',
   'Password' => 'Salasana',
-  'Role' => 'Rooli',
-  'Status' => 'Tila',
-  'Token Customer ID' => '',
   'Username' => 'Käyttäjänimi',
 );
