@@ -4,7 +4,6 @@ namespace console\controllers;
 use Yii;
 use yii\console\Controller;
 use common\models\Company;
-use yii\helpers\Security;
 use common\commands\ConsoleDebug;
 use common\models\User;
 use common\models\CompanyPasswords;
@@ -31,8 +30,8 @@ class UserController extends Controller
             
             $backendUser = new User();
             $backendUser->username = $company->tag;
-            $password = Security::generateRandomKey(8);
-            $backendUser->password = Security::generatePasswordHash($password);
+            $password = Yii::$app->getSecurity()->generateRandomKey(8);
+            $backendUser->password = Yii::$app->getSecurity()->generatePasswordHash($password);
             $backendUser->email = $company->email;
             $backendUser->role = 10; // @TODO: bind this to the token key
             $backendUser->token_customer_id = $company->token_customer_id;
