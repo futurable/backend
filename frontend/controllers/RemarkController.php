@@ -19,7 +19,7 @@ class RemarkController extends MainController
     {
         return [
             'access' => [
-                'class' => \yii\web\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
                     'class' => 'frontend\components\AccessRule'
                 ],
