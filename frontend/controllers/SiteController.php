@@ -9,7 +9,7 @@ use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use Yii;
-use yii\web\VerbFilter;
+use yii\filters\VerbFilter;
 use common\models\Company;
 use common\models\User;
 
@@ -27,7 +27,7 @@ class SiteController extends MainController
     {
         return [
             'access' => [
-                'class' => \yii\web\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
 	               'class' => 'frontend\components\AccessRule'
                 ],

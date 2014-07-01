@@ -2,7 +2,7 @@
 
 namespace frontend\components;
 
-class AccessRule extends \yii\web\AccessRule
+class AccessRule extends \yii\filters\AccessRule
 {
     private $rights = ['user'=>10, 'instructor'=>20, 'manager'=>30, 'admin'=>40];
     
