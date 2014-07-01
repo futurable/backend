@@ -70,6 +70,8 @@ class SiteController extends MainController
     
     public function init()
     {
+        parent::init();
+        
         if(!yii::$app->user->isGuest){
             $this->company = Company::findOne(yii::$app->user->identity->company_id);
         }

@@ -9,6 +9,7 @@ class MainController extends Controller
 {
     private $company;
     private $selected_company;
+    //public $enableCsrfValidation = false;
     
     public function init()
     {
@@ -31,22 +32,24 @@ class MainController extends Controller
             $this->company = Company::findOne(yii::$app->user->identity->company_id);
         }
         
-        if(Yii::$app->user->identity->isInstructor){
-            if( !\Yii::$app->session['selected_company_id'] )
-            {
-                $this->selected_company = $this->company->id;
+        if(isset(Yii::$app->user->identity)){
+            if(Yii::$app->user->identity->isInstructor){
+                if( !\Yii::$app->session['selected_company_id'] )
+                {
+                    $this->selected_company = $this->company->id;
+                }
+                else if (isset($_GET['company']))
+                {
+                    $this->selected_company = $_GET['company'];
+                }
+                else
+                {
+                    $this->selected_company = \Yii::$app->session['selected_company_id'];
+                }
+                
+                \Yii::$app->session['selected_company_id'] = $this->selected_company;
+                \Yii::$app->session['selected_company_name'] = Company::findOne($this->selected_company)->name;
             }
-            else if (isset($_GET['company']))
-            {
-                $this->selected_company = $_GET['company'];
-            }
-            else
-            {
-                $this->selected_company = \Yii::$app->session['selected_company_id'];
-            }
-            
-            \Yii::$app->session['selected_company_id'] = $this->selected_company;
-            \Yii::$app->session['selected_company_name'] = Company::findOne($this->selected_company)->name;
         }
     }
     
