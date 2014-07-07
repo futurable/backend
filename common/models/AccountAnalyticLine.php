@@ -97,6 +97,8 @@ class AccountAnalyticLine extends \yii\db\ActiveRecord
             'journal_id' => Yii::t('Backend', 'Analytic Journal'),
             'amount_currency' => Yii::t('Backend', 'Amount Currency'),
             'ref' => Yii::t('Backend', 'Ref.'),
+            'week' => Yii::t('Backend', 'Week'),
+            'hours_sum' => Yii::t('Backend', 'Hours sum'),
         ];
     }
 
