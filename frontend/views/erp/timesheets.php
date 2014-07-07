@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo( "</p>" );
     }
     
-    NavBar::begin(['brandLabel' => yii::t('Backend', 'Week'), 'brandUrl' => ['/erp/timesheets']]);
+    NavBar::begin(['brandLabel' => yii::t('Backend', 'Week').":", 'brandUrl' => ['/erp/timesheets']]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => $pages,
