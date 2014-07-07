@@ -18,10 +18,11 @@ class TimesheetsAction extends Action{
         $weeksQuery = AccountAnalyticLine::find()->select(["distinct $weekNumberQuery"]);
         
         # Calculate the number of navigation buttons
-        $firstDate = AccountAnalyticLine::find()->select('date')->orderBy('date ASC')->one()->date;
-        $lastDate = AccountAnalyticLine::find()->select(['date'])->orderBy('date DESC')->one()->date;
+        $firstDate = AccountAnalyticLine::find()->select('date')->orderBy('date ASC')->one();
+        $lastDate = AccountAnalyticLine::find()->select(['date'])->orderBy('date DESC')->one();
         
-        $weekNumber = date('Y-W', strtotime($firstDate));
+        $firstDate = empty($firstDate) ? date('Y-m-d') : $firstDate->date;
+        $lastDate = empty($lastDate) ? $lastDate : $lastDate->date;
         
         $diff = time() - strtotime($firstDate);
         $weeks = intval( ceil( $diff / (60*60*24*7) ) );
@@ -29,11 +30,13 @@ class TimesheetsAction extends Action{
         # Pagination
         $pages = [];
 
+        $round = 0;
         while($weeks > 0){
             $weeks--;
-            $pages[] = ['label' => substr($weekNumber, 5), 'url' => ['timesheets', 'week' => $weekNumber]];
+            $weekNumber = date('Y-W', strtotime("+{$round} week", strtotime($firstDate) ));
+            $round++;
             
-            $weekNumber++;
+            $pages[] = ['label' => substr($weekNumber, 5), 'url' => ['timesheets', 'week' => $weekNumber]];
         }
         
         
