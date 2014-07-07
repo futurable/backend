@@ -37,7 +37,7 @@ class TimesheetsAction extends Action{
         }
         
         
-        $thisWeek = $_GET['week'] ? $_GET['week'] : date('Y-W');
+        $thisWeek = isset($_GET['week']) ? $_GET['week'] : date('Y-W');
         $viewWeek = substr($thisWeek, 5, 2) . " / " . substr($thisWeek, 0, 4);
         
         $provider = New ActiveDataProvider([
