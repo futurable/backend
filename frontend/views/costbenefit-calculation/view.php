@@ -39,6 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]);
     ?>
-    <?= Html::a(Yii::t('Backend', 'Back'), ['index'], ['class' => 'btn btn-danger']) ?>
+    <?php // echo Html::a(Yii::t('Backend', 'Back'), ['index'], ['class' => 'btn btn-danger']) ?>
 
 </div>
