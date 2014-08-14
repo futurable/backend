@@ -219,5 +219,6 @@ return [
     'Welcome' => 'Tervetuloa',
     'You are logged in as' => 'Olet kirjautuneena käyttäjänä',
     'monthly' => 'kuukausittainen',
+    'Week' => 'Viikko',
     'weekly' => 'viikottainen',
 ];

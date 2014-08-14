@@ -65,12 +65,19 @@ h2{
     margin-top: 10px;
 }
 
-.btn-primary{
-	background: #A8CF38;
-	border: none;
+.btn-primary:focus{
+    outline: none;
+}
+
+.btn-primary, .btn-primary:focus, .open > .dropdown-toggle.btn-primary{
+    background: #A8CF38;
+    border: none;
 }
 .btn-primary:hover{
-	background: #C8DA30;
+    background: #C8DA30;
+}
+.btn-primary:active{
+    background: #A8CF38;
 }
 
 .jumbotron {
