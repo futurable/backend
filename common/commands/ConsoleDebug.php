@@ -6,7 +6,7 @@ use Yii;
 class ConsoleDebug{
     
     public function init(){
-        date_default_timezone_set('America/Los_Angeles');
+        date_default_timezone_set('Europe/Helsinki');
     }
     
 	public function message($message = false, $debugLevel = 1){
