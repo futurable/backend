@@ -33,7 +33,7 @@ class MainController extends Controller
         }
         
         if(isset(Yii::$app->user->identity)){
-            if(Yii::$app->user->identity->isInstructor){
+            //if(Yii::$app->user->identity->isInstructor){
                 if( !\Yii::$app->session['selected_company_id'] )
                 {
                     $this->selected_company = $this->company->id;
@@ -49,7 +49,7 @@ class MainController extends Controller
                 
                 \Yii::$app->session['selected_company_id'] = $this->selected_company;
                 \Yii::$app->session['selected_company_name'] = Company::findOne($this->selected_company)->name;
-            }
+            //}
         }
     }
     

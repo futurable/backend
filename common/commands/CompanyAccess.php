@@ -19,7 +19,7 @@ class CompanyAccess
         // Student
         else if($user->isUser)
         {
-            $conditions['id'] = $company_id;
+            $conditions['company.id'] = $company_id;
         }
         
         return $conditions; 
