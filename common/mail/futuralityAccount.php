@@ -41,7 +41,7 @@ $messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='https:
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
 
-$messageContent .= "<p><strong>" . Yii::t('Company', "Have fun") . "!</strong></p>";
+#$messageContent .= "<p><strong>" . Yii::t('Company', "Have fun") . "!</strong></p>";
 
 $messageContent .= "<p>---<br/>";
 $messageContent .= "<a href='http://futurable.fi'>Futurable Oy</a><br/>" . date('Y') . "</p>";
