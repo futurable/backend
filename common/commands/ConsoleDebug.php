@@ -14,7 +14,7 @@ class ConsoleDebug{
 		
 		if($message===false) $debugMessage = "\n";
 	
-		else $debugMessage = date('d-m-Y H:i:s')." ".$message."\n";
+		else $debugMessage = date('Y-m-d H:i:s')." ".$message."\n";
 	
 		echo $debugMessage;
 	}
