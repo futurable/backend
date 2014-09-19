@@ -98,7 +98,7 @@ class AccountAnalyticLine extends \yii\db\ActiveRecord
             'amount_currency' => Yii::t('Backend', 'Amount Currency'),
             'ref' => Yii::t('Backend', 'Ref.'),
             'week' => Yii::t('Backend', 'Week'),
-            'hours_sum' => Yii::t('Backend', 'Hours sum'),
+            'hours_sum' => Yii::t('Backend', 'Hours'),
         ];
     }
 

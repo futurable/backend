@@ -54,6 +54,7 @@ return [
     'Gender' => 'Sukupuoli',
     'Home Action' => '',
     'Home Address' => '',
+    'Hours' => 'Tunnit',
     'Identification No' => '',
     'Image' => '',
     'Incoterm' => '',
