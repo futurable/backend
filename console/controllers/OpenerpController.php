@@ -6,6 +6,8 @@ use yii\console\Controller;
 use common\models\Company;
 use common\commands\CreateTag;
 use common\commands\ConsoleDebug;
+use common\models\BankAccount;
+use common\models\BankUser;
 
 class OpenerpController extends Controller
 {
@@ -25,8 +27,8 @@ class OpenerpController extends Controller
         $Debug->message(count($companies) . " companies found", $this->debugLevel);
         
         foreach ($companies as $company) {
-            // $bankAccount->iban = false; // @TODO: fix this
-            $bankAccount = '';
+            $bankUser = BankUser::find()->where(['username'=>$company->tag])->one();
+            $bankAccount = BankAccount::find()->where(['bank_user_id'=>$bankUser->id])->one();
             
             $Debug->message("Using company '" . $company->name . "'", $this->debugLevel);
             
@@ -38,7 +40,7 @@ class OpenerpController extends Controller
             
             $Debug->message("Company tag is {$company->tag}", $this->debugLevel);
             
-            $cmd = " '$company->tag' '$company->name' '$OpenErpPassword' '$company->business_id' '$company->email' '$bankAccount'";
+            $cmd = " '$company->tag' '$company->name' '$OpenErpPassword' '$company->business_id' '$company->email' '$bankAccount->iban'";
             $shellCmd = escapeshellcmd($cmd);
             
             $scriptFile = Yii::getAlias('@app') . "/commands/shell/createOpenERPCompany.sh";
