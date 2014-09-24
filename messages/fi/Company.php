@@ -36,7 +36,7 @@ return array (
   'Bank account' => 'Pankkitunnus',
   'Email' => 'Sähköposti',
   'Employees' => 'Työntekijät',
-  'Futurality account for' => 'Futurality tunnukset yritykselle',
+  'Futurality account for' => 'Futurality-tunnukset yritykselle',
   'Futurality business simulation' => 'Futurality liiketoimintasimulaatioon',
   'Have fun' => 'Pidä hauskaa',
   'Login from' => 'Kirjaudu täältä',

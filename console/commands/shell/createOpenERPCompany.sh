@@ -24,7 +24,7 @@ sed -i "s/CompanyName/${NAME}/g" $INPUTFILE
 sed -i "s/CompanyPassword/${PW}/g" $INPUTFILE
 sed -i "s/CompanyBusinessId/${BUSINESSID}/g" $INPUTFILE
 sed -i "s/CompanyTagline/${NAME}/g" $INPUTFILE
-sed -i "s/CompanyWebsite/http\:\/\/${TAG}.com/g" $INPUTFILE
+sed -i "s/CompanyWebsite/${TAG}.com/g" $INPUTFILE
 sed -i "s/CompanyEmail/${EMAIL}/g" $INPUTFILE
 sed -i "s/CompanyBankAccount/${BANKACCOUNT}/g" $INPUTFILE
 
