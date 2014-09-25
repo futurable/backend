@@ -47,8 +47,10 @@ class MainController extends Controller
                     $this->selected_company = \Yii::$app->session['selected_company_id'];
                 }
                 
-                \Yii::$app->session['selected_company_id'] = $this->selected_company;
-                \Yii::$app->session['selected_company_name'] = Company::findOne($this->selected_company)->name;
+                if(isset($this->selected_company)){
+                    \Yii::$app->session['selected_company_id'] = $this->selected_company;
+                    \Yii::$app->session['selected_company_name'] = Company::findOne($this->selected_company)->name;
+                }
             //}
         }
     }
