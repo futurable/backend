@@ -37,7 +37,7 @@ $messageContent .= "<p>";
 $messageContent .= "<ul>";
 $messageContent .= "<li>" . Yii::t('Company', 'User account') . ": <strong>{$company->tag}</strong></li>";
 $messageContent .= "<li>" . Yii::t('Company', 'Password') . ": <strong>{$company->companyPasswords->backend_password}</strong></li>";
-$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='https://futurality.fi/backend/index.php/site/login?company={$company->tag}'>futurality.fi/backend</a></li>";
+$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='https://futurality.fi/backend/index.php/site/login?company_tag={$company->tag}'>futurality.fi/backend</a></li>";
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
 
