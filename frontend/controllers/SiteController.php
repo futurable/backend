@@ -90,6 +90,9 @@ class SiteController extends MainController
 
         $model = new LoginForm();
         
+        // Suggest the right company
+        if(isset($_GET['company_tag'])) $model->username = $_GET['company_tag'];
+        
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
