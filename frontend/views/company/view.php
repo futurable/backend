@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php 
         $attributes = [
-            'id',
             'name',
             'tag',
             'business_id',
@@ -47,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'account_mail_sent',
                 'token_key_id',
                 'industry_id',
+            	'id',
             ];
             
             $attributes = array_merge($attributes, $extra_attributes);
