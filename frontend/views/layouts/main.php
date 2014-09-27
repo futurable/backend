@@ -84,7 +84,7 @@ AppAsset::register($this);
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Company'), 'items' => [
                             ['label' => Yii::t('Menu', 'Info'), 'url' => ['/company/view',]],
                             ['label' => Yii::t('Menu', 'Cost-benefit calculation'), 'url' => ['/costbenefit-calculation/view']],
-                            ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
+                            //['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
                             ['label' => Yii::t('Menu', 'Customers'), 'url' => ['/erp/customers']],
                             ['label' => Yii::t('Menu', 'Suppliers'), 'url' => ['/erp/suppliers']],
                         ]];
@@ -96,8 +96,8 @@ AppAsset::register($this);
                         ]];
                         $subMenuItems[] = ['label' => Yii::t('Menu', 'Employees'), 'items' => [
                             ['label' => Yii::t('Menu', 'Employees'), 'url' => ['/erp/employees']],
-                            ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
-                            ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
+                            //['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
+                            //['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
                         ]];
                     }
                 
