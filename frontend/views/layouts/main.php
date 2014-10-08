@@ -149,13 +149,19 @@ AppAsset::register($this);
                             'url' => [
                                 '/erp/purchaseorders'
                             ]
+                        ],
+                        [
+                            'label' => Yii::t('Menu', 'Invoices'),
+                            'url' => [
+                                '/erp/invoices'
+                            ]
                         ]
                     ]
+                ];
                 // ['label' => Yii::t('Menu', 'Automated orders'), 'url' => ['/erp/automatedorders']],
                 // ['label' => Yii::t('Menu', 'Customer payments'), 'url' => ['/erp/customerpayments']],
                 
                 
-                ;
                 $subMenuItems[] = [
                     'label' => Yii::t('Menu', 'Employees'),
                     'items' => [
@@ -168,9 +174,7 @@ AppAsset::register($this);
                     ]
                 // ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
                 // ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
-                
-                
-                ;
+                ];
             }
             
             echo Nav::widget([

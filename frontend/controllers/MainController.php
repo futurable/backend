@@ -31,7 +31,6 @@ class MainController extends Controller
         if(!yii::$app->user->isGuest){
             $this->company = Company::findOne(yii::$app->user->identity->company_id);
         }
-        
         if(isset(Yii::$app->user->identity)){
             if( !\Yii::$app->session['selected_company_id'] )
             {
