@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'employees',
         ];
 
-        if(yii::$app->user->identity->isInstructor){
+        if(yii::$app->user->identity->isAdmin){
             $extra_attributes = [
                 'active',
                 'create_time',
