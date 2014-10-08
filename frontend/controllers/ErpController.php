@@ -31,6 +31,7 @@ class ErpController extends MainController
         return [
             'customers' => ['class' => 'frontend\controllers\erp\CustomersAction'],
             'suppliers' => ['class' => 'frontend\controllers\erp\SuppliersAction'],
+            'products' => ['class' => 'frontend\controllers\erp\ProductsAction'],
             'saleorders' => ['class' => 'frontend\controllers\erp\SaleordersAction'],
             'purchaseorders' => ['class' => 'frontend\controllers\erp\PurchaseordersAction'],
             'invoices' => ['class' => 'frontend\controllers\erp\InvoicesAction'],

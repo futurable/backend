@@ -132,6 +132,12 @@ AppAsset::register($this);
                             'url' => [
                                 '/erp/suppliers'
                             ]
+                        ],
+                        [
+                        'label' => Yii::t('Menu', 'Products'),
+                        'url' => [
+                                '/erp/products'
+                            ]
                         ]
                     ]
                 ];
