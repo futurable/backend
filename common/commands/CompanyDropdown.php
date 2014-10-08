@@ -51,6 +51,7 @@ class CompanyDropdown {
 		] )
 		->where ( $companyAccess->getQueryConditions () )
 		->andWhere(['active'=>1])
+		->orderBy ('name')
 		->all ();
 		
 		return $companies;

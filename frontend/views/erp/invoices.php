@@ -8,10 +8,10 @@ use yii\grid\GridView;
  * @var common\models\Company $model
  */
 
-$this->title = Yii::t('Backend', 'Purchase orders') . ", " . yii::$app->session['selected_company_name'];
+$this->title = Yii::t('Backend', 'Invoices') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="erp-purchaseorders">
+<div class="erp-invoices">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -48,10 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function($data){ return $data->amount_total." €"; },
                     ],
                     'state',
-                    [
-                        'attribute' => 'shipped',
-                        'value' => function($data){ return ($data->shipped == true) ? Yii::t('Backend', 'yes') : Yii::t('Backend', 'no'); },
-                    ]
                 ]
             ]);
         }
