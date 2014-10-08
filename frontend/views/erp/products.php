@@ -11,7 +11,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('Backend', 'Products') . ", " . yii::$app->session['selected_company_name'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="erp-customers">
+<div class="erp-products">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         else
         {
             echo( "<p>" );
-            echo Yii::t('Backend', 'No customers.');
+            echo Yii::t('Backend', 'No products.');
             echo( "</p>" );
         }
     ?>

@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
         else 
         {
             echo( "<p>" );
-            echo Yii::t('Backend', 'No purchase orders.');
+            echo Yii::t('Backend', 'No invoices.');
             echo( "</p>" );
         }
     ?>
