@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\components;
+namespace common\components;
 
 class AccessRule extends \yii\filters\AccessRule
 {
