@@ -9,6 +9,9 @@ return [
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'language' => 'fi',
     'components' => [
+        'request' => [
+            'cookieValidationKey' => 'futural',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

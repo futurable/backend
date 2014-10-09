@@ -36,6 +36,7 @@ h2{
 #logo{
     border-bottom: 5px solid #A8CF38;
     padding: 10px 20px;
+    clear: both;
 }
 #langdrop{
     float: right;

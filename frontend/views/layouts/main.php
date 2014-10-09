@@ -37,7 +37,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
         NavBar::begin([
-            'brandLabel' => 'Futural backend',
+            'brandLabel' => 'Futural server backend',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top'

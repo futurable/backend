@@ -6,11 +6,12 @@ use yii\web\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\web\VerbFilter;
+use common\controllers\MainController;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends MainController
 {
     /**
      * @inheritdoc

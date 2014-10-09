@@ -9,10 +9,12 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
-    'preload' => ['log'],
     'controllerNamespace' => 'backend\controllers',
     'modules' => [],
     'components' => [
+        'request' => [
+            'cookieValidationKey' => 'futural',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

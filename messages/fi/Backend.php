@@ -362,7 +362,7 @@ return [
     'Sale orders' => 'Myyntitilaukset',
     'Selected' => 'Valittuna',
     'Significance' => 'Vaikutus',
-    'State' => 'Osavaltio',
+    'State' => 'Tila',
     'Status' => 'Tila',
     'Street' => 'Katuosoite',
     'Street2' => 'Katuosoite 2',

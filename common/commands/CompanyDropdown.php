@@ -13,20 +13,21 @@ class CompanyDropdown {
 		$companies = $this->findCompanies ();
 		
 		foreach ( $companies as $company ) {
-			
-			$url_parts = explode ( "?", Url::canonical () );
-			$url_params = "";
-			foreach ( $_GET as $key => $param ) {
-				if ($key == "company")
-					continue;
-				
-				$url_params .= "$key=$param&";
-			}
-			$url = $url_parts [0] . "?" . $url_params . "company={$company->id}";
-			
+            
+		    $queryString = Yii::$app->request->queryString;
+		    $absoluteUrl = Yii::$app->request->absoluteUrl;
+		    
+		    if(preg_match("/(company)[=][0-9]+/i", $queryString)){
+		      $url = preg_replace("/(company)[=][0-9]+/i", "company={$company->id}", $queryString);
+		    }
+		    else {
+		        if($queryString == false) $url = $absoluteUrl."?company={$company->id}";
+		        else $url = $absoluteUrl."&company={$company->id}";
+		    }
+
 			$companyDropdown [] = [ 
-					'label' => $company->name,
-					'url' => $url 
+				'label' => $company->name,
+				'url' => $url 
 			];
 		}
 		
