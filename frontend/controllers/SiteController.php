@@ -29,7 +29,7 @@ class SiteController extends MainController
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
-	               'class' => 'frontend\components\AccessRule'
+	               'class' => 'common\components\AccessRule'
                 ],
                 'rules' => [
                     [
