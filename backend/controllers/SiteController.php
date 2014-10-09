@@ -21,6 +21,9 @@ class SiteController extends MainController
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => 'common\components\AccessRule'
+                ],
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
@@ -29,7 +32,7 @@ class SiteController extends MainController
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['user','instructor','manager','admin'],
                     ],
                 ],
             ],
