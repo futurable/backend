@@ -12,9 +12,6 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'modules' => [],
     'components' => [
-        'request' => [
-            'cookieValidationKey' => 'futural',
-        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
