@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ModuleSearch */
@@ -41,6 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'author',
             'latest_version',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+            ],
         ],
     ]);
     ?>

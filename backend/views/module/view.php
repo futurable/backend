@@ -14,31 +14,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('Backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('Backend', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('Backend', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'create_uid',
-            'create_date',
+            'name',
+            'state',
+            'name',
+            'category.name:text:'.Yii::t('Backend', 'Category'),
+            'writeU.partner.name:text:'.Yii::t('Backend', 'Installed by'),
             'write_date',
-            'write_uid',
             'website',
             'summary',
-            'name',
             'author',
-            'icon',
-            'state',
             'latest_version',
             'shortdesc',
             'category_id',
@@ -58,5 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'published_version',
         ],
     ]) ?>
+    
+    <?= Html::a(Yii::t('Backend', 'Back'), ['index'], ['class' => 'btn btn-danger']) ?>
 
 </div>
