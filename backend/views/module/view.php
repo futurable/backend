@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\IrModuleModule */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('Backend', 'Ir Module Modules'), 'url' => ['index']];
+$this->title = $model->name . ", " . yii::$app->session['selected_company_name'];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('Backend', 'Modules'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ir-module-module-view">
