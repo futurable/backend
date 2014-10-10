@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'names' => $names, 'categories' => $categories, 'states' => $states]); ?>
 
     <br/>
     
@@ -22,18 +22,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             'state',
-            'writeU.partner.name:text:'.Yii::t('Backend', 'Installer'),
+            'name',
+            [
+                'attribute'=>'category_id', 
+                'label' => Yii::t('Backend', 'Category'),
+                'value' => function($data){ return $data->category->name; },
+            ],
+            'summary',
+            [
+                'attribute'=>'write_uid',
+                'label' => Yii::t('Backend', 'Installed by'),
+                'value' => function($data){ return isset($data->writeU->partner->name) ? $data->writeU->partner->name : ''; },
+            ],
             [
                 'attribute'=>'write_date', 
                 'label' => Yii::t('Backend', 'Updated'),
                 'value' => function($data){ return substr($data->write_date, 0, 10); },
             ],
-            'name',
-            'category.name:text:'.Yii::t('Backend', 'Category'),
-            'summary',
             'author',
             'latest_version',
         ],
-    ]); ?>
+    ]);
+    ?>
 
 </div>

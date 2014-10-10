@@ -8,6 +8,10 @@ use common\models\search\ModuleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\IrModuleCategory;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+use yii\db\Query;
 
 /**
  * ModuleController implements the CRUD actions for IrModuleModule model.
@@ -34,8 +38,14 @@ class ModuleController extends Controller
     {
         $searchModel = new ModuleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $categories = $this->getCategories();
+        $states = $this->getStates();
+        $names = $this->getNames();
 
         return $this->render('index', [
+            'names' => $names,
+            'categories' => $categories,
+            'states' => $states,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -117,5 +127,75 @@ class ModuleController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    private function getCategories(){
+        $categories = IrModuleCategory::find()
+            ->select(['id', 'name'])
+            ->distinct()
+            ->orderBy('name')
+            ->all();
+        
+        $categoryArray = [];
+        
+        foreach ($categories as $category){
+            $categoryArray[ $category->id ] = $category->name;
+        }
+        
+        return $categoryArray;
+    }
+    
+    private function getNames(){
+        return [];
+        
+        $names = IrModuleCategory::find()
+        ->select(['id', 'name'])
+        ->distinct()
+        ->orderBy('name')
+        ->all();
+    
+        $nameArray = [];
+    
+        foreach ($names as $name){
+            $nameArray[ $name->name ] = $name->name;
+        }
+    
+        return $nameArray;
+    }
+    
+    private function getStates(){
+        $states = [
+        'uninstallable' => Yii::t('Backend', 'Not Installable'),
+        'uninstalled' => Yii::t('Backend', 'Not Installed'),
+        'installed' => Yii::t('Backend', 'Installed'),
+        'to upgrade' => Yii::t('Backend', 'To be upgraded'),
+        'to remove' => Yii::t('Backend', 'To be removed'),
+        'to install' => Yii::t('Backend', 'To be installed')];
+        
+        return $states;
+    }
+    
+    public function actionNames($search = null, $id = null, $name=null) {
+        $out = ['more' => false];
+
+        if (!is_null($search)) {
+            $result = IrModuleModule::find()
+                ->select(['id', 'name'])
+                ->where(['like', 'name', $search])
+                ->limit(20)
+                ->orderBy('name')
+                ->all();
+            
+            $out['results'] = array_values($result);
+        }
+        elseif ($name > 0) {
+            $out['results'] = ['id' => $name, 'text' => IrModuleModule::find()->where(['id'=>$name])->one()->name];
+        }
+        else {
+            $out['results'] = ['id' => 0, 'text' => Yii::t('Backend', 'No matching records found')];
+        }
+
+        $out = preg_replace( "/\"name\"/i", '"text"', Json::encode($out) );
+        echo $out;
     }
 }

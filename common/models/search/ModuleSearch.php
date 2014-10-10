@@ -53,7 +53,7 @@ class ModuleSearch extends IrModuleModule
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id' => $this->name,
             'create_uid' => $this->create_uid,
             'create_date' => $this->create_date,
             'write_date' => $this->write_date,
@@ -66,24 +66,9 @@ class ModuleSearch extends IrModuleModule
             'auto_install' => $this->auto_install,
         ]);
 
-        $query->andFilterWhere(['like', 'website', $this->website])
-            ->andFilterWhere(['like', 'summary', $this->summary])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'author', $this->author])
-            ->andFilterWhere(['like', 'icon', $this->icon])
-            ->andFilterWhere(['like', 'state', $this->state.'%', false])
-            ->andFilterWhere(['like', 'latest_version', $this->latest_version])
-            ->andFilterWhere(['like', 'shortdesc', $this->shortdesc])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'license', $this->license])
-            ->andFilterWhere(['like', 'menus_by_module', $this->menus_by_module])
-            ->andFilterWhere(['like', 'maintainer', $this->maintainer])
-            ->andFilterWhere(['like', 'contributors', $this->contributors])
-            ->andFilterWhere(['like', 'views_by_module', $this->views_by_module])
-            ->andFilterWhere(['like', 'reports_by_module', $this->reports_by_module])
-            ->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'published_version', $this->published_version]);
-
+        $query
+            ->andFilterWhere(['state' => $this->state]);
+        
         return $dataProvider;
     }
 }

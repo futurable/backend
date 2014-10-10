@@ -46,6 +46,9 @@ use Yii;
  */
 class IrModuleModule extends \yii\db\ActiveRecord
 {
+    # A helper for JQuery
+    public $text;
+    
     /**
      * @inheritdoc
      */
