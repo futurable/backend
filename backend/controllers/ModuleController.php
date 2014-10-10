@@ -31,25 +31,11 @@ class ModuleController extends MainController
         ];
     }
 
-    /**
-     * Lists all IrModuleModule models.
-     * @return mixed
-     */
-    public function actionIndex()
+    public function actions()
     {
-        $searchModel = new ModuleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $categories = $this->getCategories();
-        $states = $this->getStates();
-        $names = $this->getNames();
-
-        return $this->render('index', [
-            'names' => $names,
-            'categories' => $categories,
-            'states' => $states,
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return [
+            'index' => ['class' => 'backend\controllers\module\IndexAction'],
+        ];
     }
 
     /**
@@ -130,7 +116,7 @@ class ModuleController extends MainController
         }
     }
     
-    private function getCategories(){
+    public function getCategories(){
         $categories = IrModuleCategory::find()
             ->select(['id', 'name'])
             ->distinct()
@@ -146,7 +132,7 @@ class ModuleController extends MainController
         return $categoryArray;
     }
     
-    private function getNames(){
+    public function getNames(){
         return [];
         
         $names = IrModuleCategory::find()
@@ -164,7 +150,7 @@ class ModuleController extends MainController
         return $nameArray;
     }
     
-    private function getStates(){
+    public function getStates(){
         $states = [
         'uninstallable' => Yii::t('Backend', 'Not Installable'),
         'uninstalled' => Yii::t('Backend', 'Not Installed'),
