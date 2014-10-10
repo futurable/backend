@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'label' => Yii::t('Backend', 'Orders value'),
                         'value' => function($data){ $sum = 0; foreach($data->saleOrders as $saleOrder){ $sum += $saleOrder->amount_total; }; return $sum; },
-                        'format' => 'double',
+                        'format' => 'decimal',
                     ]
                 ]
             ]);
