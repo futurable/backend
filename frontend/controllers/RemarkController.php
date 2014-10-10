@@ -8,6 +8,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\commands\CompanyAccess;
 use common\commands\DateFormatter;
+use common\controllers\MainController;
 
 /**
  * RemarkController implements the CRUD actions for Remark model.
@@ -21,7 +22,7 @@ class RemarkController extends MainController
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
-                    'class' => 'frontend\components\AccessRule'
+                    'class' => 'common\components\AccessRule'
                 ],
                 'rules' => [
                     [

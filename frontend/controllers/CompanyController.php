@@ -7,6 +7,7 @@ use common\models\search\CompanySearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\commands\CompanyAccess;
+use common\controllers\MainController;
 
 /**
  * CompanyController implements the CRUD actions for Company model.
@@ -20,7 +21,7 @@ class CompanyController extends MainController
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
-                    'class' => 'frontend\components\AccessRule'
+                    'class' => 'common\components\AccessRule'
                 ],
                 'rules' => [
                     [

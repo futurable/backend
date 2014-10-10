@@ -12,6 +12,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use common\models\Company;
 use common\models\User;
+use common\controllers\MainController;
 
 /**
  * Site controller
