@@ -12,11 +12,12 @@ use common\models\IrModuleCategory;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\db\Query;
+use common\controllers\MainController;
 
 /**
  * ModuleController implements the CRUD actions for IrModuleModule model.
  */
-class ModuleController extends Controller
+class ModuleController extends MainController
 {
     public function behaviors()
     {
