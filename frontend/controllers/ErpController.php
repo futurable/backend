@@ -43,7 +43,8 @@ class ErpController extends MainController
                     ],
                     [
                         'actions' => [
-                            'index'
+                            'automatedorders',
+                            'customerpayments',
                         ],
                         'allow' => true,
                         'roles' => [
