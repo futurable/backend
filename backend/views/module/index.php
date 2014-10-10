@@ -19,6 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <br/>
     
+    <?php
+        # CSS hacks
+        $this->registerJs('$( "td:contains(\'installed\')" ).css( "color", "green" )');
+        $this->registerJs('$( "td:contains(\'uninstalled\')" ).css( "color", "red" )');
+        $this->registerJs('$( "td:contains(\'uninstallable\')" ).css( "color", "grey" )');
+    ?>
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
