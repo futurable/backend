@@ -39,4 +39,5 @@ return [
     'Suppliers' => 'Toimittajat',
     'Timecards' => 'Kellokortit',
     'Timesheets' => 'Tuntikirjaukset',
+    'Users' => 'Käyttäjät',
 ];

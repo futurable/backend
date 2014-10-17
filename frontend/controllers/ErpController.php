@@ -32,6 +32,7 @@ class ErpController extends MainController
                             'saleorders',
                             'purchaseorders',
                             'invoices',
+                            'users',
                             'employees',
                         ],
                         'allow' => true,
@@ -88,6 +89,7 @@ class ErpController extends MainController
             'automatedorders' => ['class' => 'frontend\controllers\erp\AutomatedordersAction'],
             'customerpayments' => ['class' => 'frontend\controllers\erp\CustomerpaymentsAction'],
             'employees' => ['class' => 'frontend\controllers\erp\EmployeesAction'],
+            'users' => ['class' => 'frontend\controllers\erp\UsersAction'],
             'timesheets' => ['class' => 'frontend\controllers\erp\TimesheetsAction'],
             'timecards' => ['class' => 'frontend\controllers\erp\TimecardsAction'],
         ];
