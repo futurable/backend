@@ -36,7 +36,7 @@ return [
             ],
         ],
         'formatter' => [
-            'dateFormat' => 'd.m.Y',
+            'dateFormat' => 'd.M.Y',
         ]
     ],
 ];
