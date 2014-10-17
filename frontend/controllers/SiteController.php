@@ -12,6 +12,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use common\models\Company;
 use common\models\User;
+use common\controllers\MainController;
 
 /**
  * Site controller
@@ -29,7 +30,7 @@ class SiteController extends MainController
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
-	               'class' => 'frontend\components\AccessRule'
+	               'class' => 'common\components\AccessRule'
                 ],
                 'rules' => [
                     [

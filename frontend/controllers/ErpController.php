@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\db\Connection;
 use yii\web\Request;
 use common\models\Company;
+use common\controllers\MainController;
 
 class ErpController extends MainController
 {
@@ -15,6 +16,56 @@ class ErpController extends MainController
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => 'common\components\AccessRule'
+                ],
+                'rules' => [
+                    [
+                        'actions' => [
+                            'view',
+                            'index',
+                            'customers',
+                            'suppliers',
+                            'products',
+                            'saleorders',
+                            'purchaseorders',
+                            'invoices',
+                            'users',
+                            'employees',
+                        ],
+                        'allow' => true,
+                        'roles' => [
+                            'user',
+                            'instructor',
+                            'manager'
+                        ]
+                    ],
+                    [
+                        'actions' => [
+                            'automatedorders',
+                            'customerpayments',
+                        ],
+                        'allow' => true,
+                        'roles' => [
+                            'instructor',
+                            'manager'
+                        ]
+                    ],
+                    [
+                        'actions' => [
+                            'delete',
+                            'create',
+                            'update'
+                        ],
+                        'allow' => true,
+                        'roles' => [
+                            'manager'
+                        ]
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -38,6 +89,7 @@ class ErpController extends MainController
             'automatedorders' => ['class' => 'frontend\controllers\erp\AutomatedordersAction'],
             'customerpayments' => ['class' => 'frontend\controllers\erp\CustomerpaymentsAction'],
             'employees' => ['class' => 'frontend\controllers\erp\EmployeesAction'],
+            'users' => ['class' => 'frontend\controllers\erp\UsersAction'],
             'timesheets' => ['class' => 'frontend\controllers\erp\TimesheetsAction'],
             'timecards' => ['class' => 'frontend\controllers\erp\TimecardsAction'],
         ];

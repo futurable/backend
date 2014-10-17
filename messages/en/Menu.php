@@ -25,6 +25,7 @@ return [
     'Employees' => '',
     'Info' => '',
     'Invoices' => '',
+    'Modules' => '',
     'Orders' => '',
     'Products' => '',
     'Purchase orders' => '',

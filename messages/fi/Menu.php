@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Invoices' => 'Laskut',
-    'Products' => 'Tuotteet',
+    'Modules' => 'Moduulit',
     'Admin actions' => 'Admin toiminnot',
     'Bank accounts' => 'Pankkitilit',
     'Companies' => 'Yritykset',
@@ -31,11 +30,14 @@ return [
     'Customers' => 'Asiakkaat',
     'Employees' => 'Työntekijät',
     'Info' => 'Info',
+    'Invoices' => 'Laskut',
     'Orders' => 'Tilaukset',
+    'Products' => 'Tuotteet',
     'Purchase orders' => 'Ostotilaukset',
     'Remarks' => 'Huomiot',
     'Sale orders' => 'Myyntitilaukset',
     'Suppliers' => 'Toimittajat',
     'Timecards' => 'Kellokortit',
     'Timesheets' => 'Tuntikirjaukset',
+    'Users' => 'Käyttäjät',
 ];

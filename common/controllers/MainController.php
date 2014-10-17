@@ -1,5 +1,5 @@
 <?php
-namespace frontend\controllers;
+namespace common\controllers;
 
 use Yii;
 use yii\web\Controller;
@@ -9,7 +9,6 @@ class MainController extends Controller
 {
     private $company;
     private $selected_company;
-    //public $enableCsrfValidation = false;
     
     public function init()
     {
@@ -37,7 +36,7 @@ class MainController extends Controller
                 $this->selected_company = $this->company->id;
             }
             else if (isset($_GET['company']) && is_numeric($_GET['company']))
-            {
+            { 
                 $this->selected_company = $_GET['company'];
             }
             else

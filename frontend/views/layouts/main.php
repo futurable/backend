@@ -37,7 +37,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
         NavBar::begin([
-            'brandLabel' => 'Futural backend',
+            'brandLabel' => 'Futural server backend',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top'
@@ -172,11 +172,17 @@ AppAsset::register($this);
                     'label' => Yii::t('Menu', 'Employees'),
                     'items' => [
                         [
+                            'label' => Yii::t('Menu', 'Users'),
+                            'url' => [
+                            '/erp/users'
+                            ]   
+                        ],
+                        [
                             'label' => Yii::t('Menu', 'Employees'),
                             'url' => [
                                 '/erp/employees'
                             ]
-                        ]
+                        ],
                     ]
                 // ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
                 // ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],

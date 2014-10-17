@@ -6,6 +6,7 @@ use common\models\CostbenefitCalculation;
 use common\models\search\CostbenefitCalculationSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\controllers\MainController;
 
 /**
  * CostbenefitCalculationController implements the CRUD actions for CostbenefitCalculation model.
@@ -19,7 +20,7 @@ class CostbenefitCalculationController extends MainController
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
-                    'class' => 'frontend\components\AccessRule'
+                    'class' => 'common\components\AccessRule'
                 ],
                 'rules' => [
                     [
