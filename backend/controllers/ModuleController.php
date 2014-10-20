@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\db\Query;
 use common\controllers\MainController;
+use yii\filters\AccessControl;
 
 /**
  * ModuleController implements the CRUD actions for IrModuleModule model.
@@ -22,6 +23,19 @@ class ModuleController extends MainController
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => 'common\components\AccessRule'
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['manager','admin'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
