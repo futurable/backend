@@ -11,6 +11,9 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'request' => [
+            'cookieValidationKey' => 'futural',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
