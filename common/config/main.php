@@ -10,7 +10,7 @@ return [
     'language' => 'fi',
     'components' => [
         'request' => [
-            'cookieValidationKey' => 'futural',
+            
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
