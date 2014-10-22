@@ -29,14 +29,14 @@ class OpenerpController extends Controller
         foreach ($companies as $company) {
             $bankUser = BankUser::find()->where(['username'=>$company->tag])->one();
             $bankAccount = BankAccount::find()->where(['bank_user_id'=>$bankUser->id])->one();
-            
+
             $Debug->message("Using company '" . $company->name . "'", $this->debugLevel);
             
             // Create an openerp database
             $OpenErpPassword = Yii::$app->getSecurity()->generateRandomKey(8);
             
-            $CreateTag = new CreateTag();
-            $company->tag = $company->tokenCustomer->tag."_".$CreateTag->createTagFromName($company->name);
+            #$CreateTag = new CreateTag();
+            #$company->tag = $company->tokenCustomer->tag."_".$CreateTag->createTagFromName($company->name);
             
             $Debug->message("Company tag is {$company->tag}", $this->debugLevel);
             
