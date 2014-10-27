@@ -30,7 +30,7 @@ class UserController extends Controller
             
             $backendUser = new User();
             $backendUser->username = $company->tag;
-            $password = Yii::$app->getSecurity()->generateRandomKey(8);
+            $password = Yii::$app->getSecurity()->generateRandomString(8);
             $backendUser->password = Yii::$app->getSecurity()->generatePasswordHash($password);
             $backendUser->email = $company->email;
             $backendUser->role = 10; // @TODO: bind this to the token key
