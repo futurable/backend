@@ -33,7 +33,7 @@ class OpenerpController extends Controller
             $Debug->message("Using company '" . $company->name . "'", $this->debugLevel);
             
             // Create an openerp database
-            $OpenErpPassword = Yii::$app->getSecurity()->generateRandomKey(8);
+            $OpenErpPassword = Yii::$app->getSecurity()->generateRandomString(8);
             
             #$CreateTag = new CreateTag();
             #$company->tag = $company->tokenCustomer->tag."_".$CreateTag->createTagFromName($company->name);
