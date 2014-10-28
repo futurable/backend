@@ -39,4 +39,9 @@ return [
             'dateFormat' => 'd.MM.Y',
         ]
     ],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
+    ],
 ];

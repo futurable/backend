@@ -119,8 +119,6 @@ AppAsset::register($this);
                                 '/costbenefit-calculation/view'
                             ]
                         ],
-                        
-                        // ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark/index']],
                         [
                             'label' => Yii::t('Menu', 'Customers'),
                             'url' => [
@@ -187,6 +185,11 @@ AppAsset::register($this);
                 // ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
                 // ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
                 ];
+            }
+            
+            if (Yii::$app->user->identity->isInstructor) {
+                $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark']];
+                $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Bank Accounts'), 'url' => ['/bank-account']];
             }
             
             echo Nav::widget([
