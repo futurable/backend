@@ -189,7 +189,7 @@ AppAsset::register($this);
             
             if (Yii::$app->user->identity->isInstructor) {
                 $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Remarks'), 'url' => ['/remark']];
-                $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Bank Accounts'), 'url' => ['/bank-account']];
+                $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Bank Accounts'), 'url' => ['/bank-account/view']];
             }
             
             echo Nav::widget([
