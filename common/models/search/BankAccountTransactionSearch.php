@@ -43,17 +43,17 @@ class BankAccountTransactionSearch extends BankAccountTransaction
     public function search($params, $iban)
     {
         $query = BankAccountTransaction::find();
-
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
+        $query->orFilterWhere(['payer_iban' => $iban]);
+        $query->orFilterWhere(['recipient_iban' => $iban]);
+        
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-
-        $query->orWhere(['payer_iban' => $iban]);
-        $query->orWhere(['recipient_iban' => $iban]);
         
         $query->andFilterWhere([
             'id' => $this->id,

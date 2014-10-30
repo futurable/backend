@@ -43,6 +43,9 @@ class BankAccountSearch extends BankAccount
     {
         $query = BankAccount::find();
 
+        $query->andFilterWhere(['bank_account_type_id' => '1']);
+        $query->orFilterWhere(['status' => 'enabled']);
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -50,7 +53,6 @@ class BankAccountSearch extends BankAccount
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        $this->status = 'enabled';
 
         $query->andFilterWhere([
             'id' => $this->id,

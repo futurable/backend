@@ -11,11 +11,12 @@ use yii\filters\VerbFilter;
 use common\models\BankUser;
 use common\models\Company;
 use common\models\search\BankAccountTransactionSearch;
+use common\controllers\MainController;
 
 /**
  * BankaccountController implements the CRUD actions for BankAccount model.
  */
-class BankAccountController extends Controller
+class BankAccountController extends MainController
 {
     public function behaviors()
     {
@@ -76,9 +77,16 @@ class BankAccountController extends Controller
      */
     public function actionView($id)
     {
-        $bankAccount = $this->findModel($id);
-        $bankAccountTransactionsSearch = new BankAccountTransactionSearch();
+        $id = \Yii::$app->session['selected_company_id'];
+        $company = Company::find()->where(['id'=>$id])->one();
+        $bankUser = BankUser::find()->where(['username' => $company->tag])->one();
 
+        $bankAccountSearch = new BankAccountSearch();
+        $bankAccountTransactionsSearch = new BankAccountTransactionSearch();
+        
+        $bankAccountDataProvider = $bankAccountSearch->search(['BankAccountSearch'=>['bank_user_id' => $bankUser->id]]);
+        $bankAccount = $bankAccountDataProvider->getModels()[0];
+        
         $bankAccountTransactions = $bankAccountTransactionsSearch->search(Yii::$app->request->queryParams, $bankAccount->iban);
         
         return $this->render('view', [
