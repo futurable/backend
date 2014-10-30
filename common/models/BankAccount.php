@@ -68,11 +68,11 @@ class BankAccount extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('Backend', 'ID'),
-            'iban' => Yii::t('Backend', 'International Bank Account Number (IBAN) to identify the account'),
-            'name' => Yii::t('Backend', 'User-given account name'),
-            'status' => Yii::t('Backend', 'Account status  ( enabled, disabled / removed )'),
-            'create_date' => Yii::t('Backend', 'The date the account has been created'),
-            'modify_date' => Yii::t('Backend', 'The most recent date the account has been altered'),
+            'iban' => Yii::t('Backend', 'IBAN'),
+            'name' => Yii::t('Backend', 'Account name'),
+            'status' => Yii::t('Backend', 'Account status'),
+            'create_date' => Yii::t('Backend', 'Create date'),
+            'modify_date' => Yii::t('Backend', 'Modify date'),
             'bank_user_id' => Yii::t('Backend', 'Bank User ID'),
             'bank_bic_id' => Yii::t('Backend', 'Bank Bic ID'),
             'bank_interest_id' => Yii::t('Backend', 'Bank Interest ID'),

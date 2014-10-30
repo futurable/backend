@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -31,13 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'label' => Yii::t('Backend', 'Sale orders'),
                         'value' => function($data){ return count($data->saleOrders); },
+                        'pageSummary' => true,
                     ],
                     [
                         'label' => Yii::t('Backend', 'Orders value'),
                         'value' => function($data){ $sum = 0; foreach($data->saleOrders as $saleOrder){ $sum += $saleOrder->amount_total; }; return $sum; },
-                        'format' => 'decimal',
-                    ]
-                ]
+                        'pageSummary' => true, 
+                        'format'=>['decimal', 2],
+                    ],
+                ],
+                'showPageSummary' => 'true',
             ]);
         }
         else

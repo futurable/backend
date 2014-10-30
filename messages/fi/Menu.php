@@ -17,12 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Modules' => 'Moduulit',
+    'Bank Accounts' => 'Pankkitilit',
     'Admin actions' => 'Admin toiminnot',
     'Bank accounts' => 'Pankkitilit',
     'Companies' => 'Yritykset',
     'Keys' => 'Avaimet',
-    'Users' => 'Käyttäjät',
     'Automated orders' => 'Automaattitilaukset',
     'Company' => 'Yritys',
     'Cost-benefit calculation' => 'Liiketoimintalaskelma',
@@ -31,6 +30,7 @@ return [
     'Employees' => 'Työntekijät',
     'Info' => 'Info',
     'Invoices' => 'Laskut',
+    'Modules' => 'Moduulit',
     'Orders' => 'Tilaukset',
     'Products' => 'Tuotteet',
     'Purchase orders' => 'Ostotilaukset',
