@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -24,6 +24,7 @@ return [
     'Amount' => '',
     'Average Wage Rate' => '',
     'Backend Password' => '',
+    'Bank Accounts' => '',
     'Bank Password' => '',
     'Bank Transaction ID' => '',
     'Clear field' => '',
@@ -37,6 +38,7 @@ return [
     'Create Init Data' => '',
     'Create Purchasing Orders' => '',
     'Create Time' => '',
+    'Create {modelClass}' => '',
     'Created' => '',
     'Created by' => '',
     'Created on' => '',
@@ -66,6 +68,7 @@ return [
     'Order Automation ID' => '',
     'Order Setup ID' => '',
     'Organization' => '',
+    'Phone' => '',
     'Phone number' => '',
     'Position' => '',
     'Postal Code' => '',
@@ -79,6 +82,7 @@ return [
     'Token Customer ID' => '',
     'Token Key' => '',
     'Token Setup ID' => '',
+    'Transactions' => '',
     'Turnover' => '',
     'Type' => '',
     'Unique ID
@@ -87,5 +91,5 @@ return [
     'Week' => '',
     'Weight' => '',
     'Year' => '',
-    'Unique ID' => '@@@@',
+    'Unique ID' => '',
 ];
