@@ -36,10 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'payer_iban',
             'recipient_name',
             'recipient_iban',
-            'amount',
+            ['attribute' => 'amount', 'pageSummary' => true, 'format'=>['decimal', 2],],
             'message',
         ],
-        'showPageSummary' => false,
+        'showPageSummary' => true,
     ]); ?>
     
 </div>
