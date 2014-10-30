@@ -9,7 +9,7 @@ use yii\helpers\BaseArrayHelper;
 /* @var $model common\models\BankAccount */
 
 $this->title = $bankAccount->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Bank Accounts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('Backend', 'Bank Account'), 'url' => ['view']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bank-account-view">
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     
-    <h2><?= Yii::t('app', 'Transactions') ?></h2>
+    <h2><?= Yii::t('Backend', 'Transactions') ?></h2>
     <?= GridView::widget([
         'dataProvider' => $bankAccountTransactions,
         'filterModel' => $bankAccountTransactionsSearch,
