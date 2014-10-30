@@ -71,12 +71,12 @@ class BankAccountTransaction extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('Backend', 'Unique ID for transactions
 '),
-            'recipient_iban' => Yii::t('Backend', 'Recipient IBAN)'),
+            'recipient_iban' => Yii::t('Backend', 'Recipient IBAN'),
             'recipient_bic' => Yii::t('Backend', 'Recipient BIC'),
             'recipient_name' => Yii::t('Backend', 'Recipient'),
             'payer_iban' => Yii::t('Backend', 'Payer IBAN'),
             'payer_bic' => Yii::t('Backend', 'Payer BIC'),
-            'payer_name' => Yii::t('Backend', 'Payer Name'),
+            'payer_name' => Yii::t('Backend', 'Payer'),
             'event_date' => Yii::t('Backend', 'Event date'),
             'create_date' => Yii::t('Backend', 'The creation date of the transaction'),
             'modify_date' => Yii::t('Backend', 'Modify date'),

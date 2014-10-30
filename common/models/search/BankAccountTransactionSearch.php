@@ -42,7 +42,16 @@ class BankAccountTransactionSearch extends BankAccountTransaction
      */
     public function search($params, $iban)
     {
-        $query = BankAccountTransaction::find();
+        $query = BankAccountTransaction::find()
+        ->select([
+            'event_date',
+            'payer_name',
+            'payer_iban',
+            'recipient_name',
+            'recipient_iban',
+            'amount' => "IF(payer_iban = '{$iban}', -amount, amount)",
+            'message',
+        ]);
         
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
