@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -37,18 +37,25 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'amount_untaxed',
-                        'value' => function($data){ return $data->amount_untaxed." €"; },
+                        #'value' => function($data){ return $data->amount_untaxed." €"; },
+                        'format'=>['decimal', 2],
+                        'pageSummary' => true,
                     ],
                     [
                         'attribute' => 'amount_tax',
-                        'value' => function($data){ return $data->amount_tax." €"; },
+                        #'value' => function($data){ return $data->amount_tax." €"; },
+                        'format'=>['decimal', 2],
+                        'pageSummary' => true,
                     ],
                     [
                         'attribute' => 'amount_total',
-                        'value' => function($data){ return $data->amount_total." €"; },
+                        #'value' => function($data){ return $data->amount_total." €"; },
+                        'format'=>['decimal', 2],
+                        'pageSummary' => true,
                     ],
                     'state',
-                ]
+                ],
+                'showPageSummary' => true,
             ]);
         }
         else 
