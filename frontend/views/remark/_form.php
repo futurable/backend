@@ -21,21 +21,24 @@ use common\commands\CompanyDropdown;
     <?php $companyDrowdown = new CompanyDropdown(); ?>
     <?= $form->field($model, 'company_id')->dropDownList($companyDrowdown->getDropdown()) ?>
     
+    <?php Yii::$app->session['lang'] = 'fi_FI'; ?>
     <?= DatePicker::widget([
         'model' => $model,
             'attribute' => 'event_date',
             'options' => ['placeholder' => Yii::t('Backend', 'Event date')],
+            'value' => date('Y-m-d'),
             'form' => $form,
             'pluginOptions' => [
-                'format' => 'yyyy-mm-dd',
                 'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
                 'language' => yii::$app->session['lang'],
                 'todayHighlight' => true,
             ],
-    ]); ?>
+    ]);
+    ?>
 
     <?php $significance =  array_combine(range(-3,3), array_merge(range(-3,0),['+1','+2','+3'])) ?>
-    <?= $form->field($model, 'significance')->dropDownList( $significance ); ?>
+    <?= $form->field($model, 'significance')->dropDownList( $significance, ['options' =>['0' => ['selected' => true]]]); ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => 1024]) ?>
 
