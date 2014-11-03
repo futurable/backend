@@ -27,7 +27,10 @@ class RemarkController extends MainController
                 'rules' => [
                     [
                         'actions' => [
-                            'index'
+                            'index',
+                            'create',
+                            'view',
+                            'update',
                         ],
                         'allow' => true,
                         'roles' => [

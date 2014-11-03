@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Account name' => '',
-    'Account status' => '',
+    'Account name' => 'Tilin nimi',
+    'Account status' => 'Tilin tila',
     'Account type. Ex. checking account, loan account, savings account' => '',
     'Account/Contract Name' => '',
     'Activkey' => '',
@@ -28,7 +28,7 @@ return [
     'Analytic Account' => '',
     'Analytic Journal' => '',
     'Balance' => '',
-    'Bank Account' => '',
+    'Bank Account' => 'Pankkitili',
     'Bank Account ID' => '',
     'Bank Account Transaction ID' => '',
     'Bank Account Type ID' => '',
@@ -245,6 +245,7 @@ return [
     'Track Incoming Lots' => '',
     'Track Manufacturing Lots' => '',
     'Track Outgoing Lots' => '',
+    'Transactions' => 'Tapahtumat',
     'Type' => '',
     'Type of Account' => '',
     'URL' => '',
