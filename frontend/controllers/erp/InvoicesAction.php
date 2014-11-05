@@ -9,7 +9,7 @@ use common\models\AccountInvoice;
 class InvoicesAction extends Action{
     public function run(){
         $provider = New ActiveDataProvider([
-            'query' =>  AccountInvoice::find()->joinWith('createU.partner'),
+            'query' =>  AccountInvoice::find()->joinWith('createU.partner')->orderBy('date_invoice DESC'),
         ]);
         
         return $this->controller->render('invoices', [
