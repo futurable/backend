@@ -60,6 +60,7 @@ return [
     'Customer Reference' => '',
     'Date Approved' => '',
     'Date of Birth' => '',
+    'Difference' => 'Erotus',
     'Default' => '',
     'Default Sales Team' => '',
     'Default Terms and Conditions' => '',
