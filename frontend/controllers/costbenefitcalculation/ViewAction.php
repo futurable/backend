@@ -7,6 +7,8 @@ use common\models\CostbenefitCalculation;
 use yii\data\ActiveDataProvider;
 use common\commands\CompanyAccess;
 use common\models\ResPartner;
+use common\models\search\CostbenefitCalculationSearch;
+use common\models\AccountMoveLine;
 
 class ViewAction extends Action{
     public function run(){
@@ -26,10 +28,13 @@ class ViewAction extends Action{
         $model = CostbenefitCalculation::findOne($id);
         
         // The actual cost-benefit calculation values
-        
+        $searchModel = new CostbenefitCalculationSearch();
+        $realized = $searchModel->searchRealized();
+
         return $this->controller->render('view', [
             'model' => $model,
-            'provider' => $provider
+            'provider' => $provider,
+            'realized' => $realized,
         ]);
     }
 }

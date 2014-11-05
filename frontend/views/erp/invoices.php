@@ -36,6 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'date'
                     ],
                     [
+                        'attribute' => 'date_invoice',
+                        'format' => 'date'
+                    ],
+                    [
                         'attribute' => 'amount_untaxed',
                         #'value' => function($data){ return $data->amount_untaxed." €"; },
                         'format'=>['decimal', 2],
@@ -54,6 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'pageSummary' => true,
                     ],
                     'state',
+                    [
+                        'class' => '\kartik\grid\BooleanColumn',
+                        'attribute' => 'sent',
+                    ],
                 ],
                 'showPageSummary' => true,
             ]);

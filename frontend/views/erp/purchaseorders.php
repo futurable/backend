@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => Yii::t('Backend', 'Partner name'),
                     ],
                     [
+                        'attribute' => 'date_order',
+                        'format' => 'date'
+                    ],
+                    [
                         'attribute' => 'create_date',
                         'format' => 'date'
                     ],
@@ -51,10 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format'=>['decimal', 2],
                     ],
                     'state',
-                    [
+                    [ 
+                        'class' => '\kartik\grid\BooleanColumn',
                         'attribute' => 'shipped',
-                        'value' => function($data){ return ($data->shipped == true) ? Yii::t('Backend', 'yes') : Yii::t('Backend', 'no'); },
-                    ]
+                    ],
                 ],
                 'showPageSummary' => 'true'
             ]);

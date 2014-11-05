@@ -170,3 +170,6 @@ a.desc:after {
 #login-form input{
     margin: 0 auto;
 }
+.strong{
+    font-weight: bold;
+}

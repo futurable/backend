@@ -8,7 +8,7 @@ use common\models\SaleOrder;
 class SaleordersAction extends Action{
     public function run(){
         $provider = New ActiveDataProvider([
-            'query' => SaleOrder::find()->joinWith('createU.partner'),
+            'query' => SaleOrder::find()->joinWith('createU.partner')->orderBy('date_order DESC'),
         ]);
         
         return $this->controller->render('saleorders', [

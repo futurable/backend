@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use common\models\CostbenefitCalculation;
 use common\models\Company;
 use common\commands\CompanyAccess;
+use common\models\AccountMoveLine;
 
 /**
  * CostbenefitCalculationSearch represents the model behind the search form about `common\models\CostbenefitCalculation`.
@@ -28,6 +29,27 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
         return Model::scenarios();
     }
 
+    public function searchRealized()
+    {
+        // Get realized items
+        $query = AccountMoveLine::find()
+        ->select( [ 
+            'week' => "to_char(date, 'YYYY-WW')", 
+            'account_id',
+            'credit' => 'SUM(credit)', 
+            'debit' => 'SUM(debit)' ] )
+        ->groupBy( [ 'week', 'account_id'] )
+        ->orderBy( 'week, account_id' );
+        
+        $realized = $query->all();
+
+        $realizedProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        
+        return $realized;
+    }
+    
     public function search($params)
     {
         $query = CostbenefitCalculation::find()->joinWith('company');

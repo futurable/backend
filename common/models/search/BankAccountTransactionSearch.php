@@ -59,6 +59,7 @@ class BankAccountTransactionSearch extends BankAccountTransaction
 
         $query->orFilterWhere(['payer_iban' => $iban]);
         $query->orFilterWhere(['recipient_iban' => $iban]);
+        $query->orderBy('event_date DESC');
         
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
@@ -84,8 +85,6 @@ class BankAccountTransactionSearch extends BankAccountTransaction
             ->andFilterWhere(['like', 'currency', $this->currency])
             ->andFilterWhere(['like', 'status', $this->status]);
 
-        $query->orderBy('event_date DESC');
-        
         return $dataProvider;
     }
 }
