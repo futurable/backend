@@ -16,9 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php ?>
+    <?php 
+    
+    foreach($realized as $row){
+        echo( "<p>" . $row->attributes['id'] . "</p>" );
+    }
+    ?>
 
-    <?=
+    <?php
         GridView::widget([
             'dataProvider' => $provider,
             'columns' => [

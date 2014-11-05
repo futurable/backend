@@ -17,6 +17,11 @@ use Yii;
  */
 class CostbenefitItem extends \yii\db\ActiveRecord
 {
+    public $week;
+    public $planned;
+    public $realized;
+    public $type;
+    
     /**
      * @inheritdoc
      */
@@ -51,10 +56,11 @@ class CostbenefitItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'value' => Yii::t('app', 'Value'),
-            'costbenefit_calculation_id' => Yii::t('app', 'Costbenefit Calculation ID'),
-            'costbenefit_item_type_id' => Yii::t('app', 'Costbenefit Item Type ID'),
+            'id' => Yii::t('Backend', 'ID'),
+            'week' => Yii::t('Backend', 'Week'),
+            'value' => Yii::t('Backend', 'Value'),
+            'costbenefit_calculation_id' => Yii::t('Backend', 'Costbenefit Calculation ID'),
+            'costbenefit_item_type_id' => Yii::t('Backend', 'Costbenefit Item Type ID'),
         ];
     }
 

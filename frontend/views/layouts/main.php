@@ -116,7 +116,7 @@ AppAsset::register($this);
                         [
                             'label' => Yii::t('Menu', 'Cost-benefit calculation'),
                             'url' => [
-                                '/costbenefit-calculation/view'
+                                '/erp/cbc'
                             ]
                         ],
                         [

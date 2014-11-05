@@ -26,6 +26,7 @@ class ErpController extends MainController
                         'actions' => [
                             'view',
                             'index',
+                            'cbc',
                             'customers',
                             'suppliers',
                             'products',
@@ -80,6 +81,7 @@ class ErpController extends MainController
     public function actions()
     {
         return [
+            'cbc' => ['class' => 'frontend\controllers\erp\CBCAction'],
             'customers' => ['class' => 'frontend\controllers\erp\CustomersAction'],
             'suppliers' => ['class' => 'frontend\controllers\erp\SuppliersAction'],
             'products' => ['class' => 'frontend\controllers\erp\ProductsAction'],
