@@ -50,6 +50,26 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
         return $realized;
     }
     
+    public function searchRealizedTotal()
+    {
+        // Get realized items
+        $query = AccountMoveLine::find()
+        ->select( [
+            'account_id',
+            'credit' => 'SUM(credit)',
+            'debit' => 'SUM(debit)' ] )
+            ->groupBy( [ 'account_id'] )
+            ->orderBy( 'account_id' );
+    
+        $realized = $query->all();
+    
+        $realizedProvider = new ActiveDataProvider([
+            'query' => $query,
+            ]);
+    
+        return $realized;
+    }
+    
     public function search($params)
     {
         $query = CostbenefitCalculation::find()->joinWith('company');

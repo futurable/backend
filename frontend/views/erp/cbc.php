@@ -27,6 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]);
 
+    /**
+     *  Weekly
+     */
     echo GridView::widget([
             'dataProvider' => $cbc,
             'columns' => [
@@ -48,6 +51,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => Yii::t('Backend', 'Realized'), #." (".Yii::t('Backend', 'weekly').")",
                     'attribute' => 'realized',
                     #'value' => function ($data) { return ($data->realized)." €"; },
+                    'format'=>['decimal', 2],
+                    'pageSummary' => true,
+                    'contentOptions' => ['class' => GridView::TYPE_INFO],
+                ],
+                [
+                    'label' => Yii::t('Backend', 'Difference'),
+                    'value' => function ($data) { return ( ( $data->realized - ($data->planned / 4)) ); },
+                    'format'=>['decimal', 2],
+                    'pageSummary' => true,
+                    'contentOptions' => function($data){ return getColumnClass($data); },
+                ],
+                /*[
+                    'label' => Yii::t('Backend', 'Planned')." (".Yii::t('Backend', 'monthly').")",
+                    'value' => function ($data) { return ($data->planned)." €"; }
+                ],*/
+            ],
+            'showPageSummary' => true,
+        ]);
+    
+    /**
+     *  Total
+     */
+    echo "<h2>".Yii::t('Backend', 'All time')."</h2>";
+    
+    echo GridView::widget([
+            'dataProvider' => $cbcTotal,
+            'columns' => [
+                [
+                    'label' => Yii::t('Backend', 'Name'), 
+                    'value' => function ($data) { return ucfirst(Yii::t('CostbenefitItem', $data->type)); }],
+                [
+                    'attribute' => 'planned',
+                    'label' => Yii::t('Backend', 'Planned')." (".Yii::t('Backend', 'monthly').")",
+                    'format'=>['decimal', 2],
+                    'pageSummary' => true,
+                    'contentOptions' => ['class' => GridView::TYPE_WARNING],
+                ],
+                [
+                    'label' => Yii::t('Backend', 'Realized')." (".Yii::t('Backend', 'All time').")",
+                    'attribute' => 'realized',
                     'format'=>['decimal', 2],
                     'pageSummary' => true,
                     'contentOptions' => ['class' => GridView::TYPE_INFO],
