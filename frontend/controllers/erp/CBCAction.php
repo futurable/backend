@@ -49,24 +49,39 @@ class CBCAction extends Action{
                 'pageSize' => 8,
             ],
         ]);
+        
+        // The total cost-benefit calculation values
+        $realizedTotal = $searchModel->searchRealizedTotal();
+        $allTotal = $this->combineCBC($realizedTotal, $planned, true);
+        $cbcTotal = new ArrayDataProvider([
+            'allModels' => $allTotal,
+            'pagination' => [
+                'pageSize' => 8,
+            ],
+        ]);
 
         return $this->controller->render('cbc', [
             'cbc' => $cbc,
+            'cbcTotal' => $cbcTotal,
             'planned' => $plannedProvider,
         ]);
     }
     
-    private function combineCBC($realized, $planned){
+    private function combineCBC($realized, $planned, $total = false){
         $result = [];
         $planned = $this->plannedToArray($planned);
         $realized = $this->realizedToArray($realized);
         
+        if($total === true){
+            $weeks = ['100'];
+        } else {
+            $weeks = range('42', date('W'));
+            $weeks = array_reverse($weeks);
+        }
         
-        $weeks = ['42','43','44','45','46'];
-        $weeks = array_reverse($weeks);
         # Get CBC types except side expenses
         $CBCTypes = CostbenefitItemType::find()->where(['!=', 'id', '4'])->orderBy('order')->all();
-        
+
         foreach($weeks as $week){
             foreach($CBCTypes as $CBCType){
                 $object = new CostbenefitItem();
@@ -100,20 +115,23 @@ class CBCAction extends Action{
     }
     
     private function getRealized($week, $CBCType, $realized){
-        $week = "2014-{$week}"; # @TODO: fix this
+        $YearWeek = "2014-{$week}"; # @TODO: fix this
+        
         $accounts = explode(",", $CBCType->account);
         $result = 0;
         $type = $CBCType->id;
         
         foreach( $accounts as $account ){
-            $value = isset( $realized[$week][$account] ) ? $realized[$week][$account] : 0;
+            if($week == '100') $value = isset( $realized['100'][$account] ) ? $realized['100'][$account] : 0;
+            else $value = isset( $realized[$YearWeek][$account] ) ? $realized[$YearWeek][$account] : 0;
+            
             if($CBCType->id !== 1) $value = -$value;
             
             /**
              * Special rules
              */
             // Account 4000000 has VAT 24% included
-           if($account === '400000') $value = $value - ($value*0.24);
+            if($account === '400000') $value = $value - ($value*0.24);
             
             $result += $value;
         }
@@ -121,7 +139,7 @@ class CBCAction extends Action{
         return $result;
     }
     
-    private function plannedToArray($planned){
+    private function plannedToArray($planned, $total = false){
         $planned = ArrayHelper::toArray($planned);
         
         $result = [];
@@ -137,6 +155,7 @@ class CBCAction extends Action{
         $result = [];
         
         foreach($realized as $object){
+            if(!isset($object->week)) $object->week = 100;
             $result[$object->week][$object->account->code] = abs( $object->credit - $object->debit );
         }
         return $result;

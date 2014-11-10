@@ -22,6 +22,7 @@ return [
     'Account type. Ex. checking account, loan account, savings account' => '',
     'Account/Contract Name' => '',
     'Activkey' => '',
+    'All time' => 'Koko ajalta',
     'Additional Information' => '',
     'Amount Currency' => '',
     'Amount of loan' => '',
