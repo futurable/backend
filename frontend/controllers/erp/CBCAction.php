@@ -46,7 +46,7 @@ class CBCAction extends Action{
         $cbc = new ArrayDataProvider([
             'allModels' => $all,
             'pagination' => [
-                'pageSize' => 9,
+                'pageSize' => 8,
             ],
         ]);
 
@@ -62,9 +62,10 @@ class CBCAction extends Action{
         $realized = $this->realizedToArray($realized);
         
         
-        $weeks = ['42','43','44','45'];
+        $weeks = ['42','43','44','45','46'];
         $weeks = array_reverse($weeks);
-        $CBCTypes = CostbenefitItemType::find()->all();
+        # Get CBC types except side expenses
+        $CBCTypes = CostbenefitItemType::find()->where(['!=', 'id', '4'])->orderBy('order')->all();
         
         foreach($weeks as $week){
             foreach($CBCTypes as $CBCType){
@@ -107,6 +108,12 @@ class CBCAction extends Action{
         foreach( $accounts as $account ){
             $value = isset( $realized[$week][$account] ) ? $realized[$week][$account] : 0;
             if($CBCType->id !== 1) $value = -$value;
+            
+            /**
+             * Special rules
+             */
+            // Account 4000000 has VAT 24% included
+           if($account === '400000') $value = $value - ($value*0.24);
             
             $result += $value;
         }

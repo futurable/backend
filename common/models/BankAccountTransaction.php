@@ -50,7 +50,7 @@ class BankAccountTransaction extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['recipient_bic', 'payer_iban', 'payer_bic', 'payer_name'], 'required'],
+            [['recipient_bic', 'payer_iban', 'payer_bic', 'payer_name', 'amount', 'message'], 'required'],
             [['event_date', 'create_date', 'modify_date'], 'safe'],
             [['amount', 'exchange_rate'], 'number'],
             [['status'], 'string'],

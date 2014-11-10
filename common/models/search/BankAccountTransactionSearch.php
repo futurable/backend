@@ -32,7 +32,7 @@ class BankAccountTransactionSearch extends BankAccountTransaction
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
-
+    
     /**
      * Creates data provider instance with search query applied
      *
@@ -40,7 +40,7 @@ class BankAccountTransactionSearch extends BankAccountTransaction
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $iban)
+    public function search($params, $iban = false)
     {
         $query = BankAccountTransaction::find()
         ->select([
@@ -59,7 +59,8 @@ class BankAccountTransactionSearch extends BankAccountTransaction
 
         $query->orFilterWhere(['payer_iban' => $iban]);
         $query->orFilterWhere(['recipient_iban' => $iban]);
-        $query->orderBy('event_date DESC');
+        $query->andWhere(['<=', 'event_date', date('Y-m-d')]);
+        $query->orderBy('event_date DESC, create_date DESC');
         
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
