@@ -2,6 +2,7 @@
 namespace common\commands;
 
 use Yii;
+use common\models\ResCompany;
 
 class DatabaseHelper
 {
@@ -23,8 +24,18 @@ class DatabaseHelper
         
         $dsn = implode(';', $dsnArray);
         
-        $db_openerp->dsn = $dsn;
+        $db_new = [
+            'class' => get_class($db_openerp),
+            'dsn' => $dsn,
+            'username' => $db_openerp->username,
+            'password' => $db_openerp->password,
+            'charset' => $db_openerp->charset,
+        ];
         
-        $result = Yii::$app->setComponents(['db'=>$db_openerp]);
+        $db_openerp->dsn = $dsn;
+
+        $result = Yii::$app->setComponents(['db'=>$db_new]);
+
+        return $result;
     }
 }

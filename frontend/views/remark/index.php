@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /**
  * @var yii\web\View $this
@@ -31,9 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'event_date',
                 'format' => 'date'
             ],
-            'significance',
-            ['class' => 'yii\grid\ActionColumn', 'template'=>'{view} {update}'],
+            [
+                'attribute' => 'significance',
+                'pageSummary' => true,
+                'value' => function($data){ return "+".$data->significance; },
+            ],
+            ['class' => 'kartik\grid\ActionColumn', 'template'=>'{view} {update}'],
         ],
+        'showPageSummary' => true,
     ]); ?>
     
     <p>

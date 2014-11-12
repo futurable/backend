@@ -87,8 +87,8 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
             ->groupBy( [ 'account_id'] )
             ->orderBy( 'account_id' );
     
-        if($from_date) $query->andWhere(['>=', 'date_maturity', $from_date]);
-        if($to_date) $query->andWhere(['<=', 'date_maturity', $to_date]);
+        if($from_date) $query->andWhere(['>=', 'date', $from_date]);
+        if($to_date) $query->andWhere(['<=', 'date', $to_date]);
         
         $realized = $query->all();
     
