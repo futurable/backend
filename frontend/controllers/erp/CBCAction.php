@@ -39,7 +39,7 @@ class CBCAction extends Action{
         
         // The actual cost-benefit calculation values
         $searchModel = new CostbenefitCalculationSearch();
-        $realized = $searchModel->searchRealized();
+        $realized = $searchModel->getRealizedAsArray();
         
         $all = $this->combineCBC($realized, $planned);
         
@@ -51,7 +51,7 @@ class CBCAction extends Action{
         ]);
         
         // The total cost-benefit calculation values
-        $realizedTotal = $searchModel->searchRealizedTotal();
+        $realizedTotal = $searchModel->getRealizedTotalAsArray();
         $allTotal = $this->combineCBC($realizedTotal, $planned, true);
         $cbcTotal = new ArrayDataProvider([
             'allModels' => $allTotal,
@@ -70,7 +70,6 @@ class CBCAction extends Action{
     private function combineCBC($realized, $planned, $total = false){
         $result = [];
         $planned = $this->plannedToArray($planned);
-        $realized = $this->realizedToArray($realized);
         
         if($total === true){
             $weeks = ['100'];
@@ -148,16 +147,6 @@ class CBCAction extends Action{
             $result[ $row['costbenefit_item_type_id'] ] = $row['value'];
         }
         
-        return $result;
-    }
-    
-    private function realizedToArray($realized){
-        $result = [];
-        
-        foreach($realized as $object){
-            if(!isset($object->week)) $object->week = 100;
-            $result[$object->week][$object->account->code] = abs( $object->credit - $object->debit );
-        }
         return $result;
     }
 }
