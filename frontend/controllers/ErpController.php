@@ -8,6 +8,7 @@ use yii\db\Connection;
 use yii\web\Request;
 use common\models\Company;
 use common\controllers\MainController;
+use common\commands\DatabaseHelper;
 
 class ErpController extends MainController
 {
@@ -103,10 +104,8 @@ class ErpController extends MainController
         $selected_id = \Yii::$app->session['selected_company_id'];
         $database_name = Company::findOne($selected_id)->tag;
         
-        $db_openerp = require( Yii::getAlias('@common') . '/config/db_openerp.php');
-        $db_openerp['dsn'] = "pgsql:host=127.0.0.1;port=3333;dbname={$database_name}";
-        
-        Yii::$app->setComponents(['db'=>$db_openerp]);
+        $DBHelper = new DatabaseHelper();
+        $DBHelper->changeOdooDBTo($database_name);
     }
     
     protected function getConnection(){
