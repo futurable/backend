@@ -27,12 +27,22 @@ class CompanySearch extends Company
         return Model::scenarios();
     }
 
-    public function search($params)
+    public function search($params, $restrict = true)
     {
         $query = Company::find();
         
-        $CompanyAccess = new CompanyAccess();
-        $query->andWhere( $CompanyAccess->getQueryConditions() );
+        $this->active = 1;
+        $this->support = 0;
+        
+        $query->andFilterWhere([
+            'active' => $this->active,
+            'support' => $this->support,
+        ]);
+        
+        if($restrict){
+            $CompanyAccess = new CompanyAccess();
+            $query->andWhere( $CompanyAccess->getQueryConditions() );
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -45,7 +55,6 @@ class CompanySearch extends Company
         $query->andFilterWhere([
             'id' => $this->id,
             'employees' => $this->employees,
-            'active' => $this->active,
             'create_time' => $this->create_time,
             'bank_account_created' => $this->bank_account_created,
             'openerp_database_created' => $this->openerp_database_created,
