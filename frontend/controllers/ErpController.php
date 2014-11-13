@@ -41,7 +41,8 @@ class ErpController extends MainController
                         'roles' => [
                             'user',
                             'instructor',
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ],
                     [
@@ -52,7 +53,8 @@ class ErpController extends MainController
                         'allow' => true,
                         'roles' => [
                             'instructor',
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ],
                     [
@@ -63,7 +65,8 @@ class ErpController extends MainController
                         ],
                         'allow' => true,
                         'roles' => [
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ]
                 ]
