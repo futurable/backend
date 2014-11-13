@@ -20,6 +20,7 @@ return [
     'Bank Accounts' => 'Pankkitilit',
     'Admin actions' => 'Admin toiminnot',
     'Bank accounts' => 'Pankkitilit',
+    'Bank transactions' => 'Pankkitapahtumat',
     'Companies' => 'Yritykset',
     'Keys' => 'Avaimet',
     'Automated orders' => 'Automaattitilaukset',

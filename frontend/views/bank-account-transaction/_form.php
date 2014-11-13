@@ -34,7 +34,9 @@ use kartik\widgets\Select2;
             'pluginOptions' => [
                 'format' => 'yyyy-mm-dd',
                 'todayHighlight' => true,
-                'autoClose' => true,
+                'autoclose' => true,
+                'daysOfWeekDisabled' => [0,6],
+                'startDate' => date('Y-m-d'),
             ]
         ]);
     ?>
@@ -42,11 +44,11 @@ use kartik\widgets\Select2;
     <?php
       echo $form->field($model, 'payer_name')->widget(Select2::classname(), [
             'data' => (ArrayHelper::map(BankUser::find()->where(['status'=>'1'])->all(), 'id', 'username')),
-            'options' => ['placeholder' => 'payer'],
+            'options' => ['placeholder' => Yii::t('Backend', 'Payer')],
         ]);
       echo $form->field($model, 'recipient_name')->widget(Select2::classname(), [
             'data' => (ArrayHelper::map(BankUser::find()->where(['status'=>'1'])->all(), 'id', 'username')),
-            'options' => ['placeholder' => 'recipient'],
+            'options' => ['placeholder' => Yii::t('Backend', 'Recipient')],
         ]);
     ?>
     
@@ -56,7 +58,7 @@ use kartik\widgets\Select2;
     <?= $form->field($model, 'message') ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('Backend', 'Create') : Yii::t('Backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
