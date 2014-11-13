@@ -60,8 +60,8 @@ class CompanyDropdown
             'active' => 1
         ])
             ->orderBy('name')
-		->all ();
-		
-		return $companies;
-	}
+            ->all();
+        
+        return $companies;
+    }
 }
