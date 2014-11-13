@@ -108,7 +108,10 @@ class ErpController extends MainController
         $database_name = Company::findOne($selected_id)->tag;
         
         $DBHelper = new DatabaseHelper();
-        $DBHelper->changeOdooDBTo($database_name);
+        $DBChanged = $DBHelper->changeOdooDBTo($database_name);
+        
+        // DB not found, switch back to default
+        if(!$DBChanged) $DBHelper->changeOdooDBToDefault();
     }
     
     protected function getConnection(){
