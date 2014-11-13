@@ -1,2 +1,5 @@
 main-local.php
 params-local.php
+db_bank.php
+db_core.php
+db_openerp.php
