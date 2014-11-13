@@ -35,7 +35,8 @@ class RemarkController extends MainController
                         'allow' => true,
                         'roles' => [
                             'instructor',
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ],
                     [
@@ -44,7 +45,8 @@ class RemarkController extends MainController
                         ],
                         'allow' => true,
                         'roles' => [
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ]
                 ]
