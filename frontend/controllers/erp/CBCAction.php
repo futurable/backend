@@ -19,46 +19,55 @@ class CBCAction extends Action{
         $companyAccess = new CompanyAccess();
         
         $company_id = \Yii::$app->session['selected_company_id'];
-        $id = CostbenefitCalculation::findOne(['company_id' => $company_id])->id;
+        $CBC = CostbenefitCalculation::findOne(['company_id' => $company_id]);
+        $id = $CBC ? $CBC->id : false;
         
-        $planned = CostbenefitItem::find()
-        ->joinWith('costbenefitCalculation')
-        ->joinWith('costbenefitCalculation.company')
-        ->where(['costbenefit_calculation.id' => $id])
-        ->andWhere( $companyAccess->getQueryConditions() )
-        ->all();
+        if($id === false){
+            $cbc = false;
+            $cbcTotal = false;
+            $plannedProvider = false;
+        }
+        else {
         
-        // The initial cost-benefit calculation
-        $plannedProvider = New ActiveDataProvider([
-            'query' => CostbenefitItem::find()
-                ->joinWith('costbenefitCalculation')
-                ->joinWith('costbenefitCalculation.company')
-                ->where(['costbenefit_calculation.id' => $id])
-                ->andWhere( $companyAccess->getQueryConditions() ),
-        ]);
-        
-        // The actual cost-benefit calculation values
-        $searchModel = new CostbenefitCalculationSearch();
-        $realized = $searchModel->getRealizedAsArray();
-        
-        $all = $this->combineCBC($realized, $planned);
-        
-        $cbc = new ArrayDataProvider([
-            'allModels' => $all,
-            'pagination' => [
-                'pageSize' => 8,
-            ],
-        ]);
-        
-        // The total cost-benefit calculation values
-        $realizedTotal = $searchModel->getRealizedTotalAsArray();
-        $allTotal = $this->combineCBC($realizedTotal, $planned, true);
-        $cbcTotal = new ArrayDataProvider([
-            'allModels' => $allTotal,
-            'pagination' => [
-                'pageSize' => 8,
-            ],
-        ]);
+            $planned = CostbenefitItem::find()
+            ->joinWith('costbenefitCalculation')
+            ->joinWith('costbenefitCalculation.company')
+            ->where(['costbenefit_calculation.id' => $id])
+            ->andWhere( $companyAccess->getQueryConditions() )
+            ->all();
+            
+            // The initial cost-benefit calculation
+            $plannedProvider = New ActiveDataProvider([
+                'query' => CostbenefitItem::find()
+                    ->joinWith('costbenefitCalculation')
+                    ->joinWith('costbenefitCalculation.company')
+                    ->where(['costbenefit_calculation.id' => $id])
+                    ->andWhere( $companyAccess->getQueryConditions() ),
+            ]);
+            
+            // The actual cost-benefit calculation values
+            $searchModel = new CostbenefitCalculationSearch();
+            $realized = $searchModel->getRealizedAsArray();
+            
+            $all = $this->combineCBC($realized, $planned);
+            
+            $cbc = new ArrayDataProvider([
+                'allModels' => $all,
+                'pagination' => [
+                    'pageSize' => 8,
+                ],
+            ]);
+            
+            // The total cost-benefit calculation values
+            $realizedTotal = $searchModel->getRealizedTotalAsArray();
+            $allTotal = $this->combineCBC($realizedTotal, $planned, true);
+            $cbcTotal = new ArrayDataProvider([
+                'allModels' => $allTotal,
+                'pagination' => [
+                    'pageSize' => 8,
+                ],
+            ]);
+        }
 
         return $this->controller->render('cbc', [
             'cbc' => $cbc,
