@@ -193,11 +193,11 @@ AppAsset::register($this);
             }
             
             if (Yii::$app->user->identity->isManager) {
-
+                
             }
             
             if (Yii::$app->user->identity->isAdmin) {
-                $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Bank Admin'), 'url' => ['/bank-account-transaction']];
+                $subMenuItems[1]['items'][] = ['label' => Yii::t('Menu', 'Bank transactions'), 'url' => ['/bank-account-transaction']];
             }
             
             echo Nav::widget([

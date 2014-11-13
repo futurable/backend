@@ -37,6 +37,8 @@ class BankAccountTransactionController extends \yii\web\Controller
     public function actionIndex()
     {
         $bankAccountTransaction = new BankAccountTransaction();
+        $bankAccountTransactionsSearch = new BankAccountTransactionSearch();
+        $bankAccountTransactions = $bankAccountTransactionsSearch->search(Yii::$app->request->getQueryParams());
         
         if($bankAccountTransaction->load(Yii::$app->request->post())){
             $payer_id = $bankAccountTransaction->payer_name;
@@ -50,14 +52,16 @@ class BankAccountTransactionController extends \yii\web\Controller
             $bankAccountTransaction->recipient_iban = BankAccount::find()->where(['bank_user_id'=> $recipient_id, 'bank_account_type_id' => 1])->one()->iban;
             $bankAccountTransaction->recipient_bic = BankAccount::find()->where(['bank_user_id'=> $recipient_id, 'bank_account_type_id' => 1])->one()->bankBic->bic;
             
-            $bankAccountTransaction->create_date = date('Y-m-d');
+            $bankAccountTransaction->create_date = date('Y-m-d H:i:s');
             
-            $bankAccountTransaction->save();
-            $bankAccountTransaction = new BankAccountTransaction();
+            if($bankAccountTransaction->save()){
+                return $this->redirect([
+                    'index',
+                    'bankAccountTransactions' => $bankAccountTransactions,
+                    'bankAccountTransactionsSearch' => $bankAccountTransactionsSearch,
+                ]);
+            }
         }
-
-        $bankAccountTransactionsSearch = new BankAccountTransactionSearch();
-        $bankAccountTransactions = $bankAccountTransactionsSearch->search([]);
         
         $bankAccountTransaction->event_date = date('Y-m-d');
         
