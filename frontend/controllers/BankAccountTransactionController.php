@@ -19,9 +19,14 @@ class BankAccountTransactionController extends \yii\web\Controller
                 ],
                 'rules' => [
                     [
+                        'actions' => [
+                            'index',
+                            'view',
+                        ],
                         'allow' => true,
                         'roles' => [
-                            'instructor',
+                            'manager',
+                            'admin',
                         ]
                     ],
                 ]

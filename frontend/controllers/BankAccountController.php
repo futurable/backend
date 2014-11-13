@@ -35,7 +35,8 @@ class BankAccountController extends MainController
                         'allow' => true,
                         'roles' => [
                             'instructor',
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ],
                 ]

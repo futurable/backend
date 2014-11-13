@@ -29,6 +29,32 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
         return Model::scenarios();
     }
 
+    public function getRealizedAsArray(){
+        $realized = $this->searchRealized();
+        $result = $this->realizedToArray($realized);
+
+        return $result;
+    }
+    
+    public function getRealizedTotalAsArray($from_date = false, $to_date = false){
+        $result = [];
+        $realized = $this->searchRealizedTotal($from_date, $to_date);
+        $result = $this->realizedToArray($realized);
+        
+        return $result;
+    }
+    
+    private function realizedToArray($realized){
+        $result = [];
+        
+        foreach($realized as $object){
+            if(!isset($object->week)) $object->week = 100;
+            $result[$object->week][$object->account->code] = abs( $object->credit - $object->debit );
+        }
+        
+        return $result;
+    }
+    
     public function searchRealized()
     {
         // Get realized items
@@ -50,7 +76,7 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
         return $realized;
     }
     
-    public function searchRealizedTotal()
+    public function searchRealizedTotal($from_date = false, $to_date = false)
     {
         // Get realized items
         $query = AccountMoveLine::find()
@@ -61,11 +87,14 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
             ->groupBy( [ 'account_id'] )
             ->orderBy( 'account_id' );
     
+        if($from_date) $query->andWhere(['>=', 'date', $from_date]);
+        if($to_date) $query->andWhere(['<=', 'date', $to_date]);
+        
         $realized = $query->all();
     
         $realizedProvider = new ActiveDataProvider([
             'query' => $query,
-            ]);
+        ]);
     
         return $realized;
     }

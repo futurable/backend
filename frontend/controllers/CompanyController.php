@@ -33,7 +33,8 @@ class CompanyController extends MainController
                         'roles' => [
                             'user',
                             'instructor',
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ],
                     [
@@ -43,7 +44,8 @@ class CompanyController extends MainController
                         'allow' => true,
                         'roles' => [
                             'instructor',
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ],
                     [
@@ -54,7 +56,8 @@ class CompanyController extends MainController
                         ],
                         'allow' => true,
                         'roles' => [
-                            'manager'
+                            'manager',
+                            'admin',
                         ]
                     ]
                 ]

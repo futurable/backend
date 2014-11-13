@@ -9,7 +9,7 @@ use common\models\ProductProduct;
 class ProductsAction extends Action{
     public function run(){
         $provider = New ActiveDataProvider([
-            'query' => ProductProduct::find(),
+            'query' => ProductProduct::find()->orderBy('name_template'),
         ]);
         
         return $this->controller->render('products', [
