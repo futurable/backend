@@ -20,7 +20,8 @@ class ConsoleDebug
             exit();
         
         $date = Console::ansiFormat(date('Y-m-d H:i:s '), [
-            Console::BOLD
+            Console::BOLD,
+            Console::FG_BLUE
         ]);
         $debugMessage = Console::ansiFormat($message, $args);
         
