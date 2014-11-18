@@ -25,7 +25,7 @@ class EuriborController extends Controller
             $Debug->message("Couldn't update euribor rates", $this->debugLevel);
         }
         
-        $Debug->message("Done!", $this->debugLevel);
+        $Debug->message("Done!", $this->debugLevel, [Console::FG_GREEN]);
         $Debug->message(false, $this->debugLevel);
     }
     
