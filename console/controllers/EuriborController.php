@@ -16,7 +16,7 @@ class EuriborController extends Controller
     public function actionUpdate()
     {
         $Debug = new ConsoleDebug();
-        $Debug->message('Euribor update action started', $this->debugLevel);
+        $Debug->message('Euribor Update action started', $this->debugLevel);
         
         if($this->fetchEuriborRates() and $this->updateEuribors()){
             $Debug->message("Euribor rates updated", $this->debugLevel);
