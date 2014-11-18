@@ -46,5 +46,35 @@ class DateFormatter
         
         return $dateInEUROFormat;
     }
+
+    /**
+     * Returns the amount of days in selected interval
+     * @param string $interval
+     * @return number
+     */
+    public function getDateInterval($interval)
+    {
+        if (substr($interval, - 1) == 's')
+            $interval = substr($interval, 0, - 1); // Strip the unnecessary 's' away
+
+        switch ($interval) {
+            case 'day':
+                $intervalInDays = 1;
+                break;
+            case 'week':
+                $intervalInDays = 7;
+                break;
+            case 'month':
+                $intervalInDays = 30;
+                break;
+            case 'year':
+                $intervalInDays = 360;
+                break;
+            default:
+                $intervalInDays = false;
+        }
+        
+        return $intervalInDays;
+    }
 }
 ?>
