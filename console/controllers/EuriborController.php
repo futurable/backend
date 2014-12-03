@@ -5,6 +5,7 @@ use Yii;
 use yii\console\Controller;
 use common\commands\ConsoleDebug;
 use common\models\BankInterest;
+use yii\helpers\Console;
 
 class EuriborController extends Controller
 {
