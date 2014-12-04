@@ -24,17 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'company.name',
             'description',
             [
-                'attribute' => 'create_date',
-                'format' => 'datetime'
-            ],
-            [
                 'attribute' => 'event_date',
                 'format' => 'date'
             ],
             [
                 'attribute' => 'significance',
                 'pageSummary' => true,
-                'value' => function($data){ return "+".$data->significance; },
+                'value' => function($data){ return ($data->significance >= 0) ? "+".$data->significance : $data->significance; },
             ],
             ['class' => 'kartik\grid\ActionColumn', 'template'=>'{view} {update}'],
         ],
