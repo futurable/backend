@@ -37,6 +37,12 @@ class RemarkSearch extends Remark
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+        	'sort' => [
+        		// Set the default sort by name ASC and created_at DESC.
+        		'defaultOrder' => [
+        			'event_date' => SORT_DESC,
+        		]
+        	],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
