@@ -23,12 +23,12 @@ $messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='http:/
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
 
-$messageContent .= "<h2>" . Yii::t('Company', 'OpenERP account') . "</h2>";
+$messageContent .= "<h2>" . Yii::t('Company', 'Odoo account') . "</h2>";
 $messageContent .= "<p>";
 $messageContent .= "<ul>";
 $messageContent .= "<li>" . Yii::t('Company', 'User account') . ": <strong>admin</strong></li>";
 $messageContent .= "<li>" . Yii::t('Company', 'Password') . ": <strong>{$company->companyPasswords->openerp_password}</strong></li>";
-$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='http://erp.futurality.fi/?db={$company->tag}'>erp.futurality.fi</a></li>";
+$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='http://erp.futurality.fi/?db={$company->tag}'>erp.futurality.fi/?db={$company->tag}</a></li>";
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
 
