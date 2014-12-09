@@ -13,7 +13,7 @@ EMAIL=$5
 BANKACCOUNT=$6
 
 DB=$TAG
-TEMPLATE="console/commands/sql/template_default8.sql"
+TEMPLATE="console/commands/sql/template_default.sql"
 INPUTFILE="/tmp/${DB}.sql"
 
 # Create temporary database dump file
