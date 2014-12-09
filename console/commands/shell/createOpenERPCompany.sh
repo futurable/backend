@@ -12,19 +12,21 @@ BUSINESSID=$4
 EMAIL=$5
 BANKACCOUNT=$6
 
+CRYPTED=$(python test.py ${PW})
 DB=$TAG
 TEMPLATE="console/commands/sql/template_default.sql"
 INPUTFILE="/tmp/${DB}.sql"
+BRURL="http://futurality.fi/ytj/index.php/site/index?company="
 
 # Create temporary database dump file
 cp $TEMPLATE $INPUTFILE
 
 # Replace names etc.
 sed -i "s/CompanyName/${NAME}/g" $INPUTFILE
-sed -i "s/CompanyPassword/${PW}/g" $INPUTFILE
+sed -i "s/CompanyPassword/${CRYPTED}/g" $INPUTFILE
 sed -i "s/CompanyBusinessId/${BUSINESSID}/g" $INPUTFILE
 sed -i "s/CompanyTagline/${NAME}/g" $INPUTFILE
-sed -i "s/CompanyWebsite/${TAG}.com/g" $INPUTFILE
+sed -i "s/CompanyWebsite/${BRURL}${BUSINESSID}/g" $INPUTFILE
 sed -i "s/CompanyEmail/${EMAIL}/g" $INPUTFILE
 sed -i "s/CompanyBankAccount/${BANKACCOUNT}/g" $INPUTFILE
 
