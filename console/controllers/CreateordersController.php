@@ -63,6 +63,7 @@ class CreateordersController extends Controller
     private function createOrders($suppliers){
         foreach($suppliers as $supplier){
             $this->createOrder($supplier);
+            $this->debugger->message(false, $this->debugLevel);
         }
     }
     
@@ -79,7 +80,7 @@ class CreateordersController extends Controller
         $orderValueMultiplier = new OrderValueMultiplier();
         $valueMultiplier = $orderValueMultiplier->get($supplier);
         $this->debugger->message("Value multiplier {$valueMultiplier}", $this->debugLevel);
-        $orderValue = $turnover->value * $valueMultiplier;
+        $orderValue = round( $turnover->value * $valueMultiplier );
         
         $this->debugger->message("Order value {$orderValue}", $this->debugLevel);
         

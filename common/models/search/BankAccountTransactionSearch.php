@@ -59,7 +59,7 @@ class BankAccountTransactionSearch extends BankAccountTransaction
 
         $query->orFilterWhere(['payer_iban' => $iban]);
         $query->orFilterWhere(['recipient_iban' => $iban]);
-        $query->andWhere(['<=', 'event_date', date('Y-m-d')]);
+        #$query->andWhere(['<=', 'event_date', date('Y-m-d')]);
         $query->orderBy('event_date DESC, create_date DESC');
         
         if (!($this->load($params) && $this->validate())) {
