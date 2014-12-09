@@ -55,6 +55,9 @@ class BankAccountTransactionSearch extends BankAccountTransaction
         
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' =>50,
+            ],
         ]);
 
         $query->orFilterWhere(['payer_iban' => $iban]);
