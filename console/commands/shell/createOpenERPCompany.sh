@@ -12,7 +12,7 @@ BUSINESSID=$4
 EMAIL=$5
 BANKACCOUNT=$6
 
-CRYPTED=$(python test.py ${PW})
+CRYPTED=$(python password_crypt.py ${PW})
 DB=$TAG
 TEMPLATE="console/commands/sql/template_default.sql"
 INPUTFILE="/tmp/${DB}.sql"
