@@ -16,6 +16,7 @@ CRYPTED=`python console/commands/python/password_crypt.py ${PW}`
 DB=$TAG
 TEMPLATE="console/commands/sql/template_default.sql"
 INPUTFILE="/tmp/${DB}.sql"
+LOGFILE="/tmp/${DB}.log"
 BRURL="futurality.fi\/ytj\/index.php\/site\/index\?company="
 
 # Create temporary database dump file
