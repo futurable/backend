@@ -41,6 +41,7 @@ class OpenerpController extends Controller
             $scriptFile = Yii::getAlias('@app') . "/commands/shell/createOpenERPCompany.sh";
             
             $Debug->message("Creating database '{$company->tag}'", $this->debugLevel);
+            $Debug->message("Command: {$cmd}", $this->debugLevel);
             $output = exec("sh " . $scriptFile . $shellCmd);
             
             $Debug->message("Created database '{$company->tag}'", $this->debugLevel);
