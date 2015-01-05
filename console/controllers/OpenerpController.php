@@ -35,11 +35,6 @@ class OpenerpController extends Controller
             // Create an openerp database
             $OpenErpPassword = Yii::$app->getSecurity()->generateRandomString(8);
             
-            #$CreateTag = new CreateTag();
-            #$company->tag = $company->tokenCustomer->tag."_".$CreateTag->createTagFromName($company->name);
-            
-            $Debug->message("Company tag is {$company->tag}", $this->debugLevel);
-            
             $cmd = " '$company->tag' '$company->name' '$OpenErpPassword' '$company->business_id' '$company->email' '$bankAccount->iban'";
             $shellCmd = escapeshellcmd($cmd);
             
