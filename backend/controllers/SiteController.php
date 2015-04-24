@@ -5,7 +5,7 @@ use Yii;
 use yii\web\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
-use yii\web\VerbFilter;
+use yii\filters\VerbFilter;
 use common\controllers\MainController;
 
 /**
@@ -20,7 +20,7 @@ class SiteController extends MainController
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => \yii\filters\AccessControl::className(),
                 'ruleConfig' => [
                     'class' => 'common\components\AccessRule'
                 ],
