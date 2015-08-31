@@ -181,10 +181,20 @@ a.desc:after {
     margin-bottom: 2em;
     padding: 1em;
 }
+#div-faq .question {
+    color: #f15a29;
+    font-weight: bold;
+}
 #div-faq .answer {
     padding-left: 2em;
 }
-#div-faq .question {
+#div-faq .answer ul{
+    padding-left: 1em;
+}
+#div-faq .answer li{
+    padding-bottom: 1em;
+}
+
+#div-faq .answer > p:first-child{
     color: #a8cf38;
-    font-weight: bold;
 }
