@@ -185,6 +185,13 @@ AppAsset::register($this);
                 // ['label' => Yii::t('Menu', 'Timesheets'), 'url' => ['/erp/timesheets']],
                 // ['label' => Yii::t('Menu', 'Timecards'), 'url' => ['/erp/timecards']],
                 ];
+                
+                $subMenuItems[] = [
+                    'label' => Yii::t('Menu', 'FAQ'),
+                    'url' => [
+                        '/site/faq'
+                    ]
+                ];
             }
             
             if (Yii::$app->user->identity->isInstructor) {

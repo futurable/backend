@@ -35,17 +35,13 @@ class OpenerpController extends Controller
             // Create an openerp database
             $OpenErpPassword = Yii::$app->getSecurity()->generateRandomString(8);
             
-            #$CreateTag = new CreateTag();
-            #$company->tag = $company->tokenCustomer->tag."_".$CreateTag->createTagFromName($company->name);
-            
-            $Debug->message("Company tag is {$company->tag}", $this->debugLevel);
-            
             $cmd = " '$company->tag' '$company->name' '$OpenErpPassword' '$company->business_id' '$company->email' '$bankAccount->iban'";
             $shellCmd = escapeshellcmd($cmd);
             
             $scriptFile = Yii::getAlias('@app') . "/commands/shell/createOpenERPCompany.sh";
             
             $Debug->message("Creating database '{$company->tag}'", $this->debugLevel);
+            $Debug->message("Command: {$cmd}", $this->debugLevel);
             $output = exec("sh " . $scriptFile . $shellCmd);
             
             $Debug->message("Created database '{$company->tag}'", $this->debugLevel);
