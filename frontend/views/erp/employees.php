@@ -28,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'create_date',
                     'format'=>'date',
                 ],
+                [
+                    'label' => Yii::t('Backend', 'Total messages'),
+                    'value' => function($data){ return count($data->resource->user->mailMessages); },
+                ],
             ]
         ]);
     }
