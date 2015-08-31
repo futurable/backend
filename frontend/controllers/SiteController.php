@@ -38,7 +38,7 @@ class SiteController extends MainController
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'faq'],
                         'allow' => true,
                         'roles' => ['user','instructor','manager','admin'],
                     ],
@@ -108,5 +108,12 @@ class SiteController extends MainController
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    
+    public function actionFaq()
+    {
+        return $this->render('faq', [
+
+        ]);
     }
 }

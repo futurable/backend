@@ -173,3 +173,18 @@ a.desc:after {
 .strong{
     font-weight: bold;
 }
+
+/* FAQ */
+#div-faq{
+    width: 50%;
+    float: left;
+    margin-bottom: 2em;
+    padding: 1em;
+}
+#div-faq .answer {
+    padding-left: 2em;
+}
+#div-faq .question {
+    color: #a8cf38;
+    font-weight: bold;
+}
