@@ -13,14 +13,14 @@ $this->params['breadcrumbs'][] = $this->title;
          <div id="div-faq">
              <p class="question"><?= Yii::t("FAQ", "What are the criteria used to decide the amount of our sales?") ?></p>
              <div class="answer">
-                <p><?= Yii::t("FAQ", "Each company will get sales whether they improve their company or not.
-                Companies putting effort to their actions get more. \"More\" sales mean both
-                more orders, but also orders with higher value.") ?></p>
+                <p><?= Yii::t("FAQ", "Each company will get sales whether they improve their company or not.") ?>
+                <br/><br/>
+                <?= Yii::t("FAQ", "Companies putting effort to their actions get more. \"More\" sales mean both more orders, but also orders with higher value.") ?></p>
                 
                 <p class='strong'><?= Yii::t("FAQ", "These will increase your sales") ?>:</p>
                 <table>
                      <tr>
-                        <th><?= Yii::t("FAQ", "Marketing") ?></th><td><?= Yii::t("FAQ", "ads, marketing campaigns etc.") ?></td>
+                        <th><?= Yii::t("FAQ", "Marketing") ?></th><td><?= Yii::t("FAQ", "ads, marketing campaigns, etc.") ?></td>
                     </tr>
                     <tr>
                         <th><?= Yii::t("FAQ", "Product pricing") ?></th><td><?= Yii::t("FAQ", "smart pricing gets more customers") ?></td>
