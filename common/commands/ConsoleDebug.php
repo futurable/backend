@@ -14,6 +14,7 @@ class ConsoleDebug
 
     public function message($message = false, $debugLevel = 1, $args = false)
     {
+        
         if($args === false) $args = [];
         
         if ($debugLevel == 0)
