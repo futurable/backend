@@ -28,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'name',
                     [
+                        'value' => function($data){ return $data->journal->type; },
+                        'label' => Yii::t('Backend', 'Type'),
+                    ],
+                    [
                         'attribute' => 'partner.name',
                         'label' => Yii::t('Backend', 'Partner name'),
                     ],
