@@ -203,6 +203,7 @@ a.desc:after {
     border-bottom: 1px dotted #eee;
 }
 #div-faq table th{
+    color: #0088cc;
     padding-right: 1em;
 }
 #div-faq table td{

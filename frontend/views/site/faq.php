@@ -69,6 +69,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <th>RFQ</th><td>Request for Quotation</td>
                     </tr>
+                    <tr>
+                        <th>MTO</th><td>Make to Order</td>
+                    </tr>
+                    <tr>
+                        <th>MTS</th><td>Make to Stock</td>
+                    </tr>
                  </table>
              </div>
          </div>
