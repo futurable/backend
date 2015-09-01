@@ -59,8 +59,8 @@ class CompanyDropdown
             ->andWhere([
             'active' => 1
         ])
-            ->orderBy('name')
-            ->all();
+        ->orderBy('name')
+        ->all();
         
         return $companies;
     }

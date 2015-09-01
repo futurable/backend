@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '' marks.
+ * enclosed between a pair of '@@' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -27,12 +27,10 @@ return [
     'Bank Accounts' => '',
     'Bank Password' => '',
     'Bank Transaction ID' => '',
-    'Clear field' => '',
     'Communication' => '',
     'Company ID' => '',
     'Contact email' => '',
     'Costbenefit Calculation ID' => '',
-    'Costbenefit Item Type ID' => '',
     'Create Date' => '',
     'Create Demo Data' => '',
     'Create Init Data' => '',
@@ -49,12 +47,12 @@ return [
     'Event Time' => '',
     'Executed' => '',
     'Expiration Date' => '',
-    'Hello, {username}!' => '',
     'Human readable name' => '',
     'ID' => '',
     'Industries' => '',
     'Industry ID' => '',
     'Info' => '',
+    'It is recommended you use an upgraded browser to display the {type} control properly.' => '',
     'Last Updated by' => '',
     'Last Updated on' => '',
     'Lifetime' => '',
@@ -68,21 +66,18 @@ return [
     'Order Automation ID' => '',
     'Order Setup ID' => '',
     'Organization' => '',
-    'Phone' => '',
     'Phone number' => '',
     'Position' => '',
     'Postal Code' => '',
     'Reclaim Date' => '',
     'Rents' => '',
     'Rows' => '',
-    'Select date & time' => '',
     'Sent' => '',
     'State' => '',
     'Street address' => '',
     'Token Customer ID' => '',
     'Token Key' => '',
     'Token Setup ID' => '',
-    'Transactions' => '',
     'Turnover' => '',
     'Type' => '',
     'Unique ID
@@ -91,5 +86,11 @@ return [
     'Week' => '',
     'Weight' => '',
     'Year' => '',
-    'Unique ID' => '',
+    'Clear field' => '@@@@',
+    'Costbenefit Item Type ID' => '@@@@',
+    'Hello, {username}!' => '@@@@',
+    'Phone' => '@@@@',
+    'Select date & time' => '@@@@',
+    'Transactions' => '@@@@',
+    'Unique ID' => '@@@@',
 ];

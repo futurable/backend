@@ -178,7 +178,7 @@ a.desc:after {
 #div-faq{
     width: 50%;
     float: left;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     padding: 1em;
 }
 #div-faq .question {
@@ -190,11 +190,22 @@ a.desc:after {
 }
 #div-faq .answer ul{
     padding-left: 1em;
+    margin-bottom: 0;
 }
 #div-faq .answer li{
     padding-bottom: 1em;
 }
-
 #div-faq .answer > p:first-child{
-    color: #a8cf38;
+    color: #0088cc;
+    padding-bottom: 1em;
+}
+#div-faq table tr{
+    border-bottom: 1px dotted #eee;
+}
+#div-faq table th{
+    color: #0088cc;
+    padding-right: 1em;
+}
+#div-faq table td{
+    padding: 0.2em;
 }
