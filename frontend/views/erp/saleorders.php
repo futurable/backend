@@ -16,6 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <h3><?= Yii::t("Backend", "Sale order states") ?></h3>
+    <table class="order-stages">
+        <tr>
+            <td><?= Yii::t("Backend", "draft") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "sent") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "progress") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "manual") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "done") ?></td><td />
+        </tr>
+    </table>
+    
     <?php
         if($provider->getCount() > 0)
         {

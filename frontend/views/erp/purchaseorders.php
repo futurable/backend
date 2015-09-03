@@ -15,11 +15,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <h3><?= Yii::t("Backend", "Purchase order states") ?></h3>
+    <table class="order-stages">
+        <tr>
+            <td><?= Yii::t("Backend", "draft") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "sent") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "confirmed") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "approved") ?></td><td><span class='arrow-right' /></td>
+            <td><?= Yii::t("Backend", "done") ?></td><td />
+            
+            <td><?= Yii::t("Backend", "cancel") ?></td>
+        </tr>
+    </table>
+    
     <?php
         if($provider->getCount() > 0)
         {
             echo GridView::widget([
                 'dataProvider' => $provider,
+                'responsive'=>true,
                 'columns' => [
                     'company.name:text:' . Yii::t('Backend', "Company"),
                     [
