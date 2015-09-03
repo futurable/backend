@@ -520,4 +520,6 @@ return [
     'cancel' => 'Peruttu',
     'progress' => 'Myyntitilaus',
     'manual' => 'Myynnin laskutus',
+    'Purchase order states' => 'Ostotilauksen vaiheet',
+    'Sale order states' => 'Myyntitilauksen vaiheet',
 ];
