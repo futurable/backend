@@ -209,3 +209,19 @@ a.desc:after {
 #div-faq table td{
     padding: 0.2em;
 }
+
+/* Order stages */
+.order-stages{
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+.order-stages td{
+    padding: 0.5em;
+    display: inline-block;
+}
+.arrow-right{
+    border-top: 0.5em solid transparent;
+    border-bottom: 0.5em solid transparent;
+    border-left: 1em solid #a8cf38;
+    display: inline-block;
+}
