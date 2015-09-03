@@ -54,7 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'pageSummary' => true,
                         'format'=>['decimal', 2],
                     ],
-                    'state',
+                    [
+                        'attribute' => 'state',
+                        'value' => function($data){ return Yii::t('Backend', $data->state); },
+                    ],
                     [ 
                         'class' => '\kartik\grid\BooleanColumn',
                         'attribute' => 'shipped',

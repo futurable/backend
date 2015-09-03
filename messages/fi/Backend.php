@@ -511,4 +511,13 @@ return [
     'Zip' => 'Postinumero',
     'monthly' => 'kuukausittainen',
     'weekly' => 'viikottainen',
+    'draft' => 'Luonnos',
+    'sent' => 'Lähetetty',
+    'bid' => 'Tarjous vastaanotettu',
+    'confirmed' => 'Odottaa hyväksyntää',
+    'approved' => 'Osto vahvistettu',
+    'done' => 'Valmis',
+    'cancel' => 'Peruttu',
+    'progress' => 'Myyntitilaus',
+    'manual' => 'Myynnin laskutus',
 ];
