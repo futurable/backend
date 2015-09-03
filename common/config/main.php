@@ -36,12 +36,12 @@ return [
             ],
         ],
         'formatter' => [
-            'dateFormat' => 'd.MM.Y',
+            'dateFormat' => 'dd.MM.Y',
         ]
     ],
     'modules' => [
         'gridview' =>  [
-            'class' => '\kartik\grid\Module'
-        ]
+            'class' => '\kartik\grid\Module',
+        ],
     ],
 ];
