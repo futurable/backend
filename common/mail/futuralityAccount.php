@@ -46,7 +46,7 @@ $messageContent .= "</p>";
 #$messageContent .= "<p><strong>" . Yii::t('Company', "Have fun") . "!</strong></p>";
 
 $messageContent .= "<p>---<br/>";
-$messageContent .= "<a href='http://futurable.fi'>Futurable Oy</a><br/>" . date('Y') . "</p>";
+$messageContent .= "<a href='http://tawasta.fi'>Oy Tawasta Technologies Ltd.</a><br/>" . date('Y') . "</p>";
 
 echo $messageContent;
 ?>
