@@ -19,10 +19,11 @@ $messageContent .= "<p>";
 $messageContent .= "<ul>";
 $messageContent .= "<li>" . Yii::t('Company', 'User account') . ": <strong>$company->tag</strong></li>";
 $messageContent .= "<li>" . Yii::t('Company', 'Password') . ": <strong>{$company->companyPasswords->bank_password}</strong></li>";
-$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='http://futurality.fi/bank/index.php/user/login/?company={$company->tag}'>futurality.fi/bank</a></li>";
+$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='bank.futurality.fi/index.php/user/login?company={$company->tag}'>bank.futurality.fi</a></li>";
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
 
+/*
 $messageContent .= "<h2>" . Yii::t('Company', 'Odoo account') . "</h2>";
 $messageContent .= "<p>";
 $messageContent .= "<ul>";
@@ -31,20 +32,21 @@ $messageContent .= "<li>" . Yii::t('Company', 'Password') . ": <strong>{$company
 $messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='http://erp.futurality.fi/?db={$company->tag}'>erp.futurality.fi/?db={$company->tag}</a></li>";
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
+*/
 
 $messageContent .= "<h2>" . Yii::t('Company', 'Backend account') . "</h2>";
 $messageContent .= "<p>";
 $messageContent .= "<ul>";
 $messageContent .= "<li>" . Yii::t('Company', 'User account') . ": <strong>{$company->tag}</strong></li>";
 $messageContent .= "<li>" . Yii::t('Company', 'Password') . ": <strong>{$company->companyPasswords->backend_password}</strong></li>";
-$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='https://futurality.fi/backend/index.php/site/login?company_tag={$company->tag}'>futurality.fi/backend</a></li>";
+$messageContent .= "<li>" . Yii::t('Company', 'Login from') . ": <a href='backend.futurality.fi/site/login?company_tag={$company->tag}'>backend.futurality.fi</a></li>";
 $messageContent .= "</ul>";
 $messageContent .= "</p>";
 
 #$messageContent .= "<p><strong>" . Yii::t('Company', "Have fun") . "!</strong></p>";
 
 $messageContent .= "<p>---<br/>";
-$messageContent .= "<a href='http://futurable.fi'>Futurable Oy</a><br/>" . date('Y') . "</p>";
+$messageContent .= "<a href='http://tawasta.fi'>Oy Tawasta Technologies Ltd.</a><br/>" . date('Y') . "</p>";
 
 echo $messageContent;
 ?>
