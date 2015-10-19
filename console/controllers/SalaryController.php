@@ -77,8 +77,8 @@ class SalaryController extends Controller
            }
            
            # 8. Get salaries and side expenses
-           $CBCSalaries = $CBC->costbenefitItems[2]->value;
-           $CBCSideExpenses = $CBC->costbenefitItems[3]->value;
+           $CBCSalaries = $CBC->costbenefitItems[2]->value / 4;
+           $CBCSideExpenses = $CBC->costbenefitItems[3]->value / 4;
            $amount = $CBCSalaries + $CBCSideExpenses;
            $Debug->message("Paying salaries for {$amount}");
            
