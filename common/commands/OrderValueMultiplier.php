@@ -16,7 +16,7 @@ class OrderValueMultiplier{
         $DBHelper->changeOdooDBTo($company->tag)."\n";
         
         $CBCSearch = new CostbenefitCalculationSearch();
-        $realized = $CBCSearch->getRealizedTotalAsArray(date('Y-m-d', strtotime('-1 month')),date('Y-m-d'))[100];
+        $realized = $CBCSearch->getRealizedTotalAsArray(date('Y-m-d', strtotime('-1 month')),date('Y-m-d'));
 
         $CBCTypes = CostbenefitItemType::find()->all();
         
@@ -54,9 +54,9 @@ class OrderValueMultiplier{
             $divider++;
         }
         $factor = $factor/$divider;
-    
-        if($factor<8) $factor = 8; // Minimum factor
-        if($factor>15) $factor = 15; // Maximum factor
+
+        if($factor<5) $factor = 5; // Minimum factor
+        if($factor>20) $factor = 20; // Maximum factor
     
         $multiplier = log10($factor);
         
