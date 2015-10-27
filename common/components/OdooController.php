@@ -1,5 +1,5 @@
 <?php
-namespace app\components;
+namespace common\components;
 
 use Yii;
 use yii\console\Controller;
@@ -9,7 +9,7 @@ class OdooController extends Controller
     public static function actionLogin($user, $password, $database="template", $host="localhost")
     {
         // TODO: use namespaces and autoloader. For some reason they are breaking everything at the moment
-        require_once(\Yii::$app->basePath.'/vendor/tejastank/odooconnector/OdooConnector.php');
+        require_once(Yii::getAlias('@vendor') . '/tejastank/odooconnector/OdooConnector.php');
         $connector = new \OdooConnector();
 
         $connector->login($user, $password, $database, $host);
@@ -17,10 +17,15 @@ class OdooController extends Controller
         return $connector;
     }
     
-    public static function actionLoginOdoo(){
+    public static function actionLoginOdoo($username=null, $password=null, $database=null, $host=null){
         $odoo_xmlrpc = Yii::$app->params['xmlrpc_odoo'];
         
-        return self::actionLogin($odoo_xmlrpc['username'], $odoo_xmlrpc['password'], $odoo_xmlrpc['database'], $odoo_xmlrpc['host']);
+        $username = $username ? $username : $odoo_xmlrpc['username'];
+        $password = $password ? $password : $odoo_xmlrpc['password'];
+        $database = $database ? $database : $odoo_xmlrpc['database'];
+        $host = $host ? $host : $odoo_xmlrpc['host'];
+
+        return self::actionLogin($username, $password, $database, $host);
     }
     
     public static function actionLoginTemplate(){
