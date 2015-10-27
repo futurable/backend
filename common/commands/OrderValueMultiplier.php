@@ -7,11 +7,17 @@ use common\models\search\CostbenefitCalculationSearch;
 use common\models\CostbenefitItemType;
 use common\models\ResCompany;
 use common\models\Remark;
+use common\components\OdooController;
+use yii\helpers\Console;
 
 class OrderValueMultiplier{
     
+    private $odooConnector;
+    
     public function get(Company $company){
-        
+        $this->odooConnector = OdooController::actionLoginOdoo();
+        $this->debugger = new ConsoleDebug();
+
         $DBHelper = new DatabaseHelper();
         $DBHelper->changeOdooDBTo($company->tag)."\n";
         
@@ -28,6 +34,9 @@ class OrderValueMultiplier{
         $remarkMultiplier = $this->getRemarkMultiplier($company);
         
         $orderValueMultiplier *= $remarkMultiplier;
+        
+        // Add contracts multiplier
+        $contractMultiplier = $this->getContractMultiplier($company);
         
         return $orderValueMultiplier;
     }
@@ -81,6 +90,79 @@ class OrderValueMultiplier{
         $baseLine = isset($baseLineValues[$account]) ? $baseLineValues[$account] : '500';
     
         return $baseLine;
+    }
+    
+    private function getContractMultiplier($company){
+        $supportCompanies = [
+            'eetteri',
+            'innowoima',
+            'rento',
+            'virtualdelivery',
+            'redo',
+            'puhti',
+        ];
+        
+        $totalValue = 0;
+        
+        foreach($supportCompanies as $supportCompany){
+            $this->odooConnector = OdooController::actionLoginOdoo(false, false, $supportCompany);
+            
+            $contracts = $this->getContracts($company);
+            $value = $this->getContractsValue($contracts);
+            $this->debugger->message("{$supportCompany} contracts value is {$value}");
+            
+            $totalValue += $value;
+        }
+        
+        $this->debugger->message("Total contracts value is {$totalValue}");
+        return $totalValue;
+    }
+    
+    private function getContracts($company){
+        $model = 'res.partner';
+        $fields = ['id', 'name', 'businessid'];
+        $criteria = [ ['businessid', '=', $company->business_id]];
+        $ids = $this->odooConnector->search($criteria, $model);
+        
+        if(!$ids){
+            $this->debugger->message("Can't find a company {$company->business_id}");
+            return false;
+        }
+        $odoo_company = $this->odooConnector->read($ids, $fields, $model)[0];
+        
+        $model = 'account.analytic.account';
+        $fields = ['id', 'name'];
+        $criteria = [ ['partner_id', '=', $odoo_company['id']], ['state', '=', 'open'] ];
+        $ids = $this->odooConnector->search($criteria, $model);
+        
+        if(!$ids){
+            return false;
+        }
+        
+        $contracts = $this->odooConnector->read($ids, $fields, $model);
+        $contracts_count = count($contracts);
+        
+        return $contracts;
+    }
+    
+    private function getContractsValue($contracts){
+        if(!is_array($contracts)) return 0.00;
+        
+        $sum = 0;
+        $model = 'account.analytic.invoice.line';
+        $fields = ['id', 'name', 'price_subtotal'];
+        
+        foreach ($contracts as $contract){
+            $criteria = [ ['analytic_account_id', '=', ($contract['id'])] ];
+            $ids = $this->odooConnector->search($criteria, $model);
+            $lines = $this->odooConnector->read($ids, $fields, $model);
+            
+            foreach($lines as $line){
+                $sum += $line['price_subtotal'];
+            }
+        }
+        
+        return $sum;
     }
 }
 ?>
