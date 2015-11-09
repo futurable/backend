@@ -38,6 +38,8 @@ class OrderValueMultiplier{
         // Add contracts multiplier
         $contractMultiplier = $this->getContractMultiplier($company);
         
+        $orderValueMultiplier += $contractMultiplier;
+        
         return $orderValueMultiplier;
     }
     
@@ -76,7 +78,7 @@ class OrderValueMultiplier{
     private function getBaseLineValue($account){    
         $baseLineValues = [
             '300000' => '70000',    // Turnover
-            '400000' => '54000',    // Expenses
+            '287100' => '54000',    // Expenses
             '500000' => '6000',     // Salaries
             '000000' => '4000',     // Loans
             '723000' => '600',      // Rents
@@ -109,13 +111,18 @@ class OrderValueMultiplier{
             
             $contracts = $this->getContracts($company);
             $value = $this->getContractsValue($contracts);
-            $this->debugger->message("{$supportCompany} contracts value is {$value}");
+            #$this->debugger->message("{$supportCompany} contracts value is {$value}");
             
             $totalValue += $value;
         }
         
-        $this->debugger->message("Total contracts value is {$totalValue}");
-        return $totalValue;
+        # $this->debugger->message("Contracts value {$totalValue}");
+        
+        $baseLine = "300"; // TODO put this to settings
+        if($totalValue < 100) $totalValue = 100;
+        $multiplier = log10($totalValue / $baseLine);
+        
+        return $multiplier;
     }
     
     private function getContracts($company){

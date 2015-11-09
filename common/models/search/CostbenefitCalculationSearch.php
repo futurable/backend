@@ -60,7 +60,7 @@ class CostbenefitCalculationSearch extends CostbenefitCalculation
         // Get realized items
         $query = AccountMoveLine::find()
         ->select( [ 
-            'week' => "to_char(date, 'YYYY-WW')", 
+            'week' => "to_char(date, 'YYYY-IW')", 
             'account_id',
             'credit' => 'SUM(credit)', 
             'debit' => 'SUM(debit)' ] )
