@@ -10,6 +10,7 @@ use common\models\search\CompanySearch;
 use common\models\CostbenefitCalculation;
 use common\models\CostbenefitItem;
 use common\commands\OrderValueMultiplier;
+use common\models\OrderSetup;
 
 class CreateordersController extends Controller
 {
@@ -38,7 +39,7 @@ class CreateordersController extends Controller
         # 2. Get all suppliers
         $companySearch = new CompanySearch();
         $suppliers = $companySearch->search([], false)->getModels();
-        $this->debugger->message( count($suppliers) . " suppliers found", $this->debugLevel);
+        $this->debugger->message( count($suppliers) . " suppliers found\n", $this->debugLevel);
         
         # 3. Go through all companies
         $this->createOrders($suppliers);
@@ -68,22 +69,34 @@ class CreateordersController extends Controller
     }
     
     private function createOrder($supplier){
-        $this->debugger->message("Using supplier {$supplier->name}", $this->debugLevel);
+        $this->debugger->message("Using {$supplier->name}", $this->debugLevel);
         
         # x.1 Get the turnover from latest CBC
         $CBC = CostbenefitCalculation::find()->where(['company_id'=>$supplier->id])->orderBy('create_date DESC')->one();
         $turnover = CostbenefitItem::find()->where(['costbenefit_calculation_id' => $CBC->id, 'costbenefit_item_type_id' => 1])->one();
+        $turnover->value = 70000;
         
-        $this->debugger->message("Turnover {$turnover->value}", $this->debugLevel);
+        # $this->debugger->message("Turnover {$turnover->value}", $this->debugLevel);
         
         # x.2 Get the order value
         $orderValueMultiplier = new OrderValueMultiplier();
         $valueMultiplier = $orderValueMultiplier->get($supplier);
+        
         $this->debugger->message("Value multiplier {$valueMultiplier}", $this->debugLevel);
         $orderValue = round( $turnover->value * $valueMultiplier );
         
-        $this->debugger->message("Order value {$orderValue}", $this->debugLevel);
+        $this->debugger->message("Orders value {$orderValue}", $this->debugLevel);
         
-        $this->debugger->message("Created order for {$supplier->name}", $this->debugLevel);
+        $orderSetup = OrderSetup::find()->one();
+        # $this->debugger->message("Creating {$orderSetup->amount} orders", $this->debugLevel);
+        
+        for($i = 0; $i < $orderSetup->amount; $i++){
+            $rowsMin = ($orderSetup->rows - 1) > 0 ? $rowsMin = $orderSetup->rows -1 : 1;
+            $rowsMax = $orderSetup->rows + 1;
+            $rows = mt_rand ($rowsMin,$rowsMax);
+        }
+        
+        $this->debugger->message("Created {$i} orders for {$supplier->name}", $this->debugLevel);
     }
+    
 }

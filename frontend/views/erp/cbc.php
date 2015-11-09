@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'label' => Yii::t('Backend', 'Difference'),
-                        'value' => function ($data) { return ( ( $data->realized - ($data->planned / 4)) ); },
+                        'value' => function ($data) { return ( ( $data->realized - ($data->planned)) ); },
                         'format'=>['decimal', 2],
                         'pageSummary' => true,
                         'contentOptions' => function($data){ return getColumnClass($data); },

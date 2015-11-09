@@ -123,7 +123,7 @@ class CBCAction extends Action{
     }
     
     private function getRealized($week, $CBCType, $realized){
-        $YearWeek = "2014-{$week}"; # @TODO: fix this
+        $YearWeek = "2015-{$week}"; # @TODO: fix this
         
         $accounts = explode(",", $CBCType->account);
         $result = 0;
@@ -139,7 +139,7 @@ class CBCAction extends Action{
              * Special rules
              */
             // Account 4000000 has VAT 24% included
-            if($account === '400000') $value = $value - ($value*0.24);
+            //if($account === '400000') $value = $value - ($value*0.24);
             
             $result += $value;
         }

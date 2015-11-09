@@ -13,6 +13,12 @@
 		"source": "https://github.com/yiisoft/yii2"
 	},
 	"minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/futurable/odooconnector.git"
+        }
+    ],
 	"require": {
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "*",
@@ -20,7 +26,8 @@
 		"yiisoft/yii2-swiftmailer": "*",
 		"kartik-v/yii2-widgets": "dev-master",
 		"kartik-v/yii2-grid": "*",
-		"kartik-v/yii2-mpdf": "dev-master"
+		"kartik-v/yii2-mpdf": "dev-master",
+		"tejastank/odooconnector": "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",
